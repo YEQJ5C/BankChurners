@@ -23,6 +23,7 @@ class ProjectInitializer:
             "streamlit_app",
             "tests",
             "logs",
+            "docs",
         ]
         self.packages: List[str] = ["src", "api", "tests", "configs"]
 
