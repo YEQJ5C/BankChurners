@@ -223,3 +223,6 @@ secrets/
 # MLflow és DVC adatok
 mlruns/
 data/*.csv
+
+# Dynamic documentation 
+reports docs/env_report_*.md
