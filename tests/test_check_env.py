@@ -1,17 +1,15 @@
-"""Unit tests for the environment validation module (src/check_env.py).
+"""Unit tests for the environment validation module.
 
-Covers requirement parsing, environment data collection, report rendering,
-markdown file saving, and the __main__ execution block to achieve 100% coverage.
+Covers requirement parsing, environment data collection,
+report rendering, markdown file saving, and the __main__ block.
 """
 
 import importlib.metadata
 import runpy
-from pathlib import Path
-import pytest
 
 from src.check_env import (
-    parse_requirements,
     collect,
+    parse_requirements,
     render,
     save_report,
 )
@@ -24,14 +22,14 @@ def test_parse_requirements_non_existent(tmp_path):
 
 
 def test_parse_requirements_default_missing(monkeypatch, tmp_path):
-    """Test parse_requirements default argument when requirements.txt is missing."""
+    """Test parse_requirements default argument when missing."""
     monkeypatch.chdir(tmp_path)
     result = parse_requirements()
     assert result == []
 
 
 def test_parse_requirements_parsing(tmp_path):
-    """Requirements parsing should handle comments, editables, and versions."""
+    """Requirements parsing should handle comments and versions."""
     req_file = tmp_path / "requirements.txt"
     req_file.write_text(
         "# This is a comment\n\n"
@@ -48,7 +46,7 @@ def test_parse_requirements_parsing(tmp_path):
     assert "pandas>=2.0.0" not in packages
 
 
-def test_collect_with_venv(monkeypatch, tmp_path):
+def test_collect_with_venv(monkeypatch):
     """Collect environment details when VIRTUAL_ENV is active."""
     monkeypatch.setenv("VIRTUAL_ENV", "/fake/venv")
 
@@ -114,13 +112,13 @@ def test_save_report(tmp_path):
 
 
 def test_check_env_main_block(monkeypatch, tmp_path):
-    """Test the if __name__ == '__main__': execution block of check_env."""
+    """Test the if __name__ == '__main__': execution block."""
     monkeypatch.setattr("sys.argv", ["check_env.py"])
-    
-    # Mockoljuk a save_report-ot, hogy a tmp_path-ba mentsen, elkerülve a valós írást
+
     monkeypatch.setattr(
         "src.check_env.save_report",
-        lambda report, docs_dir="docs": tmp_path / "env_report_test.md"
+        lambda report, docs_dir="docs":
+        tmp_path / "env_report_test.md"
     )
 
     runpy.run_module("src.check_env", run_name="__main__")
