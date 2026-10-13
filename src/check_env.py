@@ -7,8 +7,10 @@ requirements.txt, environment verification, and markdown report generation.
 from datetime import datetime
 import importlib.metadata
 import os
-import platform
+import pathlib
 from pathlib import Path
+import shutil
+import platform
 import sys
 from typing import Any, Dict, List
 
@@ -44,7 +46,6 @@ def parse_requirements(req_path: str = "requirements.txt") -> List[str]:
 
 def collect() -> Dict[str, Any]:
     """Collect environment, python, requirements,
-
     and directory details.
     """
     checks: Dict[str, Any] = {}
@@ -69,6 +70,10 @@ def collect() -> Dict[str, Any]:
         except importlib.metadata.PackageNotFoundError:
             pkg_versions[pkg] = "Not installed ❌"
     checks["packages"] = pkg_versions
+
+    # External MLOps tools verification
+    tools = ["git", "dvc", "docker", "pre-commit"]
+    checks["tools"] = {tool: shutil.which(tool) is not None for tool in tools}
 
     # Mandatory directory structure integrity
     required_dirs = [
@@ -111,7 +116,12 @@ def render(checks: Dict[str, Any]) -> str:
     for pkg, ver in checks["packages"].items():
         report += f"- **{pkg}:** {ver}\n"
 
-    report += "\n## 3. Directory Structure Integrity\n"
+    report += "\n## 3. MLOps Tools Availability\n"
+    for tool, available in checks.get("tools", {}).items():
+        status = "✅ Available" if available else "❌ NOT FOUND"
+        report += f"- **{tool}:** {status}\n"
+
+    report += "\n## 4. Directory Structure Integrity\n"
     for d, exists in checks["directories"].items():
         status = "✅ Exists" if exists else "❌ Missing"
         report += f"- `{d}/`: {status}\n"
@@ -121,7 +131,6 @@ def render(checks: Dict[str, Any]) -> str:
 
 def save_report(report_content: str, docs_dir: str = "docs") -> Path:
     """Save the rendered markdown report with a
-
     timestamp into the docs directory.
     """
     Path(docs_dir).mkdir(parents=True, exist_ok=True)
