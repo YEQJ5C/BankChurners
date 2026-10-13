@@ -45,3 +45,4 @@ class ProjectInitializer:
 if __name__ == "__main__":
     initializer = ProjectInitializer()
     initializer.create_project_structure()
+    

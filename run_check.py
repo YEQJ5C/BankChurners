@@ -1,11 +1,5 @@
 """Runner script for executing the environment validation."""
 
-from pathlib import Path
-import sys
-
-# Ensure src is in the python path
-sys.path.append(str(Path(__file__).parent / "src"))
-
 import check_env
 
 if __name__ == "__main__":
@@ -19,3 +13,4 @@ if __name__ == "__main__":
 
     saved_path = check_env.save_report(report)
     print(f"[OK] Report successfully saved to: {saved_path}")
+    

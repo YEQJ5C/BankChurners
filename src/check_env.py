@@ -26,6 +26,12 @@ def parse_requirements(req_path: str = "requirements.txt") -> List[str]:
             # Skip empty lines and comments
             if not line or line.startswith("#"):
                 continue
+
+            # Handle editable install (-e . or similar paths)
+            if line.startswith("-e") or line.startswith("--editable"):
+                packages.append("bankchurners")
+                continue
+
             # Strip version specifiers (e.g., mlflow==3.1.0 -> mlflow)
             for char in ["==", ">=", "<=", "~=", ">", "<"]:
                 if char in line:
@@ -37,7 +43,10 @@ def parse_requirements(req_path: str = "requirements.txt") -> List[str]:
 
 
 def collect() -> Dict[str, Any]:
-    """Collect environment, python, requirements packages, and directory details."""
+    """Collect environment, python, requirements,
+
+    and directory details.
+    """
     checks: Dict[str, Any] = {}
 
     # Python and system information
@@ -85,10 +94,14 @@ def render(checks: Dict[str, Any]) -> str:
 **Generated:** {timestamp}
 
 ## 1. System & Python Information
-- **Platform:** {checks['platform']}
-- **Python Executable:** `{checks['python_executable']}`
-- **Python Version:** `{checks['python_version']}`
-- **Virtual Environment (VIRTUAL_ENV):** `{checks['virtual_env']}`
+- **Platform:**
+{checks['platform']}
+- **Python Executable:** `
+{checks['python_executable']}`
+- **Python Version:** `
+{checks['python_version']}`
+- **Virtual Environment (VIRTUAL_ENV):** `
+{checks['virtual_env']}`
 
 ## 2. Installed Packages (from requirements.txt)
 """
@@ -104,7 +117,10 @@ def render(checks: Dict[str, Any]) -> str:
 
 
 def save_report(report_content: str, docs_dir: str = "docs") -> Path:
-    """Save the rendered markdown report with a timestamp into the docs directory."""
+    """Save the rendered markdown report with a
+
+    timestamp into the docs directory.
+    """
     Path(docs_dir).mkdir(parents=True, exist_ok=True)
     timestamp_str = datetime.now().strftime("%Y%m%d_%H%M%S")
     report_path = Path(docs_dir) / f"env_report_{timestamp_str}.md"
@@ -113,3 +129,4 @@ def save_report(report_content: str, docs_dir: str = "docs") -> Path:
         f.write(report_content)
 
     return report_path
+          
