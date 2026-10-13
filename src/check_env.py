@@ -73,6 +73,8 @@ def collect() -> Dict[str, Any]:
     # Mandatory directory structure integrity
     required_dirs = [
         "data",
+        "data/raw",
+        "data/processed",
         "configs",
         "src",
         "api",
@@ -80,6 +82,7 @@ def collect() -> Dict[str, Any]:
         "tests",
         "logs",
         "docs",
+        "models",
     ]
     checks["directories"] = {d: Path(d).is_dir() for d in required_dirs}
 
@@ -129,4 +132,3 @@ def save_report(report_content: str, docs_dir: str = "docs") -> Path:
         f.write(report_content)
 
     return report_path
-          

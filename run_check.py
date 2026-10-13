@@ -13,4 +13,3 @@ if __name__ == "__main__":
 
     saved_path = check_env.save_report(report)
     print(f"[OK] Report successfully saved to: {saved_path}")
-    

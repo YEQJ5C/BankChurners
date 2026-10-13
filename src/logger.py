@@ -95,4 +95,3 @@ def get_logger(
 
     logger.propagate = False
     return logger
-    
