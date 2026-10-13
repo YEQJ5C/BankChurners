@@ -1,48 +1,36 @@
-"""Projekt inicializáló modul a tiszta MLOps mappaszerkezet
-
-és a Python csomagok felépítéséhez.
-"""
+"""Application configuration module using Pydantic Settings."""
 
 from pathlib import Path
-from typing import List
+
+from pydantic import Field
+from pydantic_settings import BaseSettings, SettingsConfigDict
+
+# A projekt gyökérkönyvtárának kiszámítása
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-class ProjectInitializer:
-    """A BankChurners projekt mappaszerkezetének platformfüggetlen,
+class Settings(BaseSettings):
+    """Application settings loaded from environment variables and defaults."""
 
-    objektumorientált inicializálásáért felelős osztály.
-    """
+    model_config = SettingsConfigDict(
+        env_file=".env",
+        env_prefix="CHURN_",
+        extra="ignore",
+    )
 
-    def __init__(self, base_path: str = ".") -> None:
-        self.base_path: Path = Path(base_path)
-        self.directories: List[str] = [
-            "data",
-            "configs",
-            "src",
-            "api",
-            "streamlit_app",
-            "tests",
-            "logs",
-            "docs",
-        ]
-        self.packages: List[str] = ["src", "api", "tests", "configs"]
+    # Core project paths (fully independent and safe)
+    base_dir: Path = BASE_DIR
+    data_dir: Path = BASE_DIR / "data"
+    raw_dir: Path = BASE_DIR / "data" / "raw"
+    processed_dir: Path = BASE_DIR / "data" / "processed"
+    models_dir: Path = BASE_DIR / "models"
+    logs_dir: Path = BASE_DIR / "logs"
 
-    def create_project_structure(self) -> None:
-        """Biztonságosan létrehozza a könyvtárakat és a csomag-fájlokat."""
-        for dir_name in self.directories:
-            dir_path = self.base_path / dir_name
-            dir_path.mkdir(parents=True, exist_ok=True)
-            print(f"[OK] Könyvtár létrehozva vagy létezik: {dir_path}")
-
-            # Python csomag mappákba __init__.py elhelyezése
-            if dir_name in self.packages:
-                init_file = dir_path / "__init__.py"
-                if not init_file.exists():
-                    init_file.touch()
-                    print(f"[OK] Fájl létrehozva: {init_file}")
+    # Model parameters
+    random_seed: int = 42
+    model_name: str = "bank_churn_model"
+    test_size: float = Field(default=0.2, gt=0.0, lt=1.0)
 
 
-if __name__ == "__main__":
-    initializer = ProjectInitializer()
-    initializer.create_project_structure()
-    
+# Globális konfig példány
+settings = Settings()

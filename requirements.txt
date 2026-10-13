@@ -1,3 +1,6 @@
+# Konfiguráció és típusvalidáció
+pydantic-settings==2.6.1
+
 # Adatfeldolgozás és ML alapok
 pandas==2.3.3
 numpy==2.2.6
