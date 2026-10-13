@@ -225,4 +225,5 @@ mlruns/
 data/*.csv
 
 # Dynamic documentation 
-reports docs/env_report_*.md
+reports/
+docs/env_report_*.md
