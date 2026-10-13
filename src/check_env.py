@@ -7,10 +7,9 @@ requirements.txt, environment verification, and markdown report generation.
 from datetime import datetime
 import importlib.metadata
 import os
-import pathlib
 from pathlib import Path
-import shutil
 import platform
+import shutil
 import sys
 from typing import Any, Dict, List
 

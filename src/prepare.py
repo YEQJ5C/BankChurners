@@ -155,8 +155,8 @@ def prepare_data(
             extra={"unknown_count": int(total_unknown)},
         )
         breakdown = {
-            col: int(count) 
-            for col, count in unknown_counts.items() 
+            col: int(count)
+            for col, count in unknown_counts.items()
             if count > 0
         }
         logger.info(
