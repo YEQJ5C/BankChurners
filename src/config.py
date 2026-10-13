@@ -31,7 +31,7 @@ class Settings(BaseSettings):
 
     # Model parameters
     random_seed: int = 42
-    model_name: str = "bank_churn_model"
+    registered_model_name: str = "bank_churn_model"
     test_size: float = Field(default=0.2, gt=0.0, lt=1.0)
 
 

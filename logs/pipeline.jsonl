@@ -1,0 +1,72 @@
+{"ts": "2026-10-13T16:57:33+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/home/firstuser/BankChurners/data/raw/BankChurners.csv"}
+{"ts": "2026-10-13T16:57:33+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 4000, "column_count": 14}
+{"ts": "2026-10-13T16:57:33+0200", "level": "INFO", "logger": "churn.prepare", "message": "Minden kötelező oszlop sikeresen ellenőrizve."}
+{"ts": "2026-10-13T16:57:33+0200", "level": "INFO", "logger": "churn.prepare", "message": "Customer_ID egyediség validálva.", "column": "Customer_ID"}
+{"ts": "2026-10-13T16:57:33+0200", "level": "INFO", "logger": "churn.prepare", "message": "Életkor tartományok rendben", "min_age": 26, "max_age": 73}
+{"ts": "2026-10-13T16:57:33+0200", "level": "INFO", "logger": "churn.prepare", "message": "Hitelkeret és utilizációs mutatók validálva."}
+{"ts": "2026-10-13T16:57:33+0200", "level": "INFO", "logger": "churn.prepare", "message": "Tranzakciós mutatók tartománya validálva."}
+{"ts": "2026-10-13T16:57:33+0200", "level": "INFO", "logger": "churn.prepare", "message": "Target változó validálva", "target": "Customer_Status", "classes": 2}
+{"ts": "2026-10-13T16:57:33+0200", "level": "WARNING", "logger": "churn.prepare", "message": "Ismeretlen értékek észlelve", "unknown_count": 1367}
+{"ts": "2026-10-13T16:57:33+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok sikeresen elmentve", "output_file": "/home/firstuser/BankChurners/data/processed/bank_churners_processed.csv"}
+{"ts": "2026-10-13T16:58:16+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/home/firstuser/BankChurners/data/raw/BankChurners.csv"}
+{"ts": "2026-10-13T16:58:16+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 4000, "column_count": 14}
+{"ts": "2026-10-13T16:58:16+0200", "level": "INFO", "logger": "churn.prepare", "message": "Minden kötelező oszlop sikeresen ellenőrizve."}
+{"ts": "2026-10-13T16:58:16+0200", "level": "INFO", "logger": "churn.prepare", "message": "Customer_ID egyediség validálva.", "column": "Customer_ID"}
+{"ts": "2026-10-13T16:58:16+0200", "level": "INFO", "logger": "churn.prepare", "message": "Életkor tartományok rendben", "min_age": 26, "max_age": 73}
+{"ts": "2026-10-13T16:58:16+0200", "level": "INFO", "logger": "churn.prepare", "message": "Hitelkeret és utilizációs mutatók validálva."}
+{"ts": "2026-10-13T16:58:16+0200", "level": "INFO", "logger": "churn.prepare", "message": "Tranzakciós mutatók tartománya validálva."}
+{"ts": "2026-10-13T16:58:16+0200", "level": "INFO", "logger": "churn.prepare", "message": "Target változó validálva", "target": "Customer_Status", "classes": 2}
+{"ts": "2026-10-13T16:58:16+0200", "level": "WARNING", "logger": "churn.prepare", "message": "Ismeretlen értékek észlelve", "unknown_count": 1367}
+{"ts": "2026-10-13T16:58:16+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok sikeresen elmentve", "output_file": "/home/firstuser/BankChurners/data/processed/bank_churners_processed.csv"}
+{"ts": "2026-10-13T17:07:08+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/home/firstuser/BankChurners/data/raw/BankChurners.csv"}
+{"ts": "2026-10-13T17:07:08+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 4000, "column_count": 14}
+{"ts": "2026-10-13T17:07:08+0200", "level": "INFO", "logger": "churn.prepare", "message": "Minden kötelező oszlop sikeresen ellenőrizve."}
+{"ts": "2026-10-13T17:07:08+0200", "level": "INFO", "logger": "churn.prepare", "message": "Customer_ID egyediség validálva.", "column": "Customer_ID"}
+{"ts": "2026-10-13T17:07:08+0200", "level": "INFO", "logger": "churn.prepare", "message": "Életkor tartományok rendben", "min_age": 26, "max_age": 73}
+{"ts": "2026-10-13T17:07:08+0200", "level": "INFO", "logger": "churn.prepare", "message": "Hitelkeret és utilizációs mutatók validálva."}
+{"ts": "2026-10-13T17:07:08+0200", "level": "INFO", "logger": "churn.prepare", "message": "Tranzakciós mutatók tartománya validálva."}
+{"ts": "2026-10-13T17:07:08+0200", "level": "INFO", "logger": "churn.prepare", "message": "Target változó validálva", "target": "Customer_Status", "classes": 2}
+{"ts": "2026-10-13T17:07:08+0200", "level": "WARNING", "logger": "churn.prepare", "message": "Ismeretlen értékek észlelve", "unknown_count": 1367}
+{"ts": "2026-10-13T17:07:08+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok sikeresen elmentve", "output_file": "/home/firstuser/BankChurners/data/processed/bank_churners_processed.csv"}
+{"ts": "2026-10-13T17:22:41+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/home/firstuser/BankChurners/data/raw/BankChurners.csv"}
+{"ts": "2026-10-13T17:22:41+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 4000, "column_count": 14}
+{"ts": "2026-10-13T17:22:41+0200", "level": "INFO", "logger": "churn.prepare", "message": "Minden kötelező oszlop sikeresen ellenőrizve."}
+{"ts": "2026-10-13T17:22:41+0200", "level": "INFO", "logger": "churn.prepare", "message": "Customer_ID egyediség validálva.", "column": "Customer_ID"}
+{"ts": "2026-10-13T17:22:41+0200", "level": "INFO", "logger": "churn.prepare", "message": "Életkor tartományok rendben", "min_age": 26, "max_age": 73}
+{"ts": "2026-10-13T17:22:41+0200", "level": "INFO", "logger": "churn.prepare", "message": "Hitelkeret és utilizációs mutatók validálva."}
+{"ts": "2026-10-13T17:22:41+0200", "level": "INFO", "logger": "churn.prepare", "message": "Tranzakciós mutatók tartománya validálva."}
+{"ts": "2026-10-13T17:22:41+0200", "level": "INFO", "logger": "churn.prepare", "message": "Target változó validálva", "target": "Customer_Status", "classes": 2}
+{"ts": "2026-10-13T17:22:41+0200", "level": "WARNING", "logger": "churn.prepare", "message": "Ismeretlen értékek észlelve", "unknown_count": 1367, "breakdown": {"Education_Level": 592, "Marital_Status": 314, "Income_Category": 461}}
+{"ts": "2026-10-13T17:22:41+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok sikeresen elmentve", "output_file": "/home/firstuser/BankChurners/data/processed/bank_churners_processed.csv"}
+{"ts": "2026-10-13T17:23:11+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/home/firstuser/BankChurners/data/raw/BankChurners.csv"}
+{"ts": "2026-10-13T17:23:11+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 4000, "column_count": 14}
+{"ts": "2026-10-13T17:23:11+0200", "level": "INFO", "logger": "churn.prepare", "message": "Minden kötelező oszlop sikeresen ellenőrizve."}
+{"ts": "2026-10-13T17:23:11+0200", "level": "INFO", "logger": "churn.prepare", "message": "Customer_ID egyediség validálva.", "column": "Customer_ID"}
+{"ts": "2026-10-13T17:23:11+0200", "level": "INFO", "logger": "churn.prepare", "message": "Életkor tartományok rendben", "min_age": 26, "max_age": 73}
+{"ts": "2026-10-13T17:23:11+0200", "level": "INFO", "logger": "churn.prepare", "message": "Hitelkeret és utilizációs mutatók validálva."}
+{"ts": "2026-10-13T17:23:11+0200", "level": "INFO", "logger": "churn.prepare", "message": "Tranzakciós mutatók tartománya validálva."}
+{"ts": "2026-10-13T17:23:11+0200", "level": "INFO", "logger": "churn.prepare", "message": "Target változó validálva", "target": "Customer_Status", "classes": 2}
+{"ts": "2026-10-13T17:23:11+0200", "level": "WARNING", "logger": "churn.prepare", "message": "Ismeretlen értékek észlelve", "unknown_count": 1367, "breakdown": {"Education_Level": 592, "Marital_Status": 314, "Income_Category": 461}}
+{"ts": "2026-10-13T17:23:11+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok sikeresen elmentve", "output_file": "/home/firstuser/BankChurners/data/processed/bank_churners_processed.csv"}
+{"ts": "2026-10-13T17:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/home/firstuser/BankChurners/data/raw/BankChurners.csv"}
+{"ts": "2026-10-13T17:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 4000, "column_count": 14}
+{"ts": "2026-10-13T17:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Minden kötelező oszlop sikeresen ellenőrizve."}
+{"ts": "2026-10-13T17:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Customer_ID egyediség validálva.", "column": "Customer_ID"}
+{"ts": "2026-10-13T17:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Életkor tartományok rendben", "min_age": 26, "max_age": 73}
+{"ts": "2026-10-13T17:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Hitelkeret és utilizációs mutatók validálva."}
+{"ts": "2026-10-13T17:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Tranzakciós mutatók tartománya validálva."}
+{"ts": "2026-10-13T17:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Target változó validálva", "target": "Customer_Status", "classes": 2}
+{"ts": "2026-10-13T17:28:45+0200", "level": "WARNING", "logger": "churn.prepare", "message": "Ismeretlen értékek észlelve", "unknown_count": 1367}
+{"ts": "2026-10-13T17:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Ismeretlen értékek oszloponkénti bontása: {'Education_Level': 592, 'Marital_Status': 314, 'Income_Category': 461}", "breakdown": {"Education_Level": 592, "Marital_Status": 314, "Income_Category": 461}}
+{"ts": "2026-10-13T17:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok sikeresen elmentve", "output_file": "/home/firstuser/BankChurners/data/processed/bank_churners_processed.csv"}
+{"ts": "2026-10-13T17:31:11+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/home/firstuser/BankChurners/data/raw/BankChurners.csv"}
+{"ts": "2026-10-13T17:31:11+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 4000, "column_count": 14}
+{"ts": "2026-10-13T17:31:11+0200", "level": "INFO", "logger": "churn.prepare", "message": "Minden kötelező oszlop sikeresen ellenőrizve."}
+{"ts": "2026-10-13T17:31:11+0200", "level": "INFO", "logger": "churn.prepare", "message": "Customer_ID egyediség validálva.", "column": "Customer_ID"}
+{"ts": "2026-10-13T17:31:11+0200", "level": "INFO", "logger": "churn.prepare", "message": "Életkor tartományok rendben", "min_age": 26, "max_age": 73}
+{"ts": "2026-10-13T17:31:11+0200", "level": "INFO", "logger": "churn.prepare", "message": "Hitelkeret és utilizációs mutatók validálva."}
+{"ts": "2026-10-13T17:31:11+0200", "level": "INFO", "logger": "churn.prepare", "message": "Tranzakciós mutatók tartománya validálva."}
+{"ts": "2026-10-13T17:31:11+0200", "level": "INFO", "logger": "churn.prepare", "message": "Target változó validálva", "target": "Customer_Status", "classes": 2}
+{"ts": "2026-10-13T17:31:11+0200", "level": "WARNING", "logger": "churn.prepare", "message": "Ismeretlen értékek észlelve", "unknown_count": 1367}
+{"ts": "2026-10-13T17:31:11+0200", "level": "INFO", "logger": "churn.prepare", "message": "Ismeretlen értékek oszloponkénti bontása", "breakdown": {"Education_Level": 592, "Marital_Status": 314, "Income_Category": 461}}
+{"ts": "2026-10-13T17:31:11+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok sikeresen elmentve", "output_file": "/home/firstuser/BankChurners/data/processed/bank_churners_processed.csv"}

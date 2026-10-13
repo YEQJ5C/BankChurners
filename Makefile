@@ -14,3 +14,6 @@ typecheck:
 
 add-data:
 	dvc add data/raw/BankChurners.csv
+
+prepare: check
+	python -m src.prepare
