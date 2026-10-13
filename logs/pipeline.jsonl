@@ -70,3 +70,11 @@
 {"ts": "2026-10-13T17:31:11+0200", "level": "WARNING", "logger": "churn.prepare", "message": "Ismeretlen értékek észlelve", "unknown_count": 1367}
 {"ts": "2026-10-13T17:31:11+0200", "level": "INFO", "logger": "churn.prepare", "message": "Ismeretlen értékek oszloponkénti bontása", "breakdown": {"Education_Level": 592, "Marital_Status": 314, "Income_Category": 461}}
 {"ts": "2026-10-13T17:31:11+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok sikeresen elmentve", "output_file": "/home/firstuser/BankChurners/data/processed/bank_churners_processed.csv"}
+{"ts": "2026-10-13T18:03:56+0200", "level": "INFO", "logger": "churn.env_runner", "message": "Környezeti validáció indítása..."}
+{"ts": "2026-10-13T18:03:56+0200", "level": "INFO", "logger": "churn.env_runner", "message": "Környezeti adatok és csomagok összegyűjtve", "package_count": 19}
+{"ts": "2026-10-13T18:03:56+0200", "level": "INFO", "logger": "churn.env_runner", "message": "Környezeti jelentés (markdown) generálva."}
+{"ts": "2026-10-13T18:03:56+0200", "level": "INFO", "logger": "churn.env_runner", "message": "Környezeti jelentés sikeresen elmentve", "saved_path": "docs/env_report_20261013_180356.md"}
+{"ts": "2026-10-13T18:08:31+0200", "level": "INFO", "logger": "churn.env_runner", "message": "Környezeti validáció indítása..."}
+{"ts": "2026-10-13T18:08:31+0200", "level": "INFO", "logger": "churn.env_runner", "message": "Környezeti adatok és csomagok összegyűjtve", "package_count": 19}
+{"ts": "2026-10-13T18:08:31+0200", "level": "INFO", "logger": "churn.env_runner", "message": "Környezeti jelentés (markdown) generálva."}
+{"ts": "2026-10-13T18:08:31+0200", "level": "INFO", "logger": "churn.env_runner", "message": "Környezeti jelentés sikeresen elmentve", "saved_path": "docs/env_report_20261013_180831.md"}

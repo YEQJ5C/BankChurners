@@ -13,6 +13,11 @@ import shutil
 import sys
 from typing import Any, Dict, List
 
+from src.logger import get_logger
+
+# A központi strukturált logger használata
+logger = get_logger("churn.env_runner")
+
 
 def parse_requirements(req_path: str = "requirements.txt") -> List[str]:
     """Parse requirement package names from requirements.txt."""
@@ -140,3 +145,28 @@ def save_report(report_content: str, docs_dir: str = "docs") -> Path:
         f.write(report_content)
 
     return report_path
+
+
+if __name__ == "__main__":
+    logger.info("Környezeti validáció indítása...")
+    print("Running environment validation...")
+
+    checks = collect()
+    logger.info(
+        "Környezeti adatok és csomagok összegyűjtve",
+        extra={"package_count": len(checks.get("packages", {}))},
+    )
+
+    report = render(checks)
+    logger.info("Környezeti jelentés (markdown) generálva.")
+
+    print("\n" + "=" * 40)
+    print(report)
+    print("=" * 40 + "\n")
+
+    saved_path = save_report(report)
+    logger.info(
+        "Környezeti jelentés sikeresen elmentve",
+        extra={"saved_path": str(saved_path)},
+    )
+    print(f"[OK] Report successfully saved to: {saved_path}")
