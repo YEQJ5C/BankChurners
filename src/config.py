@@ -1,39 +1,45 @@
-"""Application configuration module using Pydantic Settings."""
+"""
+Configuration Management Module using Pydantic Settings.
+Centralizes all paths, hyperparameters, and environment variables.
+"""
+
+from __future__ import annotations
 
 from pathlib import Path
-
-from pydantic import Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
-
-# A projekt gyökérkönyvtárának kiszámítása
-BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 class Settings(BaseSettings):
-    """Application settings loaded from environment variables and defaults."""
+    """
+    Global application settings. Automatically loads from environment variables
+    or a .env file if present, prefixed with CHURN_.
+    """
+    # Alap útvonalak
+    base_dir: Path = Path(__file__).resolve().parent.parent
+    data_dir: Path = base_dir / "data"
+    raw_dir: Path = data_dir / "raw"
+    processed_dir: Path = data_dir / "processed"
+    models_dir: Path = base_dir / "models"
+    metrics_dir: Path = base_dir / "metrics"
+
+    # MLflow beállítások
+    mlflow_experiment_name: str = "bank_churn_experiment"
+    registered_model_name: str = "bank_churn_model"
+
+    # Reproducibility & Pipeline paraméterek
+    random_seed: int = 42
+    test_size: float = 0.2
+
+    # Modell hiperparaméterek
+    rf_n_estimators: int = 100
 
     model_config = SettingsConfigDict(
         env_file=".env",
+        env_file_encoding="utf-8",
         env_prefix="CHURN_",
         extra="ignore",
     )
 
-    # Core project paths (fully independent and safe)
-    base_dir: Path = BASE_DIR
-    data_dir: Path = BASE_DIR / "data"
-    raw_dir: Path = BASE_DIR / "data" / "raw"
-    processed_dir: Path = BASE_DIR / "data" / "processed"
-    models_dir: Path = BASE_DIR / "models"
-    logs_dir: Path = BASE_DIR / "logs"
 
-    # Logging parameters
-    log_level: str = "INFO"
-
-    # Model parameters
-    random_seed: int = 42
-    registered_model_name: str = "bank_churn_model"
-    test_size: float = Field(default=0.2, gt=0.0, lt=1.0)
-
-
-# Globális konfig példány
+# Globális konfigurációs példány
 settings = Settings()

@@ -34,7 +34,8 @@ ALLOWED_STATUSES = {
 
 
 def prepare_data(
-    input_path: str | Path, output_path: str | Path
+    input_path: str | Path,
+    output_path: str | Path,
 ) -> None:
     input_file = Path(input_path)
     output_file = Path(output_path)
@@ -69,7 +70,10 @@ def prepare_data(
                 "hiányzik a datasetből!"
             )
 
-    logger.info("Minden kötelező oszlop sikeresen ellenőrizve.")
+    logger.info(
+        "Minden kötelező oszlop sikeresen "
+        "ellenőrizve."
+    )
 
     # 1. Azonosító (Customer_ID) egyediség ellenőrzése
     if df["Customer_ID"].duplicated().any():
@@ -91,12 +95,13 @@ def prepare_data(
 
     if df["Age"].min() < 18:
         raise ValueError(
-            "Hiba: Nem engedélyezett 18 év alatti "
-            "ügyfél az adatok között!"
+            "Hiba: Nem engedélyezett 18 év "
+            "alatti ügyfél az adatok között!"
         )
     if df["Age"].max() > 100:
         raise ValueError(
-            "Hiba: Valószűtlen életkor (> 100 év) észlelhető."
+            "Hiba: Valószínűtlen életkor "
+            "(> 100 év) észlelhető."
         )
     logger.info(
         "Életkor tartományok rendben",
@@ -108,14 +113,22 @@ def prepare_data(
 
     # 3. Hitelkeret és utilizációs arány ellenőrzés
     if df["Credit_Limit"].min() <= 0:
-        raise ValueError("Hiba: Létezik 0 vagy negatív hitelkeret!")
+        raise ValueError(
+            "Hiba: Létezik 0 vagy negatív "
+            "hitelkeret!"
+        )
 
-    if not df["Avg_Utilization_Ratio"].between(0, 1).all():
+    if not df["Avg_Utilization_Ratio"].between(
+        0, 1
+    ).all():
         raise ValueError(
             "Hiba: Az Avg_Utilization_Ratio "
             "kívül esik a [0, 1] intervallumon!"
         )
-    logger.info("Hitelkeret és utilizációs mutatók validálva.")
+    logger.info(
+        "Hitelkeret és utilizációs mutatók "
+        "validálva."
+    )
 
     # 3b. Tranzakciós mutatók tartományának ellenőrzése
     if df["Total_Trans_Ct"].min() < 0:
@@ -128,13 +141,18 @@ def prepare_data(
             "Hiba: Negatív tranzakcióösszeg "
             "(Total_Trans_Amt) észlelhető!"
         )
-    logger.info("Tranzakciós mutatók tartománya validálva.")
+    logger.info(
+        "Tranzakciós mutatók tartománya "
+        "validálva."
+    )
 
     # 4. Target változó (Customer_Status) értékek ellenőrzése
-    if not df["Customer_Status"].isin(ALLOWED_STATUSES).all():
+    if not df["Customer_Status"].isin(
+        ALLOWED_STATUSES
+    ).all():
         raise ValueError(
-            "Hiba: Érvénytelen Customer_Status érték "
-            "található az adatok között!"
+            "Hiba: Érvénytelen Customer_Status "
+            "érték található az adatok között!"
         )
     logger.info(
         "Target változó validálva",
@@ -145,14 +163,18 @@ def prepare_data(
     )
 
     # 5. Ismeretlen értékek figyelése (tiszta strukturált logolással)
-    unknown_mask = (df == "Unknown")
+    unknown_mask = df == "Unknown"
     unknown_counts = unknown_mask.sum()
     total_unknown = unknown_counts.sum()
 
     if total_unknown > 0:
         logger.warning(
             "Ismeretlen értékek észlelve",
-            extra={"unknown_count": int(total_unknown)},
+            extra={
+                "unknown_count": int(
+                    total_unknown
+                )
+            },
         )
         breakdown = {
             col: int(count)
@@ -160,16 +182,24 @@ def prepare_data(
             if count > 0
         }
         logger.info(
-            "Ismeretlen értékek oszloponkénti bontása",
+            "Ismeretlen értékek oszloponkénti "
+            "bontása",
             extra={"breakdown": breakdown},
         )
 
     # 6. Célkönyvtár létrehozása (csak ha szükséges) és mentés
     if not output_file.parent.exists():
-        output_file.parent.mkdir(parents=True, exist_ok=True)
+        output_file.parent.mkdir(
+            parents=True, exist_ok=True
+        )
         logger.info(
-            "Feldolgozott adatok mappája létrehozva",
-            extra={"output_dir": str(output_file.parent)},
+            "Feldolgozott adatok mappája "
+            "létrehozva",
+            extra={
+                "output_dir": str(
+                    output_file.parent
+                )
+            },
         )
 
     df.to_csv(output_file, index=False)
@@ -180,7 +210,12 @@ def prepare_data(
 
 
 if __name__ == "__main__":
-    RAW_DATA = settings.raw_dir / "BankChurners.csv"
-    PROCESSED_DATA = settings.processed_dir / "bank_churners_processed.csv"
+    RAW_DATA = (
+        settings.raw_dir / "BankChurners.csv"
+    )
+    PROCESSED_DATA = (
+        settings.processed_dir
+        / "bank_churners_processed.csv"
+    )
 
     prepare_data(RAW_DATA, PROCESSED_DATA)
