@@ -149,3 +149,7 @@ def evaluate_model(
     )
 
     return metrics_payload
+
+
+if __name__ == "__main__":
+    evaluate_model()

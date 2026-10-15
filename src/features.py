@@ -106,3 +106,7 @@ def process_features(
         extra={"x_path": str(x_path), "y_path": str(y_path)},
     )
     return x_path, y_path
+
+
+if __name__ == "__main__":
+    process_features()

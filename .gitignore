@@ -196,3 +196,7 @@ data/processed/*.csv
 # Dynamic documentation 
 reports/
 docs/env_report_*.md
+
+# MLflow run ID és helyi modellek
+models/mlflow_run_id
+models/version-*

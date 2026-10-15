@@ -22,6 +22,12 @@ class Settings(BaseSettings):
     models_dir: Path = base_dir / "models"
     metrics_dir: Path = base_dir / "metrics"
 
+    # + ÚJ: Itt adjuk hozzá a logs_dir-t, amit a logger keres
+    logs_dir: Path = base_dir / "logs"
+
+    # + ÚJ: Itt adjuk hozzá a log_level-t, amit a logger keres
+    log_level: str = "INFO"
+
     # MLflow beállítások
     mlflow_experiment_name: str = "bank_churn_experiment"
     registered_model_name: str = "bank_churn_model"
