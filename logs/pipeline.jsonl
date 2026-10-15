@@ -4794,3 +4794,762 @@
 {"ts": "2026-10-15T10:10:18+0200", "level": "INFO", "logger": "churn.train", "message": "Run ID sikeresen elmentve a models/mlflow_run_id fájlba", "run_id": "f14d319a5d904bfcae94d0233eb43bfd", "path": "models/mlflow_run_id"}
 {"ts": "2026-10-15T10:10:18+0200", "level": "INFO", "logger": "churn.train", "message": "MLflow futás befejeződve", "run_id": "f14d319a5d904bfcae94d0233eb43bfd"}
 {"ts": "2026-10-15T10:10:18+0200", "level": "INFO", "logger": "churn.train", "message": "Modelltanítás sikeresen befejeződött"}
+{"ts": "2026-10-15T10:17:13+0200", "level": "INFO", "logger": "churn.env_runner", "message": "Környezeti validáció indítása..."}
+{"ts": "2026-10-15T10:17:13+0200", "level": "INFO", "logger": "churn.env_runner", "message": "Környezeti adatok és csomagok összegyűjtve", "package_count": 19}
+{"ts": "2026-10-15T10:17:13+0200", "level": "INFO", "logger": "churn.env_runner", "message": "Környezeti jelentés (markdown) generálva."}
+{"ts": "2026-10-15T10:17:13+0200", "level": "INFO", "logger": "churn.env_runner", "message": "Környezeti jelentés sikeresen elmentve", "saved_path": "docs/env_report_20261015_101713.md"}
+{"ts": "2026-10-15T10:17:13+0200", "level": "INFO", "logger": "churn.features", "message": "Prepared adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-28/test_process_features0/bank_churners_processed.csv"}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.features", "message": "Kategorikus oszlopok azonosítva", "cat_cols": ["Education_Level", "Income_Category"]}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.features", "message": "Processált adatok sikeresen elmentve", "x_path": "/tmp/pytest-of-firstuser/pytest-28/test_process_features0/processed/X.csv", "y_path": "/tmp/pytest-of-firstuser/pytest-28/test_process_features0/processed/y.csv"}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.features", "message": "Prepared adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-28/test_process_features_default_0/bank_churners_processed.csv"}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.features", "message": "Kategorikus oszlopok azonosítva", "cat_cols": ["Education_Level"]}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.features", "message": "Processált adatok sikeresen elmentve", "x_path": "/tmp/pytest-of-firstuser/pytest-28/test_process_features_default_0/X.csv", "y_path": "/tmp/pytest-of-firstuser/pytest-28/test_process_features_default_0/y.csv"}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.features", "message": "Prepared adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-28/test_process_features_missing_0/non_existent.csv"}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.features", "message": "Prepared adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-28/test_process_features_missing_1/invalid.csv"}
+{"ts": "2026-10-15T10:17:14+0200", "level": "ERROR", "logger": "churn.features", "message": "A 'Customer_Status' célváltozó hiányzik a datasetből."}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.features", "message": "Prepared adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-28/test_process_features_invalid_0/invalid_target.csv"}
+{"ts": "2026-10-15T10:17:14+0200", "level": "ERROR", "logger": "churn.features", "message": "Ismeretlen Customer_Status érték található az adatokban."}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.features", "message": "Prepared adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-28/test_features_main_block0/processed/bank_churners_processed.csv"}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.features", "message": "Kategorikus oszlopok azonosítva", "cat_cols": ["Education_Level"]}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.features", "message": "Processált adatok sikeresen elmentve", "x_path": "/tmp/pytest-of-firstuser/pytest-28/test_features_main_block0/processed/X.csv", "y_path": "/tmp/pytest-of-firstuser/pytest-28/test_features_main_block0/processed/y.csv"}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-28/test_prepare_data_file_not_fou0/non_existent.csv"}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-28/test_prepare_data_success_with0/valid_input.csv"}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 2, "column_count": 14}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.prepare", "message": "Minden kötelező oszlop sikeresen ellenőrizve."}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.prepare", "message": "Customer_ID egyediség validálva.", "column": "Customer_ID"}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.prepare", "message": "Életkor tartományok rendben", "min_age": 30, "max_age": 45}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.prepare", "message": "Hitelkeret és utilizációs mutatók validálva."}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.prepare", "message": "Tranzakciós mutatók tartománya validálva."}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.prepare", "message": "Target változó validálva", "target": "Customer_Status", "classes": 2}
+{"ts": "2026-10-15T10:17:14+0200", "level": "WARNING", "logger": "churn.prepare", "message": "Ismeretlen értékek észlelve", "unknown_count": 1}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.prepare", "message": "Ismeretlen értékek oszloponkénti bontása", "breakdown": {"Education_Level": 1}}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.prepare", "message": "Feldolgozott adatok mappája létrehozva", "output_dir": "/tmp/pytest-of-firstuser/pytest-28/test_prepare_data_success_with0/nested/subfolder"}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok sikeresen elmentve", "output_file": "/tmp/pytest-of-firstuser/pytest-28/test_prepare_data_success_with0/nested/subfolder/processed_output.csv"}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-28/test_prepare_data_empty_datafr0/empty.csv"}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 0, "column_count": 14}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-28/test_prepare_data_missing_colu0/missing_col.csv"}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 2, "column_count": 13}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-28/test_prepare_data_duplicate_id0/duplicates.csv"}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 2, "column_count": 14}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.prepare", "message": "Minden kötelező oszlop sikeresen ellenőrizve."}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-28/test_prepare_data_null_age0/null_age.csv"}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 2, "column_count": 14}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.prepare", "message": "Minden kötelező oszlop sikeresen ellenőrizve."}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.prepare", "message": "Customer_ID egyediség validálva.", "column": "Customer_ID"}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-28/test_prepare_data_invalid_age_0/young_age.csv"}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 2, "column_count": 14}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.prepare", "message": "Minden kötelező oszlop sikeresen ellenőrizve."}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.prepare", "message": "Customer_ID egyediség validálva.", "column": "Customer_ID"}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-28/test_prepare_data_invalid_age_1/old_age.csv"}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 2, "column_count": 14}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.prepare", "message": "Minden kötelező oszlop sikeresen ellenőrizve."}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.prepare", "message": "Customer_ID egyediség validálva.", "column": "Customer_ID"}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-28/test_prepare_data_invalid_cred0/bad_credit.csv"}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 2, "column_count": 14}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.prepare", "message": "Minden kötelező oszlop sikeresen ellenőrizve."}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.prepare", "message": "Customer_ID egyediség validálva.", "column": "Customer_ID"}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.prepare", "message": "Életkor tartományok rendben", "min_age": 30, "max_age": 45}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-28/test_prepare_data_invalid_util0/bad_util.csv"}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 2, "column_count": 14}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.prepare", "message": "Minden kötelező oszlop sikeresen ellenőrizve."}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.prepare", "message": "Customer_ID egyediség validálva.", "column": "Customer_ID"}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.prepare", "message": "Életkor tartományok rendben", "min_age": 30, "max_age": 45}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-28/test_prepare_data_negative_tra0/bad_trans_ct.csv"}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 2, "column_count": 14}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.prepare", "message": "Minden kötelező oszlop sikeresen ellenőrizve."}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.prepare", "message": "Customer_ID egyediség validálva.", "column": "Customer_ID"}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.prepare", "message": "Életkor tartományok rendben", "min_age": 30, "max_age": 45}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.prepare", "message": "Hitelkeret és utilizációs mutatók validálva."}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-28/test_prepare_data_negative_tra1/bad_trans_amt.csv"}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 2, "column_count": 14}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.prepare", "message": "Minden kötelező oszlop sikeresen ellenőrizve."}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.prepare", "message": "Customer_ID egyediség validálva.", "column": "Customer_ID"}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.prepare", "message": "Életkor tartományok rendben", "min_age": 30, "max_age": 45}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.prepare", "message": "Hitelkeret és utilizációs mutatók validálva."}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-28/test_prepare_data_invalid_stat0/bad_status.csv"}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 2, "column_count": 14}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.prepare", "message": "Minden kötelező oszlop sikeresen ellenőrizve."}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.prepare", "message": "Customer_ID egyediség validálva.", "column": "Customer_ID"}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.prepare", "message": "Életkor tartományok rendben", "min_age": 30, "max_age": 45}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.prepare", "message": "Hitelkeret és utilizációs mutatók validálva."}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.prepare", "message": "Tranzakciós mutatók tartománya validálva."}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-28/test_prepare_main_block0/raw/BankChurners.csv"}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 2, "column_count": 14}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.prepare", "message": "Minden kötelező oszlop sikeresen ellenőrizve."}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.prepare", "message": "Customer_ID egyediség validálva.", "column": "Customer_ID"}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.prepare", "message": "Életkor tartományok rendben", "min_age": 30, "max_age": 45}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.prepare", "message": "Hitelkeret és utilizációs mutatók validálva."}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.prepare", "message": "Tranzakciós mutatók tartománya validálva."}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.prepare", "message": "Target változó validálva", "target": "Customer_Status", "classes": 2}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.prepare", "message": "Feldolgozott adatok mappája létrehozva", "output_dir": "/tmp/pytest-of-firstuser/pytest-28/test_prepare_main_block0/processed"}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok sikeresen elmentve", "output_file": "/tmp/pytest-of-firstuser/pytest-28/test_prepare_main_block0/processed/bank_churners_processed.csv"}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.train", "message": "Adatok betöltése modelltanításhoz", "x_path": "/tmp/pytest-of-firstuser/pytest-28/test_train_model_success0/processed/X.csv", "y_path": "/tmp/pytest-of-firstuser/pytest-28/test_train_model_success0/processed/y.csv"}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.train", "message": "Tanítási adatok betöltve", "rows": 6, "features": 2, "target_distribution": {"0": 3, "1": 3}}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.train", "message": "Train/test split végrehajtása", "test_size": 0.5, "random_seed": 42}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.train", "message": "Train/test split kész", "train_rows": 3, "test_rows": 3}
+{"ts": "2026-10-15T10:17:14+0200", "level": "INFO", "logger": "churn.train", "message": "Teszthalmazok sikeresen elmentve a lemezre az evaluate számára", "x_test_path": "/tmp/pytest-of-firstuser/pytest-28/test_train_model_success0/processed/X_test.csv", "y_test_path": "/tmp/pytest-of-firstuser/pytest-28/test_train_model_success0/processed/y_test.csv"}
+{"ts": "2026-10-15T10:17:16+0200", "level": "INFO", "logger": "churn.train", "message": "Random Forest modell inicializálása", "algorithm": "RandomForestClassifier", "n_estimators": 10}
+{"ts": "2026-10-15T10:17:16+0200", "level": "INFO", "logger": "churn.train", "message": "Modell betanítva"}
+{"ts": "2026-10-15T10:17:16+0200", "level": "INFO", "logger": "churn.train", "message": "Kiértékelés elkészült", "accuracy": 1.0, "precision": 1.0, "recall": 1.0, "f1": 1.0, "roc_auc": 1.0}
+{"ts": "2026-10-15T10:17:21+0200", "level": "INFO", "logger": "churn.train", "message": "Modell sikeresen logolva MLflow-ba", "registered_model_name": "test_model"}
+{"ts": "2026-10-15T10:17:21+0200", "level": "INFO", "logger": "churn.train", "message": "Run ID sikeresen elmentve a models/mlflow_run_id fájlba", "run_id": "3bdfbc7f0711452fae1127fcf72adae0", "path": "models/mlflow_run_id"}
+{"ts": "2026-10-15T10:17:21+0200", "level": "INFO", "logger": "churn.train", "message": "MLflow futás befejeződve", "run_id": "3bdfbc7f0711452fae1127fcf72adae0"}
+{"ts": "2026-10-15T10:17:21+0200", "level": "INFO", "logger": "churn.train", "message": "Modelltanítás sikeresen befejeződött"}
+{"ts": "2026-10-15T10:17:21+0200", "level": "INFO", "logger": "churn.train", "message": "Adatok betöltése modelltanításhoz", "x_path": "/tmp/pytest-of-firstuser/pytest-28/test_train_model_main_block0/processed/X.csv", "y_path": "/tmp/pytest-of-firstuser/pytest-28/test_train_model_main_block0/processed/y.csv"}
+{"ts": "2026-10-15T10:17:21+0200", "level": "INFO", "logger": "churn.train", "message": "Tanítási adatok betöltve", "rows": 6, "features": 1, "target_distribution": {"0": 3, "1": 3}}
+{"ts": "2026-10-15T10:17:21+0200", "level": "INFO", "logger": "churn.train", "message": "Train/test split végrehajtása", "test_size": 0.2, "random_seed": 42}
+{"ts": "2026-10-15T10:17:21+0200", "level": "INFO", "logger": "churn.train", "message": "Train/test split kész", "train_rows": 4, "test_rows": 2}
+{"ts": "2026-10-15T10:17:21+0200", "level": "INFO", "logger": "churn.train", "message": "Teszthalmazok sikeresen elmentve a lemezre az evaluate számára", "x_test_path": "/tmp/pytest-of-firstuser/pytest-28/test_train_model_main_block0/processed/X_test.csv", "y_test_path": "/tmp/pytest-of-firstuser/pytest-28/test_train_model_main_block0/processed/y_test.csv"}
+{"ts": "2026-10-15T10:17:21+0200", "level": "INFO", "logger": "churn.train", "message": "Random Forest modell inicializálása", "algorithm": "RandomForestClassifier", "n_estimators": 5}
+{"ts": "2026-10-15T10:17:21+0200", "level": "INFO", "logger": "churn.train", "message": "Modell betanítva"}
+{"ts": "2026-10-15T10:17:21+0200", "level": "INFO", "logger": "churn.train", "message": "Kiértékelés elkészült", "accuracy": 1.0, "precision": 1.0, "recall": 1.0, "f1": 1.0, "roc_auc": 1.0}
+{"ts": "2026-10-15T10:17:25+0200", "level": "INFO", "logger": "churn.train", "message": "Modell sikeresen logolva MLflow-ba", "registered_model_name": "bank_churn_model"}
+{"ts": "2026-10-15T10:17:25+0200", "level": "INFO", "logger": "churn.train", "message": "Run ID sikeresen elmentve a models/mlflow_run_id fájlba", "run_id": "34606eb308cb4b7f88abe78130c6b517", "path": "models/mlflow_run_id"}
+{"ts": "2026-10-15T10:17:25+0200", "level": "INFO", "logger": "churn.train", "message": "MLflow futás befejeződve", "run_id": "34606eb308cb4b7f88abe78130c6b517"}
+{"ts": "2026-10-15T10:17:25+0200", "level": "INFO", "logger": "churn.train", "message": "Modelltanítás sikeresen befejeződött"}
+{"ts": "2026-10-15T10:18:33+0200", "level": "INFO", "logger": "churn.env_runner", "message": "Környezeti validáció indítása..."}
+{"ts": "2026-10-15T10:18:33+0200", "level": "INFO", "logger": "churn.env_runner", "message": "Környezeti adatok és csomagok összegyűjtve", "package_count": 19}
+{"ts": "2026-10-15T10:18:33+0200", "level": "INFO", "logger": "churn.env_runner", "message": "Környezeti jelentés (markdown) generálva."}
+{"ts": "2026-10-15T10:18:33+0200", "level": "INFO", "logger": "churn.env_runner", "message": "Környezeti jelentés sikeresen elmentve", "saved_path": "docs/env_report_20261015_101833.md"}
+{"ts": "2026-10-15T10:18:33+0200", "level": "INFO", "logger": "churn.features", "message": "Prepared adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-29/test_process_features0/bank_churners_processed.csv"}
+{"ts": "2026-10-15T10:18:33+0200", "level": "INFO", "logger": "churn.features", "message": "Kategorikus oszlopok azonosítva", "cat_cols": ["Education_Level", "Income_Category"]}
+{"ts": "2026-10-15T10:18:33+0200", "level": "INFO", "logger": "churn.features", "message": "Processált adatok sikeresen elmentve", "x_path": "/tmp/pytest-of-firstuser/pytest-29/test_process_features0/processed/X.csv", "y_path": "/tmp/pytest-of-firstuser/pytest-29/test_process_features0/processed/y.csv"}
+{"ts": "2026-10-15T10:18:33+0200", "level": "INFO", "logger": "churn.features", "message": "Prepared adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-29/test_process_features_default_0/bank_churners_processed.csv"}
+{"ts": "2026-10-15T10:18:33+0200", "level": "INFO", "logger": "churn.features", "message": "Kategorikus oszlopok azonosítva", "cat_cols": ["Education_Level"]}
+{"ts": "2026-10-15T10:18:33+0200", "level": "INFO", "logger": "churn.features", "message": "Processált adatok sikeresen elmentve", "x_path": "/tmp/pytest-of-firstuser/pytest-29/test_process_features_default_0/X.csv", "y_path": "/tmp/pytest-of-firstuser/pytest-29/test_process_features_default_0/y.csv"}
+{"ts": "2026-10-15T10:18:33+0200", "level": "INFO", "logger": "churn.features", "message": "Prepared adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-29/test_process_features_missing_0/non_existent.csv"}
+{"ts": "2026-10-15T10:18:33+0200", "level": "INFO", "logger": "churn.features", "message": "Prepared adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-29/test_process_features_missing_1/invalid.csv"}
+{"ts": "2026-10-15T10:18:33+0200", "level": "ERROR", "logger": "churn.features", "message": "A 'Customer_Status' célváltozó hiányzik a datasetből."}
+{"ts": "2026-10-15T10:18:33+0200", "level": "INFO", "logger": "churn.features", "message": "Prepared adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-29/test_process_features_invalid_0/invalid_target.csv"}
+{"ts": "2026-10-15T10:18:33+0200", "level": "ERROR", "logger": "churn.features", "message": "Ismeretlen Customer_Status érték található az adatokban."}
+{"ts": "2026-10-15T10:18:33+0200", "level": "INFO", "logger": "churn.features", "message": "Prepared adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-29/test_features_main_block0/processed/bank_churners_processed.csv"}
+{"ts": "2026-10-15T10:18:33+0200", "level": "INFO", "logger": "churn.features", "message": "Kategorikus oszlopok azonosítva", "cat_cols": ["Education_Level"]}
+{"ts": "2026-10-15T10:18:33+0200", "level": "INFO", "logger": "churn.features", "message": "Processált adatok sikeresen elmentve", "x_path": "/tmp/pytest-of-firstuser/pytest-29/test_features_main_block0/processed/X.csv", "y_path": "/tmp/pytest-of-firstuser/pytest-29/test_features_main_block0/processed/y.csv"}
+{"ts": "2026-10-15T10:18:33+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-29/test_prepare_data_file_not_fou0/non_existent.csv"}
+{"ts": "2026-10-15T10:18:33+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-29/test_prepare_data_success_with0/valid_input.csv"}
+{"ts": "2026-10-15T10:18:33+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 2, "column_count": 14}
+{"ts": "2026-10-15T10:18:33+0200", "level": "INFO", "logger": "churn.prepare", "message": "Minden kötelező oszlop sikeresen ellenőrizve."}
+{"ts": "2026-10-15T10:18:33+0200", "level": "INFO", "logger": "churn.prepare", "message": "Customer_ID egyediség validálva.", "column": "Customer_ID"}
+{"ts": "2026-10-15T10:18:33+0200", "level": "INFO", "logger": "churn.prepare", "message": "Életkor tartományok rendben", "min_age": 30, "max_age": 45}
+{"ts": "2026-10-15T10:18:33+0200", "level": "INFO", "logger": "churn.prepare", "message": "Hitelkeret és utilizációs mutatók validálva."}
+{"ts": "2026-10-15T10:18:33+0200", "level": "INFO", "logger": "churn.prepare", "message": "Tranzakciós mutatók tartománya validálva."}
+{"ts": "2026-10-15T10:18:33+0200", "level": "INFO", "logger": "churn.prepare", "message": "Target változó validálva", "target": "Customer_Status", "classes": 2}
+{"ts": "2026-10-15T10:18:33+0200", "level": "WARNING", "logger": "churn.prepare", "message": "Ismeretlen értékek észlelve", "unknown_count": 1}
+{"ts": "2026-10-15T10:18:33+0200", "level": "INFO", "logger": "churn.prepare", "message": "Ismeretlen értékek oszloponkénti bontása", "breakdown": {"Education_Level": 1}}
+{"ts": "2026-10-15T10:18:33+0200", "level": "INFO", "logger": "churn.prepare", "message": "Feldolgozott adatok mappája létrehozva", "output_dir": "/tmp/pytest-of-firstuser/pytest-29/test_prepare_data_success_with0/nested/subfolder"}
+{"ts": "2026-10-15T10:18:33+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok sikeresen elmentve", "output_file": "/tmp/pytest-of-firstuser/pytest-29/test_prepare_data_success_with0/nested/subfolder/processed_output.csv"}
+{"ts": "2026-10-15T10:18:33+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-29/test_prepare_data_empty_datafr0/empty.csv"}
+{"ts": "2026-10-15T10:18:33+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 0, "column_count": 14}
+{"ts": "2026-10-15T10:18:33+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-29/test_prepare_data_missing_colu0/missing_col.csv"}
+{"ts": "2026-10-15T10:18:33+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 2, "column_count": 13}
+{"ts": "2026-10-15T10:18:33+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-29/test_prepare_data_duplicate_id0/duplicates.csv"}
+{"ts": "2026-10-15T10:18:33+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 2, "column_count": 14}
+{"ts": "2026-10-15T10:18:33+0200", "level": "INFO", "logger": "churn.prepare", "message": "Minden kötelező oszlop sikeresen ellenőrizve."}
+{"ts": "2026-10-15T10:18:33+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-29/test_prepare_data_null_age0/null_age.csv"}
+{"ts": "2026-10-15T10:18:33+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 2, "column_count": 14}
+{"ts": "2026-10-15T10:18:33+0200", "level": "INFO", "logger": "churn.prepare", "message": "Minden kötelező oszlop sikeresen ellenőrizve."}
+{"ts": "2026-10-15T10:18:33+0200", "level": "INFO", "logger": "churn.prepare", "message": "Customer_ID egyediség validálva.", "column": "Customer_ID"}
+{"ts": "2026-10-15T10:18:34+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-29/test_prepare_data_invalid_age_0/young_age.csv"}
+{"ts": "2026-10-15T10:18:34+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 2, "column_count": 14}
+{"ts": "2026-10-15T10:18:34+0200", "level": "INFO", "logger": "churn.prepare", "message": "Minden kötelező oszlop sikeresen ellenőrizve."}
+{"ts": "2026-10-15T10:18:34+0200", "level": "INFO", "logger": "churn.prepare", "message": "Customer_ID egyediség validálva.", "column": "Customer_ID"}
+{"ts": "2026-10-15T10:18:34+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-29/test_prepare_data_invalid_age_1/old_age.csv"}
+{"ts": "2026-10-15T10:18:34+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 2, "column_count": 14}
+{"ts": "2026-10-15T10:18:34+0200", "level": "INFO", "logger": "churn.prepare", "message": "Minden kötelező oszlop sikeresen ellenőrizve."}
+{"ts": "2026-10-15T10:18:34+0200", "level": "INFO", "logger": "churn.prepare", "message": "Customer_ID egyediség validálva.", "column": "Customer_ID"}
+{"ts": "2026-10-15T10:18:34+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-29/test_prepare_data_invalid_cred0/bad_credit.csv"}
+{"ts": "2026-10-15T10:18:34+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 2, "column_count": 14}
+{"ts": "2026-10-15T10:18:34+0200", "level": "INFO", "logger": "churn.prepare", "message": "Minden kötelező oszlop sikeresen ellenőrizve."}
+{"ts": "2026-10-15T10:18:34+0200", "level": "INFO", "logger": "churn.prepare", "message": "Customer_ID egyediség validálva.", "column": "Customer_ID"}
+{"ts": "2026-10-15T10:18:34+0200", "level": "INFO", "logger": "churn.prepare", "message": "Életkor tartományok rendben", "min_age": 30, "max_age": 45}
+{"ts": "2026-10-15T10:18:34+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-29/test_prepare_data_invalid_util0/bad_util.csv"}
+{"ts": "2026-10-15T10:18:34+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 2, "column_count": 14}
+{"ts": "2026-10-15T10:18:34+0200", "level": "INFO", "logger": "churn.prepare", "message": "Minden kötelező oszlop sikeresen ellenőrizve."}
+{"ts": "2026-10-15T10:18:34+0200", "level": "INFO", "logger": "churn.prepare", "message": "Customer_ID egyediség validálva.", "column": "Customer_ID"}
+{"ts": "2026-10-15T10:18:34+0200", "level": "INFO", "logger": "churn.prepare", "message": "Életkor tartományok rendben", "min_age": 30, "max_age": 45}
+{"ts": "2026-10-15T10:18:34+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-29/test_prepare_data_negative_tra0/bad_trans_ct.csv"}
+{"ts": "2026-10-15T10:18:34+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 2, "column_count": 14}
+{"ts": "2026-10-15T10:18:34+0200", "level": "INFO", "logger": "churn.prepare", "message": "Minden kötelező oszlop sikeresen ellenőrizve."}
+{"ts": "2026-10-15T10:18:34+0200", "level": "INFO", "logger": "churn.prepare", "message": "Customer_ID egyediség validálva.", "column": "Customer_ID"}
+{"ts": "2026-10-15T10:18:34+0200", "level": "INFO", "logger": "churn.prepare", "message": "Életkor tartományok rendben", "min_age": 30, "max_age": 45}
+{"ts": "2026-10-15T10:18:34+0200", "level": "INFO", "logger": "churn.prepare", "message": "Hitelkeret és utilizációs mutatók validálva."}
+{"ts": "2026-10-15T10:18:34+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-29/test_prepare_data_negative_tra1/bad_trans_amt.csv"}
+{"ts": "2026-10-15T10:18:34+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 2, "column_count": 14}
+{"ts": "2026-10-15T10:18:34+0200", "level": "INFO", "logger": "churn.prepare", "message": "Minden kötelező oszlop sikeresen ellenőrizve."}
+{"ts": "2026-10-15T10:18:34+0200", "level": "INFO", "logger": "churn.prepare", "message": "Customer_ID egyediség validálva.", "column": "Customer_ID"}
+{"ts": "2026-10-15T10:18:34+0200", "level": "INFO", "logger": "churn.prepare", "message": "Életkor tartományok rendben", "min_age": 30, "max_age": 45}
+{"ts": "2026-10-15T10:18:34+0200", "level": "INFO", "logger": "churn.prepare", "message": "Hitelkeret és utilizációs mutatók validálva."}
+{"ts": "2026-10-15T10:18:34+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-29/test_prepare_data_invalid_stat0/bad_status.csv"}
+{"ts": "2026-10-15T10:18:34+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 2, "column_count": 14}
+{"ts": "2026-10-15T10:18:34+0200", "level": "INFO", "logger": "churn.prepare", "message": "Minden kötelező oszlop sikeresen ellenőrizve."}
+{"ts": "2026-10-15T10:18:34+0200", "level": "INFO", "logger": "churn.prepare", "message": "Customer_ID egyediség validálva.", "column": "Customer_ID"}
+{"ts": "2026-10-15T10:18:34+0200", "level": "INFO", "logger": "churn.prepare", "message": "Életkor tartományok rendben", "min_age": 30, "max_age": 45}
+{"ts": "2026-10-15T10:18:34+0200", "level": "INFO", "logger": "churn.prepare", "message": "Hitelkeret és utilizációs mutatók validálva."}
+{"ts": "2026-10-15T10:18:34+0200", "level": "INFO", "logger": "churn.prepare", "message": "Tranzakciós mutatók tartománya validálva."}
+{"ts": "2026-10-15T10:18:34+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-29/test_prepare_main_block0/raw/BankChurners.csv"}
+{"ts": "2026-10-15T10:18:34+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 2, "column_count": 14}
+{"ts": "2026-10-15T10:18:34+0200", "level": "INFO", "logger": "churn.prepare", "message": "Minden kötelező oszlop sikeresen ellenőrizve."}
+{"ts": "2026-10-15T10:18:34+0200", "level": "INFO", "logger": "churn.prepare", "message": "Customer_ID egyediség validálva.", "column": "Customer_ID"}
+{"ts": "2026-10-15T10:18:34+0200", "level": "INFO", "logger": "churn.prepare", "message": "Életkor tartományok rendben", "min_age": 30, "max_age": 45}
+{"ts": "2026-10-15T10:18:34+0200", "level": "INFO", "logger": "churn.prepare", "message": "Hitelkeret és utilizációs mutatók validálva."}
+{"ts": "2026-10-15T10:18:34+0200", "level": "INFO", "logger": "churn.prepare", "message": "Tranzakciós mutatók tartománya validálva."}
+{"ts": "2026-10-15T10:18:34+0200", "level": "INFO", "logger": "churn.prepare", "message": "Target változó validálva", "target": "Customer_Status", "classes": 2}
+{"ts": "2026-10-15T10:18:34+0200", "level": "INFO", "logger": "churn.prepare", "message": "Feldolgozott adatok mappája létrehozva", "output_dir": "/tmp/pytest-of-firstuser/pytest-29/test_prepare_main_block0/processed"}
+{"ts": "2026-10-15T10:18:34+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok sikeresen elmentve", "output_file": "/tmp/pytest-of-firstuser/pytest-29/test_prepare_main_block0/processed/bank_churners_processed.csv"}
+{"ts": "2026-10-15T10:18:34+0200", "level": "INFO", "logger": "churn.train", "message": "Adatok betöltése modelltanításhoz", "x_path": "/tmp/pytest-of-firstuser/pytest-29/test_train_model_success0/processed/X.csv", "y_path": "/tmp/pytest-of-firstuser/pytest-29/test_train_model_success0/processed/y.csv"}
+{"ts": "2026-10-15T10:18:34+0200", "level": "INFO", "logger": "churn.train", "message": "Tanítási adatok betöltve", "rows": 6, "features": 2, "target_distribution": {"0": 3, "1": 3}}
+{"ts": "2026-10-15T10:18:34+0200", "level": "INFO", "logger": "churn.train", "message": "Train/test split végrehajtása", "test_size": 0.5, "random_seed": 42}
+{"ts": "2026-10-15T10:18:34+0200", "level": "INFO", "logger": "churn.train", "message": "Train/test split kész", "train_rows": 3, "test_rows": 3}
+{"ts": "2026-10-15T10:18:34+0200", "level": "INFO", "logger": "churn.train", "message": "Teszthalmazok sikeresen elmentve a lemezre az evaluate számára", "x_test_path": "/tmp/pytest-of-firstuser/pytest-29/test_train_model_success0/processed/X_test.csv", "y_test_path": "/tmp/pytest-of-firstuser/pytest-29/test_train_model_success0/processed/y_test.csv"}
+{"ts": "2026-10-15T10:18:35+0200", "level": "INFO", "logger": "churn.train", "message": "Random Forest modell inicializálása", "algorithm": "RandomForestClassifier", "n_estimators": 10}
+{"ts": "2026-10-15T10:18:35+0200", "level": "INFO", "logger": "churn.train", "message": "Modell betanítva"}
+{"ts": "2026-10-15T10:18:35+0200", "level": "INFO", "logger": "churn.train", "message": "Kiértékelés elkészült", "accuracy": 1.0, "precision": 1.0, "recall": 1.0, "f1": 1.0, "roc_auc": 1.0}
+{"ts": "2026-10-15T10:18:40+0200", "level": "INFO", "logger": "churn.train", "message": "Modell sikeresen logolva MLflow-ba", "registered_model_name": "test_model"}
+{"ts": "2026-10-15T10:18:40+0200", "level": "INFO", "logger": "churn.train", "message": "Run ID sikeresen elmentve a models/mlflow_run_id fájlba", "run_id": "14a30806e6b24e5298d51d5daeb7f294", "path": "models/mlflow_run_id"}
+{"ts": "2026-10-15T10:18:40+0200", "level": "INFO", "logger": "churn.train", "message": "MLflow futás befejeződve", "run_id": "14a30806e6b24e5298d51d5daeb7f294"}
+{"ts": "2026-10-15T10:18:40+0200", "level": "INFO", "logger": "churn.train", "message": "Modelltanítás sikeresen befejeződött"}
+{"ts": "2026-10-15T10:18:40+0200", "level": "INFO", "logger": "churn.train", "message": "Adatok betöltése modelltanításhoz", "x_path": "/tmp/pytest-of-firstuser/pytest-29/test_train_model_main_block0/processed/X.csv", "y_path": "/tmp/pytest-of-firstuser/pytest-29/test_train_model_main_block0/processed/y.csv"}
+{"ts": "2026-10-15T10:18:40+0200", "level": "INFO", "logger": "churn.train", "message": "Tanítási adatok betöltve", "rows": 6, "features": 1, "target_distribution": {"0": 3, "1": 3}}
+{"ts": "2026-10-15T10:18:40+0200", "level": "INFO", "logger": "churn.train", "message": "Train/test split végrehajtása", "test_size": 0.2, "random_seed": 42}
+{"ts": "2026-10-15T10:18:40+0200", "level": "INFO", "logger": "churn.train", "message": "Train/test split kész", "train_rows": 4, "test_rows": 2}
+{"ts": "2026-10-15T10:18:40+0200", "level": "INFO", "logger": "churn.train", "message": "Teszthalmazok sikeresen elmentve a lemezre az evaluate számára", "x_test_path": "/tmp/pytest-of-firstuser/pytest-29/test_train_model_main_block0/processed/X_test.csv", "y_test_path": "/tmp/pytest-of-firstuser/pytest-29/test_train_model_main_block0/processed/y_test.csv"}
+{"ts": "2026-10-15T10:18:40+0200", "level": "INFO", "logger": "churn.train", "message": "Random Forest modell inicializálása", "algorithm": "RandomForestClassifier", "n_estimators": 5}
+{"ts": "2026-10-15T10:18:40+0200", "level": "INFO", "logger": "churn.train", "message": "Modell betanítva"}
+{"ts": "2026-10-15T10:18:40+0200", "level": "INFO", "logger": "churn.train", "message": "Kiértékelés elkészült", "accuracy": 1.0, "precision": 1.0, "recall": 1.0, "f1": 1.0, "roc_auc": 1.0}
+{"ts": "2026-10-15T10:18:45+0200", "level": "INFO", "logger": "churn.train", "message": "Modell sikeresen logolva MLflow-ba", "registered_model_name": "bank_churn_model"}
+{"ts": "2026-10-15T10:18:45+0200", "level": "INFO", "logger": "churn.train", "message": "Run ID sikeresen elmentve a models/mlflow_run_id fájlba", "run_id": "90b7f81c10c6487eacdba864a0a323fe", "path": "models/mlflow_run_id"}
+{"ts": "2026-10-15T10:18:45+0200", "level": "INFO", "logger": "churn.train", "message": "MLflow futás befejeződve", "run_id": "90b7f81c10c6487eacdba864a0a323fe"}
+{"ts": "2026-10-15T10:18:45+0200", "level": "INFO", "logger": "churn.train", "message": "Modelltanítás sikeresen befejeződött"}
+{"ts": "2026-10-15T10:22:54+0200", "level": "INFO", "logger": "churn.env_runner", "message": "Környezeti validáció indítása..."}
+{"ts": "2026-10-15T10:22:54+0200", "level": "INFO", "logger": "churn.env_runner", "message": "Környezeti adatok és csomagok összegyűjtve", "package_count": 19}
+{"ts": "2026-10-15T10:22:54+0200", "level": "INFO", "logger": "churn.env_runner", "message": "Környezeti jelentés (markdown) generálva."}
+{"ts": "2026-10-15T10:22:54+0200", "level": "INFO", "logger": "churn.env_runner", "message": "Környezeti jelentés sikeresen elmentve", "saved_path": "docs/env_report_20261015_102254.md"}
+{"ts": "2026-10-15T10:22:54+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Teszthalmaz betöltése", "x_test_path": "/tmp/pytest-of-firstuser/pytest-30/test_evaluate_model_success0/X_test.csv", "y_test_path": "/tmp/pytest-of-firstuser/pytest-30/test_evaluate_model_success0/y_test.csv"}
+{"ts": "2026-10-15T10:22:54+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Teszthalmaz betöltve", "rows": 4, "features": 2}
+{"ts": "2026-10-15T10:22:54+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Modell betöltése", "model_uri": "runs:/dummy/model"}
+{"ts": "2026-10-15T10:22:54+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Metrikák számítása..."}
+{"ts": "2026-10-15T10:22:54+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Kiértékelés kész, metrics.json generálva", "output_path": "/tmp/pytest-of-firstuser/pytest-30/test_evaluate_model_success0/metrics/metrics.json", "accuracy": 1.0, "precision": 1.0, "recall": 1.0, "f1": 1.0, "roc_auc": 1.0, "n_valid": 4, "positive_rate": 0.5}
+{"ts": "2026-10-15T10:22:54+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Teszthalmaz betöltése", "x_test_path": "/tmp/pytest-of-firstuser/pytest-30/test_evaluate_model_string_tar0/X_test.csv", "y_test_path": "/tmp/pytest-of-firstuser/pytest-30/test_evaluate_model_string_tar0/y_test.csv"}
+{"ts": "2026-10-15T10:22:54+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Teszthalmaz betöltve", "rows": 2, "features": 1}
+{"ts": "2026-10-15T10:22:54+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Modell betöltése", "model_uri": "runs:/dummy/model"}
+{"ts": "2026-10-15T10:22:54+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Metrikák számítása..."}
+{"ts": "2026-10-15T10:22:55+0200", "level": "ERROR", "logger": "churn.evaluate", "message": "Az X_test mátrix nem található.", "x_test_path": "/tmp/pytest-of-firstuser/pytest-30/test_evaluate_model_missing_x0/non_existent_x.csv"}
+{"ts": "2026-10-15T10:22:55+0200", "level": "ERROR", "logger": "churn.evaluate", "message": "Az y_test célváltozó nem található.", "y_test_path": "/tmp/pytest-of-firstuser/pytest-30/test_evaluate_model_missing_y0/non_existent_y.csv"}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Teszthalmaz betöltése", "x_test_path": "/tmp/pytest-of-firstuser/pytest-30/test_evaluate_model_load_failu0/X_test.csv", "y_test_path": "/tmp/pytest-of-firstuser/pytest-30/test_evaluate_model_load_failu0/y_test.csv"}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Teszthalmaz betöltve", "rows": 1, "features": 1}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Modell betöltése", "model_uri": "models:/bank_churn_model/latest"}
+{"ts": "2026-10-15T10:22:55+0200", "level": "ERROR", "logger": "churn.evaluate", "message": "Modell betöltési hiba.", "model_uri": "models:/bank_churn_model/latest", "error": "MLflow error"}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Teszthalmaz betöltése", "x_test_path": "/tmp/pytest-of-firstuser/pytest-30/test_evaluate_main_block0/X_test.csv", "y_test_path": "/tmp/pytest-of-firstuser/pytest-30/test_evaluate_main_block0/y_test.csv"}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Teszthalmaz betöltve", "rows": 2, "features": 1}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Modell betöltése", "model_uri": "models:/DummyModel/latest"}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Metrikák számítása..."}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Kiértékelés kész, metrics.json generálva", "output_path": "/tmp/pytest-of-firstuser/pytest-30/test_evaluate_main_block0/metrics.json", "accuracy": 1.0, "precision": 1.0, "recall": 1.0, "f1": 1.0, "roc_auc": 1.0, "n_valid": 2, "positive_rate": 0.5}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.features", "message": "Prepared adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-30/test_process_features0/bank_churners_processed.csv"}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.features", "message": "Kategorikus oszlopok azonosítva", "cat_cols": ["Education_Level", "Income_Category"]}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.features", "message": "Processált adatok sikeresen elmentve", "x_path": "/tmp/pytest-of-firstuser/pytest-30/test_process_features0/processed/X.csv", "y_path": "/tmp/pytest-of-firstuser/pytest-30/test_process_features0/processed/y.csv"}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.features", "message": "Prepared adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-30/test_process_features_default_0/bank_churners_processed.csv"}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.features", "message": "Kategorikus oszlopok azonosítva", "cat_cols": ["Education_Level"]}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.features", "message": "Processált adatok sikeresen elmentve", "x_path": "/tmp/pytest-of-firstuser/pytest-30/test_process_features_default_0/X.csv", "y_path": "/tmp/pytest-of-firstuser/pytest-30/test_process_features_default_0/y.csv"}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.features", "message": "Prepared adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-30/test_process_features_missing_0/non_existent.csv"}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.features", "message": "Prepared adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-30/test_process_features_missing_1/invalid.csv"}
+{"ts": "2026-10-15T10:22:55+0200", "level": "ERROR", "logger": "churn.features", "message": "A 'Customer_Status' célváltozó hiányzik a datasetből."}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.features", "message": "Prepared adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-30/test_process_features_invalid_0/invalid_target.csv"}
+{"ts": "2026-10-15T10:22:55+0200", "level": "ERROR", "logger": "churn.features", "message": "Ismeretlen Customer_Status érték található az adatokban."}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.features", "message": "Prepared adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-30/test_features_main_block0/processed/bank_churners_processed.csv"}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.features", "message": "Kategorikus oszlopok azonosítva", "cat_cols": ["Education_Level"]}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.features", "message": "Processált adatok sikeresen elmentve", "x_path": "/tmp/pytest-of-firstuser/pytest-30/test_features_main_block0/processed/X.csv", "y_path": "/tmp/pytest-of-firstuser/pytest-30/test_features_main_block0/processed/y.csv"}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-30/test_prepare_data_file_not_fou0/non_existent.csv"}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-30/test_prepare_data_success_with0/valid_input.csv"}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 2, "column_count": 14}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Minden kötelező oszlop sikeresen ellenőrizve."}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Customer_ID egyediség validálva.", "column": "Customer_ID"}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Életkor tartományok rendben", "min_age": 30, "max_age": 45}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Hitelkeret és utilizációs mutatók validálva."}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Tranzakciós mutatók tartománya validálva."}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Target változó validálva", "target": "Customer_Status", "classes": 2}
+{"ts": "2026-10-15T10:22:55+0200", "level": "WARNING", "logger": "churn.prepare", "message": "Ismeretlen értékek észlelve", "unknown_count": 1}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Ismeretlen értékek oszloponkénti bontása", "breakdown": {"Education_Level": 1}}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Feldolgozott adatok mappája létrehozva", "output_dir": "/tmp/pytest-of-firstuser/pytest-30/test_prepare_data_success_with0/nested/subfolder"}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok sikeresen elmentve", "output_file": "/tmp/pytest-of-firstuser/pytest-30/test_prepare_data_success_with0/nested/subfolder/processed_output.csv"}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-30/test_prepare_data_empty_datafr0/empty.csv"}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 0, "column_count": 14}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-30/test_prepare_data_missing_colu0/missing_col.csv"}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 2, "column_count": 13}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-30/test_prepare_data_duplicate_id0/duplicates.csv"}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 2, "column_count": 14}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Minden kötelező oszlop sikeresen ellenőrizve."}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-30/test_prepare_data_null_age0/null_age.csv"}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 2, "column_count": 14}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Minden kötelező oszlop sikeresen ellenőrizve."}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Customer_ID egyediség validálva.", "column": "Customer_ID"}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-30/test_prepare_data_invalid_age_0/young_age.csv"}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 2, "column_count": 14}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Minden kötelező oszlop sikeresen ellenőrizve."}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Customer_ID egyediség validálva.", "column": "Customer_ID"}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-30/test_prepare_data_invalid_age_1/old_age.csv"}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 2, "column_count": 14}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Minden kötelező oszlop sikeresen ellenőrizve."}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Customer_ID egyediség validálva.", "column": "Customer_ID"}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-30/test_prepare_data_invalid_cred0/bad_credit.csv"}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 2, "column_count": 14}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Minden kötelező oszlop sikeresen ellenőrizve."}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Customer_ID egyediség validálva.", "column": "Customer_ID"}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Életkor tartományok rendben", "min_age": 30, "max_age": 45}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-30/test_prepare_data_invalid_util0/bad_util.csv"}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 2, "column_count": 14}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Minden kötelező oszlop sikeresen ellenőrizve."}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Customer_ID egyediség validálva.", "column": "Customer_ID"}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Életkor tartományok rendben", "min_age": 30, "max_age": 45}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-30/test_prepare_data_negative_tra0/bad_trans_ct.csv"}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 2, "column_count": 14}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Minden kötelező oszlop sikeresen ellenőrizve."}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Customer_ID egyediség validálva.", "column": "Customer_ID"}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Életkor tartományok rendben", "min_age": 30, "max_age": 45}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Hitelkeret és utilizációs mutatók validálva."}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-30/test_prepare_data_negative_tra1/bad_trans_amt.csv"}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 2, "column_count": 14}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Minden kötelező oszlop sikeresen ellenőrizve."}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Customer_ID egyediség validálva.", "column": "Customer_ID"}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Életkor tartományok rendben", "min_age": 30, "max_age": 45}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Hitelkeret és utilizációs mutatók validálva."}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-30/test_prepare_data_invalid_stat0/bad_status.csv"}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 2, "column_count": 14}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Minden kötelező oszlop sikeresen ellenőrizve."}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Customer_ID egyediség validálva.", "column": "Customer_ID"}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Életkor tartományok rendben", "min_age": 30, "max_age": 45}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Hitelkeret és utilizációs mutatók validálva."}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Tranzakciós mutatók tartománya validálva."}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-30/test_prepare_main_block0/raw/BankChurners.csv"}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 2, "column_count": 14}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Minden kötelező oszlop sikeresen ellenőrizve."}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Customer_ID egyediség validálva.", "column": "Customer_ID"}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Életkor tartományok rendben", "min_age": 30, "max_age": 45}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Hitelkeret és utilizációs mutatók validálva."}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Tranzakciós mutatók tartománya validálva."}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Target változó validálva", "target": "Customer_Status", "classes": 2}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Feldolgozott adatok mappája létrehozva", "output_dir": "/tmp/pytest-of-firstuser/pytest-30/test_prepare_main_block0/processed"}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok sikeresen elmentve", "output_file": "/tmp/pytest-of-firstuser/pytest-30/test_prepare_main_block0/processed/bank_churners_processed.csv"}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.train", "message": "Adatok betöltése modelltanításhoz", "x_path": "/tmp/pytest-of-firstuser/pytest-30/test_train_model_success0/processed/X.csv", "y_path": "/tmp/pytest-of-firstuser/pytest-30/test_train_model_success0/processed/y.csv"}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.train", "message": "Tanítási adatok betöltve", "rows": 6, "features": 2, "target_distribution": {"0": 3, "1": 3}}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.train", "message": "Train/test split végrehajtása", "test_size": 0.5, "random_seed": 42}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.train", "message": "Train/test split kész", "train_rows": 3, "test_rows": 3}
+{"ts": "2026-10-15T10:22:55+0200", "level": "INFO", "logger": "churn.train", "message": "Teszthalmazok sikeresen elmentve a lemezre az evaluate számára", "x_test_path": "/tmp/pytest-of-firstuser/pytest-30/test_train_model_success0/processed/X_test.csv", "y_test_path": "/tmp/pytest-of-firstuser/pytest-30/test_train_model_success0/processed/y_test.csv"}
+{"ts": "2026-10-15T10:22:57+0200", "level": "INFO", "logger": "churn.train", "message": "Random Forest modell inicializálása", "algorithm": "RandomForestClassifier", "n_estimators": 10}
+{"ts": "2026-10-15T10:22:57+0200", "level": "INFO", "logger": "churn.train", "message": "Modell betanítva"}
+{"ts": "2026-10-15T10:22:57+0200", "level": "INFO", "logger": "churn.train", "message": "Kiértékelés elkészült", "accuracy": 1.0, "precision": 1.0, "recall": 1.0, "f1": 1.0, "roc_auc": 1.0}
+{"ts": "2026-10-15T10:23:02+0200", "level": "INFO", "logger": "churn.train", "message": "Modell sikeresen logolva MLflow-ba", "registered_model_name": "test_model"}
+{"ts": "2026-10-15T10:23:02+0200", "level": "INFO", "logger": "churn.train", "message": "Run ID sikeresen elmentve a models/mlflow_run_id fájlba", "run_id": "67f98d6780e44440b55f29a5d98031cd", "path": "models/mlflow_run_id"}
+{"ts": "2026-10-15T10:23:02+0200", "level": "INFO", "logger": "churn.train", "message": "MLflow futás befejeződve", "run_id": "67f98d6780e44440b55f29a5d98031cd"}
+{"ts": "2026-10-15T10:23:02+0200", "level": "INFO", "logger": "churn.train", "message": "Modelltanítás sikeresen befejeződött"}
+{"ts": "2026-10-15T10:23:02+0200", "level": "INFO", "logger": "churn.train", "message": "Adatok betöltése modelltanításhoz", "x_path": "/tmp/pytest-of-firstuser/pytest-30/test_train_model_main_block0/processed/X.csv", "y_path": "/tmp/pytest-of-firstuser/pytest-30/test_train_model_main_block0/processed/y.csv"}
+{"ts": "2026-10-15T10:23:02+0200", "level": "INFO", "logger": "churn.train", "message": "Tanítási adatok betöltve", "rows": 6, "features": 1, "target_distribution": {"0": 3, "1": 3}}
+{"ts": "2026-10-15T10:23:02+0200", "level": "INFO", "logger": "churn.train", "message": "Train/test split végrehajtása", "test_size": 0.2, "random_seed": 42}
+{"ts": "2026-10-15T10:23:02+0200", "level": "INFO", "logger": "churn.train", "message": "Train/test split kész", "train_rows": 4, "test_rows": 2}
+{"ts": "2026-10-15T10:23:02+0200", "level": "INFO", "logger": "churn.train", "message": "Teszthalmazok sikeresen elmentve a lemezre az evaluate számára", "x_test_path": "/tmp/pytest-of-firstuser/pytest-30/test_train_model_main_block0/processed/X_test.csv", "y_test_path": "/tmp/pytest-of-firstuser/pytest-30/test_train_model_main_block0/processed/y_test.csv"}
+{"ts": "2026-10-15T10:23:02+0200", "level": "INFO", "logger": "churn.train", "message": "Random Forest modell inicializálása", "algorithm": "RandomForestClassifier", "n_estimators": 5}
+{"ts": "2026-10-15T10:23:02+0200", "level": "INFO", "logger": "churn.train", "message": "Modell betanítva"}
+{"ts": "2026-10-15T10:23:02+0200", "level": "INFO", "logger": "churn.train", "message": "Kiértékelés elkészült", "accuracy": 1.0, "precision": 1.0, "recall": 1.0, "f1": 1.0, "roc_auc": 1.0}
+{"ts": "2026-10-15T10:23:06+0200", "level": "INFO", "logger": "churn.train", "message": "Modell sikeresen logolva MLflow-ba", "registered_model_name": "bank_churn_model"}
+{"ts": "2026-10-15T10:23:06+0200", "level": "INFO", "logger": "churn.train", "message": "Run ID sikeresen elmentve a models/mlflow_run_id fájlba", "run_id": "2913607c9df5434e97b6ce813616276d", "path": "models/mlflow_run_id"}
+{"ts": "2026-10-15T10:23:06+0200", "level": "INFO", "logger": "churn.train", "message": "MLflow futás befejeződve", "run_id": "2913607c9df5434e97b6ce813616276d"}
+{"ts": "2026-10-15T10:23:06+0200", "level": "INFO", "logger": "churn.train", "message": "Modelltanítás sikeresen befejeződött"}
+{"ts": "2026-10-15T10:24:38+0200", "level": "INFO", "logger": "churn.env_runner", "message": "Környezeti validáció indítása..."}
+{"ts": "2026-10-15T10:24:38+0200", "level": "INFO", "logger": "churn.env_runner", "message": "Környezeti adatok és csomagok összegyűjtve", "package_count": 19}
+{"ts": "2026-10-15T10:24:38+0200", "level": "INFO", "logger": "churn.env_runner", "message": "Környezeti jelentés (markdown) generálva."}
+{"ts": "2026-10-15T10:24:38+0200", "level": "INFO", "logger": "churn.env_runner", "message": "Környezeti jelentés sikeresen elmentve", "saved_path": "docs/env_report_20261015_102438.md"}
+{"ts": "2026-10-15T10:24:38+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Teszthalmaz betöltése", "x_test_path": "/tmp/pytest-of-firstuser/pytest-31/test_evaluate_model_success0/X_test.csv", "y_test_path": "/tmp/pytest-of-firstuser/pytest-31/test_evaluate_model_success0/y_test.csv"}
+{"ts": "2026-10-15T10:24:38+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Teszthalmaz betöltve", "rows": 4, "features": 2}
+{"ts": "2026-10-15T10:24:38+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Modell betöltése", "model_uri": "runs:/dummy/model"}
+{"ts": "2026-10-15T10:24:38+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Metrikák számítása..."}
+{"ts": "2026-10-15T10:24:38+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Kiértékelés kész, metrics.json generálva", "output_path": "/tmp/pytest-of-firstuser/pytest-31/test_evaluate_model_success0/metrics/metrics.json", "accuracy": 1.0, "precision": 1.0, "recall": 1.0, "f1": 1.0, "roc_auc": 1.0, "n_valid": 4, "positive_rate": 0.5}
+{"ts": "2026-10-15T10:24:38+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Teszthalmaz betöltése", "x_test_path": "/tmp/pytest-of-firstuser/pytest-31/test_evaluate_model_string_tar0/X_test.csv", "y_test_path": "/tmp/pytest-of-firstuser/pytest-31/test_evaluate_model_string_tar0/y_test.csv"}
+{"ts": "2026-10-15T10:24:38+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Teszthalmaz betöltve", "rows": 4, "features": 2}
+{"ts": "2026-10-15T10:24:38+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Modell betöltése", "model_uri": "runs:/dummy/model"}
+{"ts": "2026-10-15T10:24:38+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Metrikák számítása..."}
+{"ts": "2026-10-15T10:24:38+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Teszthalmaz betöltése", "x_test_path": "/tmp/pytest-of-firstuser/pytest-31/test_evaluate_model_positive_r0/X_test.csv", "y_test_path": "/tmp/pytest-of-firstuser/pytest-31/test_evaluate_model_positive_r0/y_test.csv"}
+{"ts": "2026-10-15T10:24:38+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Teszthalmaz betöltve", "rows": 2, "features": 1}
+{"ts": "2026-10-15T10:24:38+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Modell betöltése", "model_uri": "runs:/dummy/model"}
+{"ts": "2026-10-15T10:24:38+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Metrikák számítása..."}
+{"ts": "2026-10-15T10:24:38+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Kiértékelés kész, metrics.json generálva", "output_path": "/tmp/pytest-of-firstuser/pytest-31/test_evaluate_model_positive_r0/metrics.json", "accuracy": 1.0, "precision": 1.0, "recall": 1.0, "f1": 1.0, "roc_auc": 1.0, "n_valid": 2, "positive_rate": 0.0}
+{"ts": "2026-10-15T10:24:38+0200", "level": "ERROR", "logger": "churn.evaluate", "message": "Az X_test mátrix nem található.", "x_test_path": "/tmp/pytest-of-firstuser/pytest-31/test_evaluate_model_missing_x0/non_existent_x.csv"}
+{"ts": "2026-10-15T10:24:38+0200", "level": "ERROR", "logger": "churn.evaluate", "message": "Az y_test célváltozó nem található.", "y_test_path": "/tmp/pytest-of-firstuser/pytest-31/test_evaluate_model_missing_y0/non_existent_y.csv"}
+{"ts": "2026-10-15T10:24:38+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Teszthalmaz betöltése", "x_test_path": "/tmp/pytest-of-firstuser/pytest-31/test_evaluate_model_load_failu0/X_test.csv", "y_test_path": "/tmp/pytest-of-firstuser/pytest-31/test_evaluate_model_load_failu0/y_test.csv"}
+{"ts": "2026-10-15T10:24:38+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Teszthalmaz betöltve", "rows": 1, "features": 1}
+{"ts": "2026-10-15T10:24:38+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Modell betöltése", "model_uri": "models:/bank_churn_model/latest"}
+{"ts": "2026-10-15T10:24:38+0200", "level": "ERROR", "logger": "churn.evaluate", "message": "Modell betöltési hiba.", "model_uri": "models:/bank_churn_model/latest", "error": "MLflow error"}
+{"ts": "2026-10-15T10:24:38+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Teszthalmaz betöltése", "x_test_path": "/tmp/pytest-of-firstuser/pytest-31/test_evaluate_main_block0/X_test.csv", "y_test_path": "/tmp/pytest-of-firstuser/pytest-31/test_evaluate_main_block0/y_test.csv"}
+{"ts": "2026-10-15T10:24:38+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Teszthalmaz betöltve", "rows": 2, "features": 1}
+{"ts": "2026-10-15T10:24:38+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Modell betöltése", "model_uri": "models:/DummyModel/latest"}
+{"ts": "2026-10-15T10:24:38+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Metrikák számítása..."}
+{"ts": "2026-10-15T10:24:38+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Kiértékelés kész, metrics.json generálva", "output_path": "/tmp/pytest-of-firstuser/pytest-31/test_evaluate_main_block0/metrics.json", "accuracy": 1.0, "precision": 1.0, "recall": 1.0, "f1": 1.0, "roc_auc": 1.0, "n_valid": 2, "positive_rate": 0.5}
+{"ts": "2026-10-15T10:24:38+0200", "level": "INFO", "logger": "churn.features", "message": "Prepared adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-31/test_process_features0/bank_churners_processed.csv"}
+{"ts": "2026-10-15T10:24:38+0200", "level": "INFO", "logger": "churn.features", "message": "Kategorikus oszlopok azonosítva", "cat_cols": ["Education_Level", "Income_Category"]}
+{"ts": "2026-10-15T10:24:38+0200", "level": "INFO", "logger": "churn.features", "message": "Processált adatok sikeresen elmentve", "x_path": "/tmp/pytest-of-firstuser/pytest-31/test_process_features0/processed/X.csv", "y_path": "/tmp/pytest-of-firstuser/pytest-31/test_process_features0/processed/y.csv"}
+{"ts": "2026-10-15T10:24:38+0200", "level": "INFO", "logger": "churn.features", "message": "Prepared adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-31/test_process_features_default_0/bank_churners_processed.csv"}
+{"ts": "2026-10-15T10:24:38+0200", "level": "INFO", "logger": "churn.features", "message": "Kategorikus oszlopok azonosítva", "cat_cols": ["Education_Level"]}
+{"ts": "2026-10-15T10:24:38+0200", "level": "INFO", "logger": "churn.features", "message": "Processált adatok sikeresen elmentve", "x_path": "/tmp/pytest-of-firstuser/pytest-31/test_process_features_default_0/X.csv", "y_path": "/tmp/pytest-of-firstuser/pytest-31/test_process_features_default_0/y.csv"}
+{"ts": "2026-10-15T10:24:38+0200", "level": "INFO", "logger": "churn.features", "message": "Prepared adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-31/test_process_features_missing_0/non_existent.csv"}
+{"ts": "2026-10-15T10:24:38+0200", "level": "INFO", "logger": "churn.features", "message": "Prepared adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-31/test_process_features_missing_1/invalid.csv"}
+{"ts": "2026-10-15T10:24:38+0200", "level": "ERROR", "logger": "churn.features", "message": "A 'Customer_Status' célváltozó hiányzik a datasetből."}
+{"ts": "2026-10-15T10:24:38+0200", "level": "INFO", "logger": "churn.features", "message": "Prepared adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-31/test_process_features_invalid_0/invalid_target.csv"}
+{"ts": "2026-10-15T10:24:38+0200", "level": "ERROR", "logger": "churn.features", "message": "Ismeretlen Customer_Status érték található az adatokban."}
+{"ts": "2026-10-15T10:24:38+0200", "level": "INFO", "logger": "churn.features", "message": "Prepared adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-31/test_features_main_block0/processed/bank_churners_processed.csv"}
+{"ts": "2026-10-15T10:24:38+0200", "level": "INFO", "logger": "churn.features", "message": "Kategorikus oszlopok azonosítva", "cat_cols": ["Education_Level"]}
+{"ts": "2026-10-15T10:24:38+0200", "level": "INFO", "logger": "churn.features", "message": "Processált adatok sikeresen elmentve", "x_path": "/tmp/pytest-of-firstuser/pytest-31/test_features_main_block0/processed/X.csv", "y_path": "/tmp/pytest-of-firstuser/pytest-31/test_features_main_block0/processed/y.csv"}
+{"ts": "2026-10-15T10:24:39+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-31/test_prepare_data_file_not_fou0/non_existent.csv"}
+{"ts": "2026-10-15T10:24:39+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-31/test_prepare_data_success_with0/valid_input.csv"}
+{"ts": "2026-10-15T10:24:39+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 2, "column_count": 14}
+{"ts": "2026-10-15T10:24:39+0200", "level": "INFO", "logger": "churn.prepare", "message": "Minden kötelező oszlop sikeresen ellenőrizve."}
+{"ts": "2026-10-15T10:24:39+0200", "level": "INFO", "logger": "churn.prepare", "message": "Customer_ID egyediség validálva.", "column": "Customer_ID"}
+{"ts": "2026-10-15T10:24:39+0200", "level": "INFO", "logger": "churn.prepare", "message": "Életkor tartományok rendben", "min_age": 30, "max_age": 45}
+{"ts": "2026-10-15T10:24:39+0200", "level": "INFO", "logger": "churn.prepare", "message": "Hitelkeret és utilizációs mutatók validálva."}
+{"ts": "2026-10-15T10:24:39+0200", "level": "INFO", "logger": "churn.prepare", "message": "Tranzakciós mutatók tartománya validálva."}
+{"ts": "2026-10-15T10:24:39+0200", "level": "INFO", "logger": "churn.prepare", "message": "Target változó validálva", "target": "Customer_Status", "classes": 2}
+{"ts": "2026-10-15T10:24:39+0200", "level": "WARNING", "logger": "churn.prepare", "message": "Ismeretlen értékek észlelve", "unknown_count": 1}
+{"ts": "2026-10-15T10:24:39+0200", "level": "INFO", "logger": "churn.prepare", "message": "Ismeretlen értékek oszloponkénti bontása", "breakdown": {"Education_Level": 1}}
+{"ts": "2026-10-15T10:24:39+0200", "level": "INFO", "logger": "churn.prepare", "message": "Feldolgozott adatok mappája létrehozva", "output_dir": "/tmp/pytest-of-firstuser/pytest-31/test_prepare_data_success_with0/nested/subfolder"}
+{"ts": "2026-10-15T10:24:39+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok sikeresen elmentve", "output_file": "/tmp/pytest-of-firstuser/pytest-31/test_prepare_data_success_with0/nested/subfolder/processed_output.csv"}
+{"ts": "2026-10-15T10:24:39+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-31/test_prepare_data_empty_datafr0/empty.csv"}
+{"ts": "2026-10-15T10:24:39+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 0, "column_count": 14}
+{"ts": "2026-10-15T10:24:39+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-31/test_prepare_data_missing_colu0/missing_col.csv"}
+{"ts": "2026-10-15T10:24:39+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 2, "column_count": 13}
+{"ts": "2026-10-15T10:24:39+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-31/test_prepare_data_duplicate_id0/duplicates.csv"}
+{"ts": "2026-10-15T10:24:39+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 2, "column_count": 14}
+{"ts": "2026-10-15T10:24:39+0200", "level": "INFO", "logger": "churn.prepare", "message": "Minden kötelező oszlop sikeresen ellenőrizve."}
+{"ts": "2026-10-15T10:24:39+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-31/test_prepare_data_null_age0/null_age.csv"}
+{"ts": "2026-10-15T10:24:39+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 2, "column_count": 14}
+{"ts": "2026-10-15T10:24:39+0200", "level": "INFO", "logger": "churn.prepare", "message": "Minden kötelező oszlop sikeresen ellenőrizve."}
+{"ts": "2026-10-15T10:24:39+0200", "level": "INFO", "logger": "churn.prepare", "message": "Customer_ID egyediség validálva.", "column": "Customer_ID"}
+{"ts": "2026-10-15T10:24:39+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-31/test_prepare_data_invalid_age_0/young_age.csv"}
+{"ts": "2026-10-15T10:24:39+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 2, "column_count": 14}
+{"ts": "2026-10-15T10:24:39+0200", "level": "INFO", "logger": "churn.prepare", "message": "Minden kötelező oszlop sikeresen ellenőrizve."}
+{"ts": "2026-10-15T10:24:39+0200", "level": "INFO", "logger": "churn.prepare", "message": "Customer_ID egyediség validálva.", "column": "Customer_ID"}
+{"ts": "2026-10-15T10:24:39+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-31/test_prepare_data_invalid_age_1/old_age.csv"}
+{"ts": "2026-10-15T10:24:39+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 2, "column_count": 14}
+{"ts": "2026-10-15T10:24:39+0200", "level": "INFO", "logger": "churn.prepare", "message": "Minden kötelező oszlop sikeresen ellenőrizve."}
+{"ts": "2026-10-15T10:24:39+0200", "level": "INFO", "logger": "churn.prepare", "message": "Customer_ID egyediség validálva.", "column": "Customer_ID"}
+{"ts": "2026-10-15T10:24:39+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-31/test_prepare_data_invalid_cred0/bad_credit.csv"}
+{"ts": "2026-10-15T10:24:39+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 2, "column_count": 14}
+{"ts": "2026-10-15T10:24:39+0200", "level": "INFO", "logger": "churn.prepare", "message": "Minden kötelező oszlop sikeresen ellenőrizve."}
+{"ts": "2026-10-15T10:24:39+0200", "level": "INFO", "logger": "churn.prepare", "message": "Customer_ID egyediség validálva.", "column": "Customer_ID"}
+{"ts": "2026-10-15T10:24:39+0200", "level": "INFO", "logger": "churn.prepare", "message": "Életkor tartományok rendben", "min_age": 30, "max_age": 45}
+{"ts": "2026-10-15T10:24:39+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-31/test_prepare_data_invalid_util0/bad_util.csv"}
+{"ts": "2026-10-15T10:24:39+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 2, "column_count": 14}
+{"ts": "2026-10-15T10:24:39+0200", "level": "INFO", "logger": "churn.prepare", "message": "Minden kötelező oszlop sikeresen ellenőrizve."}
+{"ts": "2026-10-15T10:24:39+0200", "level": "INFO", "logger": "churn.prepare", "message": "Customer_ID egyediség validálva.", "column": "Customer_ID"}
+{"ts": "2026-10-15T10:24:39+0200", "level": "INFO", "logger": "churn.prepare", "message": "Életkor tartományok rendben", "min_age": 30, "max_age": 45}
+{"ts": "2026-10-15T10:24:39+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-31/test_prepare_data_negative_tra0/bad_trans_ct.csv"}
+{"ts": "2026-10-15T10:24:39+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 2, "column_count": 14}
+{"ts": "2026-10-15T10:24:39+0200", "level": "INFO", "logger": "churn.prepare", "message": "Minden kötelező oszlop sikeresen ellenőrizve."}
+{"ts": "2026-10-15T10:24:39+0200", "level": "INFO", "logger": "churn.prepare", "message": "Customer_ID egyediség validálva.", "column": "Customer_ID"}
+{"ts": "2026-10-15T10:24:39+0200", "level": "INFO", "logger": "churn.prepare", "message": "Életkor tartományok rendben", "min_age": 30, "max_age": 45}
+{"ts": "2026-10-15T10:24:39+0200", "level": "INFO", "logger": "churn.prepare", "message": "Hitelkeret és utilizációs mutatók validálva."}
+{"ts": "2026-10-15T10:24:39+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-31/test_prepare_data_negative_tra1/bad_trans_amt.csv"}
+{"ts": "2026-10-15T10:24:39+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 2, "column_count": 14}
+{"ts": "2026-10-15T10:24:39+0200", "level": "INFO", "logger": "churn.prepare", "message": "Minden kötelező oszlop sikeresen ellenőrizve."}
+{"ts": "2026-10-15T10:24:39+0200", "level": "INFO", "logger": "churn.prepare", "message": "Customer_ID egyediség validálva.", "column": "Customer_ID"}
+{"ts": "2026-10-15T10:24:39+0200", "level": "INFO", "logger": "churn.prepare", "message": "Életkor tartományok rendben", "min_age": 30, "max_age": 45}
+{"ts": "2026-10-15T10:24:39+0200", "level": "INFO", "logger": "churn.prepare", "message": "Hitelkeret és utilizációs mutatók validálva."}
+{"ts": "2026-10-15T10:24:39+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-31/test_prepare_data_invalid_stat0/bad_status.csv"}
+{"ts": "2026-10-15T10:24:39+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 2, "column_count": 14}
+{"ts": "2026-10-15T10:24:39+0200", "level": "INFO", "logger": "churn.prepare", "message": "Minden kötelező oszlop sikeresen ellenőrizve."}
+{"ts": "2026-10-15T10:24:39+0200", "level": "INFO", "logger": "churn.prepare", "message": "Customer_ID egyediség validálva.", "column": "Customer_ID"}
+{"ts": "2026-10-15T10:24:39+0200", "level": "INFO", "logger": "churn.prepare", "message": "Életkor tartományok rendben", "min_age": 30, "max_age": 45}
+{"ts": "2026-10-15T10:24:39+0200", "level": "INFO", "logger": "churn.prepare", "message": "Hitelkeret és utilizációs mutatók validálva."}
+{"ts": "2026-10-15T10:24:39+0200", "level": "INFO", "logger": "churn.prepare", "message": "Tranzakciós mutatók tartománya validálva."}
+{"ts": "2026-10-15T10:24:39+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-31/test_prepare_main_block0/raw/BankChurners.csv"}
+{"ts": "2026-10-15T10:24:39+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 2, "column_count": 14}
+{"ts": "2026-10-15T10:24:39+0200", "level": "INFO", "logger": "churn.prepare", "message": "Minden kötelező oszlop sikeresen ellenőrizve."}
+{"ts": "2026-10-15T10:24:39+0200", "level": "INFO", "logger": "churn.prepare", "message": "Customer_ID egyediség validálva.", "column": "Customer_ID"}
+{"ts": "2026-10-15T10:24:39+0200", "level": "INFO", "logger": "churn.prepare", "message": "Életkor tartományok rendben", "min_age": 30, "max_age": 45}
+{"ts": "2026-10-15T10:24:39+0200", "level": "INFO", "logger": "churn.prepare", "message": "Hitelkeret és utilizációs mutatók validálva."}
+{"ts": "2026-10-15T10:24:39+0200", "level": "INFO", "logger": "churn.prepare", "message": "Tranzakciós mutatók tartománya validálva."}
+{"ts": "2026-10-15T10:24:39+0200", "level": "INFO", "logger": "churn.prepare", "message": "Target változó validálva", "target": "Customer_Status", "classes": 2}
+{"ts": "2026-10-15T10:24:39+0200", "level": "INFO", "logger": "churn.prepare", "message": "Feldolgozott adatok mappája létrehozva", "output_dir": "/tmp/pytest-of-firstuser/pytest-31/test_prepare_main_block0/processed"}
+{"ts": "2026-10-15T10:24:39+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok sikeresen elmentve", "output_file": "/tmp/pytest-of-firstuser/pytest-31/test_prepare_main_block0/processed/bank_churners_processed.csv"}
+{"ts": "2026-10-15T10:24:39+0200", "level": "INFO", "logger": "churn.train", "message": "Adatok betöltése modelltanításhoz", "x_path": "/tmp/pytest-of-firstuser/pytest-31/test_train_model_success0/processed/X.csv", "y_path": "/tmp/pytest-of-firstuser/pytest-31/test_train_model_success0/processed/y.csv"}
+{"ts": "2026-10-15T10:24:39+0200", "level": "INFO", "logger": "churn.train", "message": "Tanítási adatok betöltve", "rows": 6, "features": 2, "target_distribution": {"0": 3, "1": 3}}
+{"ts": "2026-10-15T10:24:39+0200", "level": "INFO", "logger": "churn.train", "message": "Train/test split végrehajtása", "test_size": 0.5, "random_seed": 42}
+{"ts": "2026-10-15T10:24:39+0200", "level": "INFO", "logger": "churn.train", "message": "Train/test split kész", "train_rows": 3, "test_rows": 3}
+{"ts": "2026-10-15T10:24:39+0200", "level": "INFO", "logger": "churn.train", "message": "Teszthalmazok sikeresen elmentve a lemezre az evaluate számára", "x_test_path": "/tmp/pytest-of-firstuser/pytest-31/test_train_model_success0/processed/X_test.csv", "y_test_path": "/tmp/pytest-of-firstuser/pytest-31/test_train_model_success0/processed/y_test.csv"}
+{"ts": "2026-10-15T10:24:40+0200", "level": "INFO", "logger": "churn.train", "message": "Random Forest modell inicializálása", "algorithm": "RandomForestClassifier", "n_estimators": 10}
+{"ts": "2026-10-15T10:24:40+0200", "level": "INFO", "logger": "churn.train", "message": "Modell betanítva"}
+{"ts": "2026-10-15T10:24:40+0200", "level": "INFO", "logger": "churn.train", "message": "Kiértékelés elkészült", "accuracy": 1.0, "precision": 1.0, "recall": 1.0, "f1": 1.0, "roc_auc": 1.0}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.env_runner", "message": "Környezeti validáció indítása..."}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.env_runner", "message": "Környezeti adatok és csomagok összegyűjtve", "package_count": 19}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.env_runner", "message": "Környezeti jelentés (markdown) generálva."}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.env_runner", "message": "Környezeti jelentés sikeresen elmentve", "saved_path": "docs/env_report_20261015_102655.md"}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Teszthalmaz betöltése", "x_test_path": "/tmp/pytest-of-firstuser/pytest-32/test_evaluate_model_success0/X_test.csv", "y_test_path": "/tmp/pytest-of-firstuser/pytest-32/test_evaluate_model_success0/y_test.csv"}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Teszthalmaz betöltve", "rows": 4, "features": 2}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Modell betöltése", "model_uri": "runs:/dummy/model"}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Metrikák számítása..."}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Kiértékelés kész, metrics.json generálva", "output_path": "/tmp/pytest-of-firstuser/pytest-32/test_evaluate_model_success0/metrics/metrics.json", "accuracy": 1.0, "precision": 1.0, "recall": 1.0, "f1": 1.0, "roc_auc": 1.0, "n_valid": 4, "positive_rate": 0.5}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Teszthalmaz betöltése", "x_test_path": "/tmp/pytest-of-firstuser/pytest-32/test_evaluate_model_string_tar0/X_test.csv", "y_test_path": "/tmp/pytest-of-firstuser/pytest-32/test_evaluate_model_string_tar0/y_test.csv"}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Teszthalmaz betöltve", "rows": 4, "features": 1}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Modell betöltése", "model_uri": "runs:/dummy/model"}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Metrikák számítása..."}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Kiértékelés kész, metrics.json generálva", "output_path": "/tmp/pytest-of-firstuser/pytest-32/test_evaluate_model_string_tar0/metrics.json", "accuracy": 1.0, "f1": 1.0, "n_valid": 4, "positive_rate": 0.5}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Teszthalmaz betöltése", "x_test_path": "/tmp/pytest-of-firstuser/pytest-32/test_evaluate_model_positive_r0/X_test.csv", "y_test_path": "/tmp/pytest-of-firstuser/pytest-32/test_evaluate_model_positive_r0/y_test.csv"}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Teszthalmaz betöltve", "rows": 2, "features": 1}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Modell betöltése", "model_uri": "runs:/dummy/model"}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Metrikák számítása..."}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Kiértékelés kész, metrics.json generálva", "output_path": "/tmp/pytest-of-firstuser/pytest-32/test_evaluate_model_positive_r0/metrics.json", "accuracy": 1.0, "precision": 1.0, "recall": 1.0, "f1": 1.0, "roc_auc": 1.0, "n_valid": 2, "positive_rate": 0.0}
+{"ts": "2026-10-15T10:26:55+0200", "level": "ERROR", "logger": "churn.evaluate", "message": "Az X_test mátrix nem található.", "x_test_path": "/tmp/pytest-of-firstuser/pytest-32/test_evaluate_model_missing_x0/non_existent_x.csv"}
+{"ts": "2026-10-15T10:26:55+0200", "level": "ERROR", "logger": "churn.evaluate", "message": "Az y_test célváltozó nem található.", "y_test_path": "/tmp/pytest-of-firstuser/pytest-32/test_evaluate_model_missing_y0/non_existent_y.csv"}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Teszthalmaz betöltése", "x_test_path": "/tmp/pytest-of-firstuser/pytest-32/test_evaluate_model_load_failu0/X_test.csv", "y_test_path": "/tmp/pytest-of-firstuser/pytest-32/test_evaluate_model_load_failu0/y_test.csv"}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Teszthalmaz betöltve", "rows": 1, "features": 1}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Modell betöltése", "model_uri": "models:/bank_churn_model/latest"}
+{"ts": "2026-10-15T10:26:55+0200", "level": "ERROR", "logger": "churn.evaluate", "message": "Modell betöltési hiba.", "model_uri": "models:/bank_churn_model/latest", "error": "MLflow error"}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Teszthalmaz betöltése", "x_test_path": "/tmp/pytest-of-firstuser/pytest-32/test_evaluate_main_block0/X_test.csv", "y_test_path": "/tmp/pytest-of-firstuser/pytest-32/test_evaluate_main_block0/y_test.csv"}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Teszthalmaz betöltve", "rows": 2, "features": 1}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Modell betöltése", "model_uri": "models:/DummyModel/latest"}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Metrikák számítása..."}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Kiértékelés kész, metrics.json generálva", "output_path": "/tmp/pytest-of-firstuser/pytest-32/test_evaluate_main_block0/metrics.json", "accuracy": 1.0, "precision": 1.0, "recall": 1.0, "f1": 1.0, "roc_auc": 1.0, "n_valid": 2, "positive_rate": 0.5}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.features", "message": "Prepared adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-32/test_process_features0/bank_churners_processed.csv"}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.features", "message": "Kategorikus oszlopok azonosítva", "cat_cols": ["Education_Level", "Income_Category"]}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.features", "message": "Processált adatok sikeresen elmentve", "x_path": "/tmp/pytest-of-firstuser/pytest-32/test_process_features0/processed/X.csv", "y_path": "/tmp/pytest-of-firstuser/pytest-32/test_process_features0/processed/y.csv"}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.features", "message": "Prepared adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-32/test_process_features_default_0/bank_churners_processed.csv"}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.features", "message": "Kategorikus oszlopok azonosítva", "cat_cols": ["Education_Level"]}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.features", "message": "Processált adatok sikeresen elmentve", "x_path": "/tmp/pytest-of-firstuser/pytest-32/test_process_features_default_0/X.csv", "y_path": "/tmp/pytest-of-firstuser/pytest-32/test_process_features_default_0/y.csv"}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.features", "message": "Prepared adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-32/test_process_features_missing_0/non_existent.csv"}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.features", "message": "Prepared adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-32/test_process_features_missing_1/invalid.csv"}
+{"ts": "2026-10-15T10:26:55+0200", "level": "ERROR", "logger": "churn.features", "message": "A 'Customer_Status' célváltozó hiányzik a datasetből."}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.features", "message": "Prepared adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-32/test_process_features_invalid_0/invalid_target.csv"}
+{"ts": "2026-10-15T10:26:55+0200", "level": "ERROR", "logger": "churn.features", "message": "Ismeretlen Customer_Status érték található az adatokban."}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.features", "message": "Prepared adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-32/test_features_main_block0/processed/bank_churners_processed.csv"}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.features", "message": "Kategorikus oszlopok azonosítva", "cat_cols": ["Education_Level"]}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.features", "message": "Processált adatok sikeresen elmentve", "x_path": "/tmp/pytest-of-firstuser/pytest-32/test_features_main_block0/processed/X.csv", "y_path": "/tmp/pytest-of-firstuser/pytest-32/test_features_main_block0/processed/y.csv"}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-32/test_prepare_data_file_not_fou0/non_existent.csv"}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-32/test_prepare_data_success_with0/valid_input.csv"}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 2, "column_count": 14}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Minden kötelező oszlop sikeresen ellenőrizve."}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Customer_ID egyediség validálva.", "column": "Customer_ID"}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Életkor tartományok rendben", "min_age": 30, "max_age": 45}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Hitelkeret és utilizációs mutatók validálva."}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Tranzakciós mutatók tartománya validálva."}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Target változó validálva", "target": "Customer_Status", "classes": 2}
+{"ts": "2026-10-15T10:26:55+0200", "level": "WARNING", "logger": "churn.prepare", "message": "Ismeretlen értékek észlelve", "unknown_count": 1}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Ismeretlen értékek oszloponkénti bontása", "breakdown": {"Education_Level": 1}}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Feldolgozott adatok mappája létrehozva", "output_dir": "/tmp/pytest-of-firstuser/pytest-32/test_prepare_data_success_with0/nested/subfolder"}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok sikeresen elmentve", "output_file": "/tmp/pytest-of-firstuser/pytest-32/test_prepare_data_success_with0/nested/subfolder/processed_output.csv"}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-32/test_prepare_data_empty_datafr0/empty.csv"}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 0, "column_count": 14}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-32/test_prepare_data_missing_colu0/missing_col.csv"}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 2, "column_count": 13}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-32/test_prepare_data_duplicate_id0/duplicates.csv"}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 2, "column_count": 14}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Minden kötelező oszlop sikeresen ellenőrizve."}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-32/test_prepare_data_null_age0/null_age.csv"}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 2, "column_count": 14}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Minden kötelező oszlop sikeresen ellenőrizve."}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Customer_ID egyediség validálva.", "column": "Customer_ID"}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-32/test_prepare_data_invalid_age_0/young_age.csv"}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 2, "column_count": 14}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Minden kötelező oszlop sikeresen ellenőrizve."}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Customer_ID egyediség validálva.", "column": "Customer_ID"}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-32/test_prepare_data_invalid_age_1/old_age.csv"}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 2, "column_count": 14}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Minden kötelező oszlop sikeresen ellenőrizve."}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Customer_ID egyediség validálva.", "column": "Customer_ID"}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-32/test_prepare_data_invalid_cred0/bad_credit.csv"}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 2, "column_count": 14}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Minden kötelező oszlop sikeresen ellenőrizve."}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Customer_ID egyediség validálva.", "column": "Customer_ID"}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Életkor tartományok rendben", "min_age": 30, "max_age": 45}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-32/test_prepare_data_invalid_util0/bad_util.csv"}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 2, "column_count": 14}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Minden kötelező oszlop sikeresen ellenőrizve."}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Customer_ID egyediség validálva.", "column": "Customer_ID"}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Életkor tartományok rendben", "min_age": 30, "max_age": 45}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-32/test_prepare_data_negative_tra0/bad_trans_ct.csv"}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 2, "column_count": 14}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Minden kötelező oszlop sikeresen ellenőrizve."}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Customer_ID egyediség validálva.", "column": "Customer_ID"}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Életkor tartományok rendben", "min_age": 30, "max_age": 45}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Hitelkeret és utilizációs mutatók validálva."}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-32/test_prepare_data_negative_tra1/bad_trans_amt.csv"}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 2, "column_count": 14}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Minden kötelező oszlop sikeresen ellenőrizve."}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Customer_ID egyediség validálva.", "column": "Customer_ID"}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Életkor tartományok rendben", "min_age": 30, "max_age": 45}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Hitelkeret és utilizációs mutatók validálva."}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-32/test_prepare_data_invalid_stat0/bad_status.csv"}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 2, "column_count": 14}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Minden kötelező oszlop sikeresen ellenőrizve."}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Customer_ID egyediség validálva.", "column": "Customer_ID"}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Életkor tartományok rendben", "min_age": 30, "max_age": 45}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Hitelkeret és utilizációs mutatók validálva."}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Tranzakciós mutatók tartománya validálva."}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-32/test_prepare_main_block0/raw/BankChurners.csv"}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 2, "column_count": 14}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Minden kötelező oszlop sikeresen ellenőrizve."}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Customer_ID egyediség validálva.", "column": "Customer_ID"}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Életkor tartományok rendben", "min_age": 30, "max_age": 45}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Hitelkeret és utilizációs mutatók validálva."}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Tranzakciós mutatók tartománya validálva."}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Target változó validálva", "target": "Customer_Status", "classes": 2}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Feldolgozott adatok mappája létrehozva", "output_dir": "/tmp/pytest-of-firstuser/pytest-32/test_prepare_main_block0/processed"}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok sikeresen elmentve", "output_file": "/tmp/pytest-of-firstuser/pytest-32/test_prepare_main_block0/processed/bank_churners_processed.csv"}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.train", "message": "Adatok betöltése modelltanításhoz", "x_path": "/tmp/pytest-of-firstuser/pytest-32/test_train_model_success0/processed/X.csv", "y_path": "/tmp/pytest-of-firstuser/pytest-32/test_train_model_success0/processed/y.csv"}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.train", "message": "Tanítási adatok betöltve", "rows": 6, "features": 2, "target_distribution": {"0": 3, "1": 3}}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.train", "message": "Train/test split végrehajtása", "test_size": 0.5, "random_seed": 42}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.train", "message": "Train/test split kész", "train_rows": 3, "test_rows": 3}
+{"ts": "2026-10-15T10:26:55+0200", "level": "INFO", "logger": "churn.train", "message": "Teszthalmazok sikeresen elmentve a lemezre az evaluate számára", "x_test_path": "/tmp/pytest-of-firstuser/pytest-32/test_train_model_success0/processed/X_test.csv", "y_test_path": "/tmp/pytest-of-firstuser/pytest-32/test_train_model_success0/processed/y_test.csv"}
+{"ts": "2026-10-15T10:26:57+0200", "level": "INFO", "logger": "churn.train", "message": "Random Forest modell inicializálása", "algorithm": "RandomForestClassifier", "n_estimators": 10}
+{"ts": "2026-10-15T10:26:57+0200", "level": "INFO", "logger": "churn.train", "message": "Modell betanítva"}
+{"ts": "2026-10-15T10:26:57+0200", "level": "INFO", "logger": "churn.train", "message": "Kiértékelés elkészült", "accuracy": 1.0, "precision": 1.0, "recall": 1.0, "f1": 1.0, "roc_auc": 1.0}
+{"ts": "2026-10-15T10:27:02+0200", "level": "INFO", "logger": "churn.train", "message": "Modell sikeresen logolva MLflow-ba", "registered_model_name": "test_model"}
+{"ts": "2026-10-15T10:27:02+0200", "level": "INFO", "logger": "churn.train", "message": "Run ID sikeresen elmentve a models/mlflow_run_id fájlba", "run_id": "274ffda3f88a43fc93d74eaaba998983", "path": "models/mlflow_run_id"}
+{"ts": "2026-10-15T10:27:02+0200", "level": "INFO", "logger": "churn.train", "message": "MLflow futás befejeződve", "run_id": "274ffda3f88a43fc93d74eaaba998983"}
+{"ts": "2026-10-15T10:27:02+0200", "level": "INFO", "logger": "churn.train", "message": "Modelltanítás sikeresen befejeződött"}
+{"ts": "2026-10-15T10:27:02+0200", "level": "INFO", "logger": "churn.train", "message": "Adatok betöltése modelltanításhoz", "x_path": "/tmp/pytest-of-firstuser/pytest-32/test_train_model_main_block0/processed/X.csv", "y_path": "/tmp/pytest-of-firstuser/pytest-32/test_train_model_main_block0/processed/y.csv"}
+{"ts": "2026-10-15T10:27:02+0200", "level": "INFO", "logger": "churn.train", "message": "Tanítási adatok betöltve", "rows": 6, "features": 1, "target_distribution": {"0": 3, "1": 3}}
+{"ts": "2026-10-15T10:27:02+0200", "level": "INFO", "logger": "churn.train", "message": "Train/test split végrehajtása", "test_size": 0.2, "random_seed": 42}
+{"ts": "2026-10-15T10:27:02+0200", "level": "INFO", "logger": "churn.train", "message": "Train/test split kész", "train_rows": 4, "test_rows": 2}
+{"ts": "2026-10-15T10:27:02+0200", "level": "INFO", "logger": "churn.train", "message": "Teszthalmazok sikeresen elmentve a lemezre az evaluate számára", "x_test_path": "/tmp/pytest-of-firstuser/pytest-32/test_train_model_main_block0/processed/X_test.csv", "y_test_path": "/tmp/pytest-of-firstuser/pytest-32/test_train_model_main_block0/processed/y_test.csv"}
+{"ts": "2026-10-15T10:27:02+0200", "level": "INFO", "logger": "churn.train", "message": "Random Forest modell inicializálása", "algorithm": "RandomForestClassifier", "n_estimators": 5}
+{"ts": "2026-10-15T10:27:02+0200", "level": "INFO", "logger": "churn.train", "message": "Modell betanítva"}
+{"ts": "2026-10-15T10:27:02+0200", "level": "INFO", "logger": "churn.train", "message": "Kiértékelés elkészült", "accuracy": 1.0, "precision": 1.0, "recall": 1.0, "f1": 1.0, "roc_auc": 1.0}
+{"ts": "2026-10-15T10:27:06+0200", "level": "INFO", "logger": "churn.train", "message": "Modell sikeresen logolva MLflow-ba", "registered_model_name": "bank_churn_model"}
+{"ts": "2026-10-15T10:27:06+0200", "level": "INFO", "logger": "churn.train", "message": "Run ID sikeresen elmentve a models/mlflow_run_id fájlba", "run_id": "742b779d83f44b7ca9f6e41b182bafd9", "path": "models/mlflow_run_id"}
+{"ts": "2026-10-15T10:27:06+0200", "level": "INFO", "logger": "churn.train", "message": "MLflow futás befejeződve", "run_id": "742b779d83f44b7ca9f6e41b182bafd9"}
+{"ts": "2026-10-15T10:27:06+0200", "level": "INFO", "logger": "churn.train", "message": "Modelltanítás sikeresen befejeződött"}
+{"ts": "2026-10-15T10:28:44+0200", "level": "INFO", "logger": "churn.env_runner", "message": "Környezeti validáció indítása..."}
+{"ts": "2026-10-15T10:28:44+0200", "level": "INFO", "logger": "churn.env_runner", "message": "Környezeti adatok és csomagok összegyűjtve", "package_count": 19}
+{"ts": "2026-10-15T10:28:44+0200", "level": "INFO", "logger": "churn.env_runner", "message": "Környezeti jelentés (markdown) generálva."}
+{"ts": "2026-10-15T10:28:44+0200", "level": "INFO", "logger": "churn.env_runner", "message": "Környezeti jelentés sikeresen elmentve", "saved_path": "docs/env_report_20261015_102844.md"}
+{"ts": "2026-10-15T10:28:44+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Teszthalmaz betöltése", "x_test_path": "/tmp/pytest-of-firstuser/pytest-33/test_evaluate_model_success0/X_test.csv", "y_test_path": "/tmp/pytest-of-firstuser/pytest-33/test_evaluate_model_success0/y_test.csv"}
+{"ts": "2026-10-15T10:28:44+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Teszthalmaz betöltve", "rows": 4, "features": 2}
+{"ts": "2026-10-15T10:28:44+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Modell betöltése", "model_uri": "runs:/dummy/model"}
+{"ts": "2026-10-15T10:28:44+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Metrikák számítása..."}
+{"ts": "2026-10-15T10:28:44+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Kiértékelés kész, metrics.json generálva", "output_path": "/tmp/pytest-of-firstuser/pytest-33/test_evaluate_model_success0/metrics/metrics.json", "accuracy": 1.0, "precision": 1.0, "recall": 1.0, "f1": 1.0, "roc_auc": 1.0, "n_valid": 4, "positive_rate": 0.5}
+{"ts": "2026-10-15T10:28:44+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Teszthalmaz betöltése", "x_test_path": "/tmp/pytest-of-firstuser/pytest-33/test_evaluate_model_string_tar0/X_test.csv", "y_test_path": "/tmp/pytest-of-firstuser/pytest-33/test_evaluate_model_string_tar0/y_test.csv"}
+{"ts": "2026-10-15T10:28:44+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Teszthalmaz betöltve", "rows": 4, "features": 1}
+{"ts": "2026-10-15T10:28:44+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Modell betöltése", "model_uri": "runs:/dummy/model"}
+{"ts": "2026-10-15T10:28:44+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Metrikák számítása..."}
+{"ts": "2026-10-15T10:28:44+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Kiértékelés kész, metrics.json generálva", "output_path": "/tmp/pytest-of-firstuser/pytest-33/test_evaluate_model_string_tar0/metrics.json", "accuracy": 1.0, "f1": 1.0, "n_valid": 4, "positive_rate": 0.5}
+{"ts": "2026-10-15T10:28:44+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Teszthalmaz betöltése", "x_test_path": "/tmp/pytest-of-firstuser/pytest-33/test_evaluate_model_positive_r0/X_test.csv", "y_test_path": "/tmp/pytest-of-firstuser/pytest-33/test_evaluate_model_positive_r0/y_test.csv"}
+{"ts": "2026-10-15T10:28:44+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Teszthalmaz betöltve", "rows": 2, "features": 1}
+{"ts": "2026-10-15T10:28:44+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Modell betöltése", "model_uri": "runs:/dummy/model"}
+{"ts": "2026-10-15T10:28:44+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Metrikák számítása..."}
+{"ts": "2026-10-15T10:28:44+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Kiértékelés kész, metrics.json generálva", "output_path": "/tmp/pytest-of-firstuser/pytest-33/test_evaluate_model_positive_r0/metrics.json", "accuracy": 1.0, "precision": 1.0, "recall": 1.0, "f1": 1.0, "roc_auc": 1.0, "n_valid": 2, "positive_rate": 0.0}
+{"ts": "2026-10-15T10:28:44+0200", "level": "ERROR", "logger": "churn.evaluate", "message": "Az X_test mátrix nem található.", "x_test_path": "/tmp/pytest-of-firstuser/pytest-33/test_evaluate_model_missing_x0/non_existent_x.csv"}
+{"ts": "2026-10-15T10:28:44+0200", "level": "ERROR", "logger": "churn.evaluate", "message": "Az y_test célváltozó nem található.", "y_test_path": "/tmp/pytest-of-firstuser/pytest-33/test_evaluate_model_missing_y0/non_existent_y.csv"}
+{"ts": "2026-10-15T10:28:44+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Teszthalmaz betöltése", "x_test_path": "/tmp/pytest-of-firstuser/pytest-33/test_evaluate_model_load_failu0/X_test.csv", "y_test_path": "/tmp/pytest-of-firstuser/pytest-33/test_evaluate_model_load_failu0/y_test.csv"}
+{"ts": "2026-10-15T10:28:44+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Teszthalmaz betöltve", "rows": 1, "features": 1}
+{"ts": "2026-10-15T10:28:44+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Modell betöltése", "model_uri": "models:/bank_churn_model/latest"}
+{"ts": "2026-10-15T10:28:44+0200", "level": "ERROR", "logger": "churn.evaluate", "message": "Modell betöltési hiba.", "model_uri": "models:/bank_churn_model/latest", "error": "MLflow error"}
+{"ts": "2026-10-15T10:28:44+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Teszthalmaz betöltése", "x_test_path": "/tmp/pytest-of-firstuser/pytest-33/test_evaluate_main_block0/X_test.csv", "y_test_path": "/tmp/pytest-of-firstuser/pytest-33/test_evaluate_main_block0/y_test.csv"}
+{"ts": "2026-10-15T10:28:44+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Teszthalmaz betöltve", "rows": 2, "features": 1}
+{"ts": "2026-10-15T10:28:44+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Modell betöltése", "model_uri": "models:/DummyModel/latest"}
+{"ts": "2026-10-15T10:28:44+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Metrikák számítása..."}
+{"ts": "2026-10-15T10:28:44+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Kiértékelés kész, metrics.json generálva", "output_path": "/tmp/pytest-of-firstuser/pytest-33/test_evaluate_main_block0/metrics.json", "accuracy": 1.0, "precision": 1.0, "recall": 1.0, "f1": 1.0, "roc_auc": 1.0, "n_valid": 2, "positive_rate": 0.5}
+{"ts": "2026-10-15T10:28:44+0200", "level": "INFO", "logger": "churn.features", "message": "Prepared adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-33/test_process_features0/bank_churners_processed.csv"}
+{"ts": "2026-10-15T10:28:44+0200", "level": "INFO", "logger": "churn.features", "message": "Kategorikus oszlopok azonosítva", "cat_cols": ["Education_Level", "Income_Category"]}
+{"ts": "2026-10-15T10:28:44+0200", "level": "INFO", "logger": "churn.features", "message": "Processált adatok sikeresen elmentve", "x_path": "/tmp/pytest-of-firstuser/pytest-33/test_process_features0/processed/X.csv", "y_path": "/tmp/pytest-of-firstuser/pytest-33/test_process_features0/processed/y.csv"}
+{"ts": "2026-10-15T10:28:44+0200", "level": "INFO", "logger": "churn.features", "message": "Prepared adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-33/test_process_features_default_0/bank_churners_processed.csv"}
+{"ts": "2026-10-15T10:28:44+0200", "level": "INFO", "logger": "churn.features", "message": "Kategorikus oszlopok azonosítva", "cat_cols": ["Education_Level"]}
+{"ts": "2026-10-15T10:28:44+0200", "level": "INFO", "logger": "churn.features", "message": "Processált adatok sikeresen elmentve", "x_path": "/tmp/pytest-of-firstuser/pytest-33/test_process_features_default_0/X.csv", "y_path": "/tmp/pytest-of-firstuser/pytest-33/test_process_features_default_0/y.csv"}
+{"ts": "2026-10-15T10:28:44+0200", "level": "INFO", "logger": "churn.features", "message": "Prepared adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-33/test_process_features_missing_0/non_existent.csv"}
+{"ts": "2026-10-15T10:28:44+0200", "level": "INFO", "logger": "churn.features", "message": "Prepared adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-33/test_process_features_missing_1/invalid.csv"}
+{"ts": "2026-10-15T10:28:44+0200", "level": "ERROR", "logger": "churn.features", "message": "A 'Customer_Status' célváltozó hiányzik a datasetből."}
+{"ts": "2026-10-15T10:28:44+0200", "level": "INFO", "logger": "churn.features", "message": "Prepared adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-33/test_process_features_invalid_0/invalid_target.csv"}
+{"ts": "2026-10-15T10:28:44+0200", "level": "ERROR", "logger": "churn.features", "message": "Ismeretlen Customer_Status érték található az adatokban."}
+{"ts": "2026-10-15T10:28:44+0200", "level": "INFO", "logger": "churn.features", "message": "Prepared adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-33/test_features_main_block0/processed/bank_churners_processed.csv"}
+{"ts": "2026-10-15T10:28:44+0200", "level": "INFO", "logger": "churn.features", "message": "Kategorikus oszlopok azonosítva", "cat_cols": ["Education_Level"]}
+{"ts": "2026-10-15T10:28:44+0200", "level": "INFO", "logger": "churn.features", "message": "Processált adatok sikeresen elmentve", "x_path": "/tmp/pytest-of-firstuser/pytest-33/test_features_main_block0/processed/X.csv", "y_path": "/tmp/pytest-of-firstuser/pytest-33/test_features_main_block0/processed/y.csv"}
+{"ts": "2026-10-15T10:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-33/test_prepare_data_file_not_fou0/non_existent.csv"}
+{"ts": "2026-10-15T10:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-33/test_prepare_data_success_with0/valid_input.csv"}
+{"ts": "2026-10-15T10:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 2, "column_count": 14}
+{"ts": "2026-10-15T10:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Minden kötelező oszlop sikeresen ellenőrizve."}
+{"ts": "2026-10-15T10:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Customer_ID egyediség validálva.", "column": "Customer_ID"}
+{"ts": "2026-10-15T10:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Életkor tartományok rendben", "min_age": 30, "max_age": 45}
+{"ts": "2026-10-15T10:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Hitelkeret és utilizációs mutatók validálva."}
+{"ts": "2026-10-15T10:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Tranzakciós mutatók tartománya validálva."}
+{"ts": "2026-10-15T10:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Target változó validálva", "target": "Customer_Status", "classes": 2}
+{"ts": "2026-10-15T10:28:45+0200", "level": "WARNING", "logger": "churn.prepare", "message": "Ismeretlen értékek észlelve", "unknown_count": 1}
+{"ts": "2026-10-15T10:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Ismeretlen értékek oszloponkénti bontása", "breakdown": {"Education_Level": 1}}
+{"ts": "2026-10-15T10:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Feldolgozott adatok mappája létrehozva", "output_dir": "/tmp/pytest-of-firstuser/pytest-33/test_prepare_data_success_with0/nested/subfolder"}
+{"ts": "2026-10-15T10:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok sikeresen elmentve", "output_file": "/tmp/pytest-of-firstuser/pytest-33/test_prepare_data_success_with0/nested/subfolder/processed_output.csv"}
+{"ts": "2026-10-15T10:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-33/test_prepare_data_empty_datafr0/empty.csv"}
+{"ts": "2026-10-15T10:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 0, "column_count": 14}
+{"ts": "2026-10-15T10:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-33/test_prepare_data_missing_colu0/missing_col.csv"}
+{"ts": "2026-10-15T10:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 2, "column_count": 13}
+{"ts": "2026-10-15T10:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-33/test_prepare_data_duplicate_id0/duplicates.csv"}
+{"ts": "2026-10-15T10:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 2, "column_count": 14}
+{"ts": "2026-10-15T10:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Minden kötelező oszlop sikeresen ellenőrizve."}
+{"ts": "2026-10-15T10:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-33/test_prepare_data_null_age0/null_age.csv"}
+{"ts": "2026-10-15T10:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 2, "column_count": 14}
+{"ts": "2026-10-15T10:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Minden kötelező oszlop sikeresen ellenőrizve."}
+{"ts": "2026-10-15T10:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Customer_ID egyediség validálva.", "column": "Customer_ID"}
+{"ts": "2026-10-15T10:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-33/test_prepare_data_invalid_age_0/young_age.csv"}
+{"ts": "2026-10-15T10:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 2, "column_count": 14}
+{"ts": "2026-10-15T10:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Minden kötelező oszlop sikeresen ellenőrizve."}
+{"ts": "2026-10-15T10:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Customer_ID egyediség validálva.", "column": "Customer_ID"}
+{"ts": "2026-10-15T10:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-33/test_prepare_data_invalid_age_1/old_age.csv"}
+{"ts": "2026-10-15T10:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 2, "column_count": 14}
+{"ts": "2026-10-15T10:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Minden kötelező oszlop sikeresen ellenőrizve."}
+{"ts": "2026-10-15T10:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Customer_ID egyediség validálva.", "column": "Customer_ID"}
+{"ts": "2026-10-15T10:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-33/test_prepare_data_invalid_cred0/bad_credit.csv"}
+{"ts": "2026-10-15T10:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 2, "column_count": 14}
+{"ts": "2026-10-15T10:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Minden kötelező oszlop sikeresen ellenőrizve."}
+{"ts": "2026-10-15T10:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Customer_ID egyediség validálva.", "column": "Customer_ID"}
+{"ts": "2026-10-15T10:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Életkor tartományok rendben", "min_age": 30, "max_age": 45}
+{"ts": "2026-10-15T10:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-33/test_prepare_data_invalid_util0/bad_util.csv"}
+{"ts": "2026-10-15T10:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 2, "column_count": 14}
+{"ts": "2026-10-15T10:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Minden kötelező oszlop sikeresen ellenőrizve."}
+{"ts": "2026-10-15T10:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Customer_ID egyediség validálva.", "column": "Customer_ID"}
+{"ts": "2026-10-15T10:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Életkor tartományok rendben", "min_age": 30, "max_age": 45}
+{"ts": "2026-10-15T10:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-33/test_prepare_data_negative_tra0/bad_trans_ct.csv"}
+{"ts": "2026-10-15T10:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 2, "column_count": 14}
+{"ts": "2026-10-15T10:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Minden kötelező oszlop sikeresen ellenőrizve."}
+{"ts": "2026-10-15T10:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Customer_ID egyediség validálva.", "column": "Customer_ID"}
+{"ts": "2026-10-15T10:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Életkor tartományok rendben", "min_age": 30, "max_age": 45}
+{"ts": "2026-10-15T10:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Hitelkeret és utilizációs mutatók validálva."}
+{"ts": "2026-10-15T10:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-33/test_prepare_data_negative_tra1/bad_trans_amt.csv"}
+{"ts": "2026-10-15T10:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 2, "column_count": 14}
+{"ts": "2026-10-15T10:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Minden kötelező oszlop sikeresen ellenőrizve."}
+{"ts": "2026-10-15T10:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Customer_ID egyediség validálva.", "column": "Customer_ID"}
+{"ts": "2026-10-15T10:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Életkor tartományok rendben", "min_age": 30, "max_age": 45}
+{"ts": "2026-10-15T10:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Hitelkeret és utilizációs mutatók validálva."}
+{"ts": "2026-10-15T10:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-33/test_prepare_data_invalid_stat0/bad_status.csv"}
+{"ts": "2026-10-15T10:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 2, "column_count": 14}
+{"ts": "2026-10-15T10:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Minden kötelező oszlop sikeresen ellenőrizve."}
+{"ts": "2026-10-15T10:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Customer_ID egyediség validálva.", "column": "Customer_ID"}
+{"ts": "2026-10-15T10:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Életkor tartományok rendben", "min_age": 30, "max_age": 45}
+{"ts": "2026-10-15T10:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Hitelkeret és utilizációs mutatók validálva."}
+{"ts": "2026-10-15T10:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Tranzakciós mutatók tartománya validálva."}
+{"ts": "2026-10-15T10:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltése", "input_file": "/tmp/pytest-of-firstuser/pytest-33/test_prepare_main_block0/raw/BankChurners.csv"}
+{"ts": "2026-10-15T10:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok betöltve", "row_count": 2, "column_count": 14}
+{"ts": "2026-10-15T10:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Minden kötelező oszlop sikeresen ellenőrizve."}
+{"ts": "2026-10-15T10:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Customer_ID egyediség validálva.", "column": "Customer_ID"}
+{"ts": "2026-10-15T10:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Életkor tartományok rendben", "min_age": 30, "max_age": 45}
+{"ts": "2026-10-15T10:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Hitelkeret és utilizációs mutatók validálva."}
+{"ts": "2026-10-15T10:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Tranzakciós mutatók tartománya validálva."}
+{"ts": "2026-10-15T10:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Target változó validálva", "target": "Customer_Status", "classes": 2}
+{"ts": "2026-10-15T10:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Feldolgozott adatok mappája létrehozva", "output_dir": "/tmp/pytest-of-firstuser/pytest-33/test_prepare_main_block0/processed"}
+{"ts": "2026-10-15T10:28:45+0200", "level": "INFO", "logger": "churn.prepare", "message": "Adatok sikeresen elmentve", "output_file": "/tmp/pytest-of-firstuser/pytest-33/test_prepare_main_block0/processed/bank_churners_processed.csv"}
+{"ts": "2026-10-15T10:28:45+0200", "level": "INFO", "logger": "churn.train", "message": "Adatok betöltése modelltanításhoz", "x_path": "/tmp/pytest-of-firstuser/pytest-33/test_train_model_success0/processed/X.csv", "y_path": "/tmp/pytest-of-firstuser/pytest-33/test_train_model_success0/processed/y.csv"}
+{"ts": "2026-10-15T10:28:45+0200", "level": "INFO", "logger": "churn.train", "message": "Tanítási adatok betöltve", "rows": 6, "features": 2, "target_distribution": {"0": 3, "1": 3}}
+{"ts": "2026-10-15T10:28:45+0200", "level": "INFO", "logger": "churn.train", "message": "Train/test split végrehajtása", "test_size": 0.5, "random_seed": 42}
+{"ts": "2026-10-15T10:28:45+0200", "level": "INFO", "logger": "churn.train", "message": "Train/test split kész", "train_rows": 3, "test_rows": 3}
+{"ts": "2026-10-15T10:28:45+0200", "level": "INFO", "logger": "churn.train", "message": "Teszthalmazok sikeresen elmentve a lemezre az evaluate számára", "x_test_path": "/tmp/pytest-of-firstuser/pytest-33/test_train_model_success0/processed/X_test.csv", "y_test_path": "/tmp/pytest-of-firstuser/pytest-33/test_train_model_success0/processed/y_test.csv"}
+{"ts": "2026-10-15T10:28:46+0200", "level": "INFO", "logger": "churn.train", "message": "Random Forest modell inicializálása", "algorithm": "RandomForestClassifier", "n_estimators": 10}
+{"ts": "2026-10-15T10:28:46+0200", "level": "INFO", "logger": "churn.train", "message": "Modell betanítva"}
+{"ts": "2026-10-15T10:28:46+0200", "level": "INFO", "logger": "churn.train", "message": "Kiértékelés elkészült", "accuracy": 1.0, "precision": 1.0, "recall": 1.0, "f1": 1.0, "roc_auc": 1.0}
+{"ts": "2026-10-15T10:28:51+0200", "level": "INFO", "logger": "churn.train", "message": "Modell sikeresen logolva MLflow-ba", "registered_model_name": "test_model"}
+{"ts": "2026-10-15T10:28:51+0200", "level": "INFO", "logger": "churn.train", "message": "Run ID sikeresen elmentve a models/mlflow_run_id fájlba", "run_id": "fc6494cf4b9c443da0957c19931d0b77", "path": "models/mlflow_run_id"}
+{"ts": "2026-10-15T10:28:51+0200", "level": "INFO", "logger": "churn.train", "message": "MLflow futás befejeződve", "run_id": "fc6494cf4b9c443da0957c19931d0b77"}
+{"ts": "2026-10-15T10:28:51+0200", "level": "INFO", "logger": "churn.train", "message": "Modelltanítás sikeresen befejeződött"}
+{"ts": "2026-10-15T10:28:51+0200", "level": "INFO", "logger": "churn.train", "message": "Adatok betöltése modelltanításhoz", "x_path": "/tmp/pytest-of-firstuser/pytest-33/test_train_model_main_block0/processed/X.csv", "y_path": "/tmp/pytest-of-firstuser/pytest-33/test_train_model_main_block0/processed/y.csv"}
+{"ts": "2026-10-15T10:28:51+0200", "level": "INFO", "logger": "churn.train", "message": "Tanítási adatok betöltve", "rows": 6, "features": 1, "target_distribution": {"0": 3, "1": 3}}
+{"ts": "2026-10-15T10:28:51+0200", "level": "INFO", "logger": "churn.train", "message": "Train/test split végrehajtása", "test_size": 0.2, "random_seed": 42}
+{"ts": "2026-10-15T10:28:51+0200", "level": "INFO", "logger": "churn.train", "message": "Train/test split kész", "train_rows": 4, "test_rows": 2}
+{"ts": "2026-10-15T10:28:51+0200", "level": "INFO", "logger": "churn.train", "message": "Teszthalmazok sikeresen elmentve a lemezre az evaluate számára", "x_test_path": "/tmp/pytest-of-firstuser/pytest-33/test_train_model_main_block0/processed/X_test.csv", "y_test_path": "/tmp/pytest-of-firstuser/pytest-33/test_train_model_main_block0/processed/y_test.csv"}
+{"ts": "2026-10-15T10:28:52+0200", "level": "INFO", "logger": "churn.train", "message": "Random Forest modell inicializálása", "algorithm": "RandomForestClassifier", "n_estimators": 5}
+{"ts": "2026-10-15T10:28:52+0200", "level": "INFO", "logger": "churn.train", "message": "Modell betanítva"}
+{"ts": "2026-10-15T10:28:52+0200", "level": "INFO", "logger": "churn.train", "message": "Kiértékelés elkészült", "accuracy": 1.0, "precision": 1.0, "recall": 1.0, "f1": 1.0, "roc_auc": 1.0}
+{"ts": "2026-10-15T10:28:55+0200", "level": "INFO", "logger": "churn.train", "message": "Modell sikeresen logolva MLflow-ba", "registered_model_name": "bank_churn_model"}
+{"ts": "2026-10-15T10:28:55+0200", "level": "INFO", "logger": "churn.train", "message": "Run ID sikeresen elmentve a models/mlflow_run_id fájlba", "run_id": "407e332253e946728e951f53e591089f", "path": "models/mlflow_run_id"}
+{"ts": "2026-10-15T10:28:55+0200", "level": "INFO", "logger": "churn.train", "message": "MLflow futás befejeződve", "run_id": "407e332253e946728e951f53e591089f"}
+{"ts": "2026-10-15T10:28:55+0200", "level": "INFO", "logger": "churn.train", "message": "Modelltanítás sikeresen befejeződött"}
