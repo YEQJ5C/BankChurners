@@ -5,6 +5,23 @@ from src.api import app
 import src.api
 
 
+class DummyModel:
+    """Mock model for testing predictions."""
+
+    def predict(self, X):
+        return [1]
+
+    def predict_proba(self, X):
+        return [[0.2, 0.8]]
+
+
+class FaultyModel:
+    """Mock model that raises an exception during prediction."""
+
+    def predict(self, X):
+        raise RuntimeError("Prediction error")
+
+
 def test_health_check() -> None:
     """Test the /health endpoint returns healthy status."""
     with TestClient(app) as client:
@@ -30,7 +47,7 @@ def test_predict_model_not_loaded() -> None:
 def test_predict_endpoint_success(monkeypatch) -> None:
     """Test the /predict endpoint with a mocked loaded model."""
     with TestClient(app) as client:
-        monkeypatch.setattr(src.api, "model", object())
+        monkeypatch.setattr(src.api, "model", DummyModel())
         valid_data = {
             "customer_age": 45,
             "credit_limit": 12500.0,
@@ -40,8 +57,23 @@ def test_predict_endpoint_success(monkeypatch) -> None:
         response = client.post("/predict", json=valid_data)
         assert response.status_code == 200
         data = response.json()
-        assert data["prediction"] == "Pending feature mapping"
+        assert data["prediction"] == 1
+        assert data["churn_probability"] == 0.8
         assert data["received_age"] == 45
+
+
+def test_predict_endpoint_exception(monkeypatch) -> None:
+    """Test the /predict endpoint returns 500 when prediction fails."""
+    with TestClient(app) as client:
+        monkeypatch.setattr(src.api, "model", FaultyModel())
+        valid_data = {
+            "customer_age": 45,
+            "credit_limit": 12500.0,
+            "total_trans_amt": 1500.0,
+            "total_trans_ct": 42,
+        }
+        response = client.post("/predict", json=valid_data)
+        assert response.status_code == 500
 
 
 def test_load_model_with_existing_file(monkeypatch, tmp_path) -> None:
@@ -51,11 +83,11 @@ def test_load_model_with_existing_file(monkeypatch, tmp_path) -> None:
     monkeypatch.setattr(src.api.settings, "models_dir", tmp_path)
 
     monkeypatch.setattr(
-        src.api.mlflow.sklearn, "load_model", lambda uri: "dummy_model"
+        src.api.mlflow.sklearn, "load_model", lambda uri: DummyModel()
     )
 
     src.api.load_model()
-    assert src.api.model == "dummy_model"
+    assert isinstance(src.api.model, DummyModel)
 
 
 def test_load_model_file_not_found(monkeypatch, tmp_path) -> None:
@@ -100,9 +132,9 @@ def test_startup_event_triggers_load(monkeypatch, tmp_path) -> None:
     fake_run_file.write_text("startup_run_id", encoding="utf-8")
     monkeypatch.setattr(src.api.settings, "models_dir", tmp_path)
     monkeypatch.setattr(
-        src.api.mlflow.sklearn, "load_model", lambda uri: "startup_model"
+        src.api.mlflow.sklearn, "load_model", lambda uri: DummyModel()
     )
     src.api.model = None
 
     with TestClient(app):
-        assert src.api.model == "startup_model"
+        assert isinstance(src.api.model, DummyModel)

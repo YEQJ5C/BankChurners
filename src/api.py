@@ -1,6 +1,7 @@
 """FastAPI REST API module for the BankChurners MLOps pipeline."""
 
 import mlflow.sklearn
+import pandas as pd
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
 from src.config import settings
@@ -60,14 +61,36 @@ def health_check() -> dict[str, str]:
 
 
 @app.post("/predict")
-def predict(payload: ChurnPredictionRequest) -> dict[str, str | int]:
+def predict(payload: ChurnPredictionRequest) -> dict[str, str | int | float]:
     """Endpoint for customer churn prediction using the loaded model."""
     if model is None:
         raise HTTPException(
             status_code=503, detail="Model is not loaded or trained yet."
         )
 
+    input_data = pd.DataFrame(
+        [{
+            "customer_age": payload.customer_age,
+            "credit_limit": payload.credit_limit,
+            "total_trans_amt": payload.total_trans_amt,
+            "total_trans_ct": payload.total_trans_ct,
+        }]
+    )
+
+    try:
+        prediction = int(model.predict(input_data)[0])
+        probability = (
+            float(model.predict_proba(input_data)[0][1])
+            if hasattr(model, "predict_proba")
+            else None
+        )
+    except Exception as e:
+        raise HTTPException(
+            status_code=500, detail=f"Prediction failed: {str(e)}"
+        )
+
     return {
-        "prediction": "Pending feature mapping",
+        "prediction": prediction,
+        "churn_probability": probability,
         "received_age": payload.customer_age,
     }
