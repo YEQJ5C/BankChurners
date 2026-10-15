@@ -111,7 +111,6 @@ def test_process_features_invalid_target_value(tmp_path: Path) -> None:
 def test_features_main_block(monkeypatch, tmp_path: Path) -> None:
     """Test the execution of the main block in features.py."""
     import runpy
-    from src import features
 
     data = {
         "Customer_Status": ["Existing Customer", "Attrited Customer"],
@@ -119,12 +118,13 @@ def test_features_main_block(monkeypatch, tmp_path: Path) -> None:
         "Customer_Age": [45, 50],
     }
     df = pd.DataFrame(data)
-    input_file = tmp_path / "BankChurners_processed.csv"
+
+    processed_dir = tmp_path / "processed"
+    processed_dir.mkdir(parents=True, exist_ok=True)
+
+    input_file = processed_dir / "bank_churners_processed.csv"
     df.to_csv(input_file, index=False)
 
-    monkeypatch.setattr(features.settings, "raw_dir", tmp_path)
-    monkeypatch.setattr(
-        features.settings, "processed_dir", tmp_path / "processed"
-    )
+    monkeypatch.setattr(settings, "processed_dir", processed_dir)
 
     runpy.run_module("src.features", run_name="__main__")
