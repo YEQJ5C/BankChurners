@@ -10,30 +10,45 @@ import pandas as pd
 def make_prediction(
     model: Any, input_data: dict | pd.DataFrame
 ) -> tuple[int, float | None]:
-    """Makes a prediction using the provided model and input data.
+    """Makes a prediction using model and input data.
 
-    Args:
-        model: The trained machine learning model (e.g., loaded from MLflow).
-        input_data: Features as a dictionary or pandas DataFrame.
-
-    Returns:
-        A tuple containing:
-            - prediction (int): The predicted class (0 or 1).
-            - probability (float | None): The churn probability if available,
-              else None.
+    Safely transforms input dictionary or DataFrame
+    to match model expected features.
     """
     if isinstance(input_data, dict):
         df = pd.DataFrame([input_data])
     else:
-        df = input_data
+        df = input_data.copy()
 
-    # Predikció futtatása
-    prediction = int(model.predict(df)[0])
+    # Drop target or ID columns if accidentally passed
+    for col in ["Customer_Status", "Customer_ID"]:
+        if col in df.columns:
+            df = df.drop(columns=[col])
 
-    # Valószínűség meghatározása, ha a modell támogatja
+    # Handle categorical columns uniformly
+    cat_cols = df.select_dtypes(
+        include=["object", "category"]
+    ).columns.tolist()
+    for col in cat_cols:
+        df[col] = df[col].fillna("Unknown").astype(str)
+
+    # One-hot encoding
+    df_encoded = pd.get_dummies(df, drop_first=False)
+
+    # Align columns with model expectations if available
+    if hasattr(model, "feature_names_in_"):
+        expected_features = model.feature_names_in_
+        df_encoded = df_encoded.reindex(
+            columns=expected_features, fill_value=0
+        )
+
+    # Run prediction
+    prediction = int(model.predict(df_encoded)[0])
+
+    # Calculate probability if supported
     probability = None
     if hasattr(model, "predict_proba"):
-        probs = model.predict_proba(df)
+        probs = model.predict_proba(df_encoded)
         probs_arr = np.array(probs)
         if probs_arr.ndim == 2 and probs_arr.shape[1] >= 2:
             probability = float(probs_arr[0, 1])
