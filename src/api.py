@@ -1,29 +1,44 @@
 """FastAPI REST API module for the BankChurners MLOps pipeline."""
 
+from typing import Any, Dict, Optional
 import mlflow.sklearn
-import pandas as pd
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
-from src.config import settings
 
-app = FastAPI(title="BankChurners MLOps API", version="1.0.0")
+from src.config import settings
+from src.logger import get_logger
+from src.predict import make_prediction
+
+logger = get_logger("churn.api")
+
+app = FastAPI(
+    title="BankChurners MLOps API",
+    description=(
+        "Production-grade API for customer churn "
+        "prediction and model training."
+    ),
+    version="1.0.0",
+)
 
 # Globális modell változó
-model = None
+model: Optional[Any] = None
 
 
 def load_model() -> None:
-    """Load the trained MLflow model using the stored run_id."""
+    """Load the trained MLflow model from the Model Registry."""
     global model
-    run_id_file = settings.models_dir / "mlflow_run_id"
-    if run_id_file.exists():
-        try:
-            run_id = run_id_file.read_text(encoding="utf-8").strip()
-            model_uri = f"runs:/{run_id}/model"
-            model = mlflow.sklearn.load_model(model_uri)
-        except Exception:
-            model = None
-    else:
+    try:
+        model_uri = f"models:/{settings.registered_model_name}/latest"
+        model = mlflow.sklearn.load_model(model_uri)
+        logger.info(
+            "Modell sikeresen betöltve a regisztrációból",
+            extra={"model_uri": model_uri},
+        )
+    except Exception as e:
+        logger.warning(
+            "Nem sikerült betölteni a modellt a regisztrációból",
+            extra={"model_uri": model_uri, "error": str(e)},
+        )
         model = None
 
 
@@ -50,47 +65,80 @@ class ChurnPredictionRequest(BaseModel):
     )
 
 
-@app.get("/health")
-def health_check() -> dict[str, str]:
-    """Verify the health status of the API.
+@app.get("/health", summary="Health Check")
+def health_check() -> Dict[str, str]:
+    """Verify the health status of the API and model availability."""
+    return {
+        "status": "healthy",
+        "model_loaded": "true" if model is not None else "false",
+    }
 
-    Returns:
-        dict[str, str]: A dictionary containing the health status.
-    """
-    return {"status": "healthy"}
 
+@app.post("/train", summary="Trigger Model Training")
+def trigger_training() -> Dict[str, Any]:
+    """Trigger the training pipeline programmatically via the REST API."""
+    logger.info("Tréning pipeline indítása API-n keresztül...")
+    try:
+        from src.train import train_model
 
-@app.post("/predict")
-def predict(payload: ChurnPredictionRequest) -> dict[str, str | int | float]:
-    """Endpoint for customer churn prediction using the loaded model."""
-    if model is None:
+        run_id = train_model()
+        # Újratöltjük a modellt a friss regisztrációból
+        load_model()
+        logger.info(
+            "A tréning sikeresen lefutott",
+            extra={"run_id": run_id},
+        )
+        return {
+            "status": "success",
+            "message": "Model trained and registered successfully via API.",
+            "run_id": run_id,
+        }
+    except Exception as e:
+        logger.error(
+            "A tréning sikertelen volt az API-n keresztül",
+            extra={"error": str(e)},
+        )
         raise HTTPException(
-            status_code=503, detail="Model is not loaded or trained yet."
+            status_code=500, detail=f"Training failed: {str(e)}"
         )
 
-    input_data = pd.DataFrame(
-        [{
-            "customer_age": payload.customer_age,
-            "credit_limit": payload.credit_limit,
-            "total_trans_amt": payload.total_trans_amt,
-            "total_trans_ct": payload.total_trans_ct,
-        }]
-    )
+
+@app.post("/predict", summary="Predict Customer Churn")
+def predict(payload: ChurnPredictionRequest) -> Dict[str, Any]:
+    """Endpoint for customer churn prediction using the registered model."""
+    if model is None:
+        logger.warning(
+            "Predikciós kérés érkezett, de a modell nincs betöltve."
+        )
+        raise HTTPException(
+            status_code=503,
+            detail=(
+                "Model is not loaded. "
+                "Please train or register a model first."
+            ),
+        )
 
     try:
-        prediction = int(model.predict(input_data)[0])
-        probability = (
-            float(model.predict_proba(input_data)[0][1])
-            if hasattr(model, "predict_proba")
-            else None
+        # Pydantic v2 kompatibilis model_dump() használata
+        input_dict = payload.model_dump()
+        prediction, probability = make_prediction(model, input_dict)
+        logger.info(
+            "Predikció sikeresen generálva",
+            extra={"prediction": int(prediction)},
         )
     except Exception as e:
+        logger.error(
+            "A predikció sikertelen volt",
+            extra={"error": str(e)},
+        )
         raise HTTPException(
             status_code=500, detail=f"Prediction failed: {str(e)}"
         )
 
     return {
-        "prediction": prediction,
-        "churn_probability": probability,
-        "received_age": payload.customer_age,
+        "prediction": int(prediction),
+        "churn_probability": (
+            float(probability) if probability is not None else None
+        ),
+        "received_data": input_dict,
     }
