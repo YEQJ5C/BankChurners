@@ -1,3 +1,9 @@
+"""
+Data Preparation Module for BankChurners Pipeline.
+Handles raw data loading, schema validation, fail-fast checks,
+and persisted cleaning.
+"""
+
 from __future__ import annotations
 
 from pathlib import Path
@@ -76,7 +82,7 @@ def prepare_data(
     )
 
     # 1. Azonosító (Customer_ID) egyediség ellenőrzése
-    if df["Customer_ID"].duplicated().any():
+    if df["Customer_ID"].duplicated().any():  # type: ignore
         raise ValueError(
             "Hiba: Duplikált Customer_ID "
             "észlelhető az adatok között!"
@@ -87,7 +93,7 @@ def prepare_data(
     )
 
     # 2. Null értékek és értéktartományok validálása az Age-re
-    if not df["Age"].notna().all():
+    if not df["Age"].notna().all():  # type: ignore
         raise ValueError(
             "Hiba: Hiányzó (NaN) érték "
             "található az 'Age' oszlopban!"
@@ -120,7 +126,7 @@ def prepare_data(
 
     if not df["Avg_Utilization_Ratio"].between(
         0, 1
-    ).all():
+    ).all():  # type: ignore
         raise ValueError(
             "Hiba: Az Avg_Utilization_Ratio "
             "kívül esik a [0, 1] intervallumon!"
@@ -148,8 +154,8 @@ def prepare_data(
 
     # 4. Target változó (Customer_Status) értékek ellenőrzése
     if not df["Customer_Status"].isin(
-        ALLOWED_STATUSES
-    ).all():
+        ALLOWED_STATUSES  # type: ignore
+    ).all():  # type: ignore
         raise ValueError(
             "Hiba: Érvénytelen Customer_Status "
             "érték található az adatok között!"

@@ -31,11 +31,11 @@ def compute_metrics(
     """
     # Ellenőrizzük, hogy a modell támogatja-e a valószínűségi becslést
     if hasattr(model, "predict_proba"):
-        proba = model.predict_proba(X)[:, 1]
+        proba = model.predict_proba(X)[:, 1]  # type: ignore
         y_pred = (proba >= threshold).astype(int)
         roc_auc = float(roc_auc_score(y, proba))
     else:
-        y_pred = model.predict(X)
+        y_pred = model.predict(X)  # type: ignore
         roc_auc = 0.0
 
     return {
@@ -45,7 +45,7 @@ def compute_metrics(
         "precision": round(
             float(
                 precision_score(
-                    y, y_pred, zero_division=0
+                    y, y_pred, zero_division=0  # type: ignore
                 )
             ),
             4,
@@ -53,7 +53,7 @@ def compute_metrics(
         "recall": round(
             float(
                 recall_score(
-                    y, y_pred, zero_division=0
+                    y, y_pred, zero_division=0  # type: ignore
                 )
             ),
             4,
@@ -61,7 +61,7 @@ def compute_metrics(
         "f1": round(
             float(
                 f1_score(
-                    y, y_pred, zero_division=0
+                    y, y_pred, zero_division=0  # type: ignore
                 )
             ),
             4,

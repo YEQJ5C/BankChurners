@@ -91,7 +91,7 @@ def evaluate_model(
         extra={"model_uri": str(model_uri)},
     )
     try:
-        model = mlflow.sklearn.load_model(str(model_uri))
+        model = mlflow.sklearn.load_model(str(model_uri))  # type: ignore
     except Exception as e:
         logger.error(
             "Modell betöltési hiba.",
@@ -105,11 +105,11 @@ def evaluate_model(
         )
 
     logger.info("Metrikák számítása...")
-    base_metrics = compute_metrics(model, X_test, y_test)
+    base_metrics = compute_metrics(model, X_test, y_test)  # type: ignore
 
     try:
         if pd.api.types.is_numeric_dtype(y_test):
-            positive_rate = float((y_test == 1).mean())
+            positive_rate = float((y_test == 1).mean())  # type: ignore
         else:
             positive_rate = float(
                 (
@@ -123,7 +123,7 @@ def evaluate_model(
                             "yes",
                         ]
                     )
-                ).mean()
+                ).mean()  # type: ignore
             )
     except Exception:
         positive_rate = 0.0

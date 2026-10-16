@@ -61,14 +61,14 @@ def process_features(
 
     # Explicit mapping for target variable
     y = df["Customer_Status"].map(
-        {
+        {  # type: ignore[reportArgumentType]
             "Existing Customer": 0,
             "Attrited Customer": 1,
         }
     )
 
     # Validate target values
-    if y.isna().any():
+    if y.isna().any():  # type: ignore
         logger.error(
             "Ismeretlen Customer_Status érték található az adatokban."
         )

@@ -7,7 +7,7 @@ from __future__ import annotations
 from pathlib import Path
 
 import mlflow
-import mlflow.sklearn
+import mlflow.sklearn  # type: ignore
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
@@ -63,7 +63,7 @@ def train_model(
         extra={
             "rows": len(X),
             "features": len(X.columns),
-            "target_distribution": y.value_counts().to_dict(),
+            "target_distribution": y.value_counts().to_dict(),  # type: ignore
         },
     )
 
@@ -94,8 +94,8 @@ def train_model(
     x_test_path = settings.processed_dir / "X_test.csv"
     y_test_path = settings.processed_dir / "y_test.csv"
 
-    X_test.to_csv(x_test_path, index=False)
-    y_test.to_csv(y_test_path, index=False)
+    X_test.to_csv(x_test_path, index=False)  # type: ignore
+    y_test.to_csv(y_test_path, index=False)  # type: ignore
 
     logger.info(
         "Teszthalmazok sikeresen elmentve "
@@ -126,11 +126,11 @@ def train_model(
             random_state=settings.random_seed,
             n_estimators=n_estimators,
         )
-        model.fit(X_train, y_train)
+        model.fit(X_train, y_train)  # type: ignore
 
         logger.info("Modell betanítva")
 
-        metrics = compute_metrics(model, X_test, y_test)
+        metrics = compute_metrics(model, X_test, y_test)  # type: ignore
 
         logger.info(
             "Kiértékelés elkészült",
@@ -139,8 +139,8 @@ def train_model(
 
         mlflow.log_metrics(metrics)
 
-        input_example = X_train.iloc[[0]]
-        mlflow.sklearn.log_model(
+        input_example = X_train.iloc[[0]]  # type: ignore
+        mlflow.sklearn.log_model(  # type: ignore
             model,
             name="model",
             input_example=input_example,

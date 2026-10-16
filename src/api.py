@@ -1,7 +1,7 @@
 """FastAPI REST API module for the BankChurners MLOps pipeline."""
 
 from typing import Any, Dict, Optional
-import mlflow.sklearn
+import mlflow.sklearn  # type: ignore
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
 
@@ -27,9 +27,9 @@ model: Optional[Any] = None
 def load_model() -> None:
     """Load the trained MLflow model from the Model Registry."""
     global model
+    model_uri = f"models:/{settings.registered_model_name}/latest"
     try:
-        model_uri = f"models:/{settings.registered_model_name}/latest"
-        model = mlflow.sklearn.load_model(model_uri)
+        model = mlflow.sklearn.load_model(model_uri)  # type: ignore
         logger.info(
             "Modell sikeresen betöltve a regisztrációból",
             extra={"model_uri": model_uri},
