@@ -1,5 +1,5 @@
-"""
-Model Evaluation Module for BankChurners Pipeline.
+"""Model Evaluation Module for BankChurners Pipeline.
+
 Loads a trained model and the specific test matrices (X_test, y_test),
 computes comprehensive metrics using the shared metrics module,
 and persists them into metrics/metrics.json safely.
@@ -11,7 +11,7 @@ import json
 from pathlib import Path
 
 import mlflow
-import mlflow.sklearn  # noqa: F401
+import mlflow.sklearn  # noqa: F401 - Unused import required for side-effect MLflow initialization.
 import pandas as pd
 
 from src.config import settings
@@ -27,9 +27,7 @@ def evaluate_model(
     y_test_path: str | Path | None = None,
     output_path: str | Path | None = None,
 ) -> dict[str, float]:
-    """
-    Evaluates a trained model on held-out test data.
-    """
+    """Evaluates a trained model on held-out test data."""
     if x_test_path is None:
         x_test_path = settings.processed_dir / "X_test.csv"
     else:
@@ -91,7 +89,7 @@ def evaluate_model(
         extra={"model_uri": str(model_uri)},
     )
     try:
-        model = mlflow.sklearn.load_model(str(model_uri))  # type: ignore
+        model = mlflow.sklearn.load_model(str(model_uri))  # type: ignore[reportPrivateImportUsage] - Dynamic import.
     except Exception as e:
         logger.error(
             "Modell betöltési hiba.",
@@ -105,11 +103,17 @@ def evaluate_model(
         )
 
     logger.info("Metrikák számítása...")
-    base_metrics = compute_metrics(model, X_test, y_test)  # type: ignore
+    base_metrics = compute_metrics(
+        model,  # type: ignore[reportArgumentType] - Optional model compatibility.
+        X_test,
+        y_test,  # type: ignore[reportArgumentType] - Pandas Series NDFrame type compat.
+    )
 
     try:
         if pd.api.types.is_numeric_dtype(y_test):
-            positive_rate = float((y_test == 1).mean())  # type: ignore
+            positive_rate = float(
+                (y_test == 1).mean()  # type: ignore[reportAttributeAccessIssue] - Series mean.
+            )
         else:
             positive_rate = float(
                 (
@@ -123,7 +127,7 @@ def evaluate_model(
                             "yes",
                         ]
                     )
-                ).mean()  # type: ignore
+                ).mean()  # type: ignore[reportAttributeAccessIssue] - Series mean.
             )
     except Exception:
         positive_rate = 0.0

@@ -1,9 +1,11 @@
-"""
-Feature Engineering Module for BankChurners Pipeline.
+"""Feature Engineering Module for BankChurners Pipeline.
+
 Handles categorical encoding while preserving 'Unknown' categories,
 separates features and target, validates target mapping, and saves
 processed matrices.
 """
+
+from __future__ import annotations
 
 from pathlib import Path
 import pandas as pd
@@ -18,8 +20,8 @@ def process_features(
     input_path: str | Path | None = None,
     output_dir: str | Path | None = None,
 ) -> tuple[Path, Path]:
-    """
-    Loads prepared data, separates features and target, encodes
+    """Loads prepared data, separates features and target, encodes
+
     categorical variables while preserving 'Unknown' levels, and
     saves the full processed X and y matrices.
 
@@ -61,14 +63,14 @@ def process_features(
 
     # Explicit mapping for target variable
     y = df["Customer_Status"].map(
-        {  # type: ignore[reportArgumentType]
+        {  # type: ignore[reportArgumentType] - Explicit mapping dict for target series.
             "Existing Customer": 0,
             "Attrited Customer": 1,
         }
     )
 
     # Validate target values
-    if y.isna().any():  # type: ignore
+    if y.isna().any():  # type: ignore[reportAttributeAccessIssue] - Pandas Series isna/any check.
         logger.error(
             "Ismeretlen Customer_Status érték található az adatokban."
         )

@@ -1,13 +1,11 @@
-"""
-Model training module for the Bank Churn prediction pipeline.
-"""
+"""Model training module for the Bank Churn prediction pipeline."""
 
 from __future__ import annotations
 
 from pathlib import Path
 
 import mlflow
-import mlflow.sklearn  # type: ignore
+import mlflow.sklearn  # noqa: F401 - Unused import required for side-effect MLflow initialization.
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
@@ -23,8 +21,8 @@ def train_model(
     x_path: str | Path | None = None,
     y_path: str | Path | None = None,
 ) -> str:
-    """
-    Loads features, splits data, trains a Random Forest model,
+    """Loads features, splits data, trains a Random Forest model,
+
     persists test sets, logs everything to MLflow with input examples,
     and saves the run_id to models/mlflow_run_id.
     """
@@ -63,7 +61,9 @@ def train_model(
         extra={
             "rows": len(X),
             "features": len(X.columns),
-            "target_distribution": y.value_counts().to_dict(),  # type: ignore
+            "target_distribution": (
+                y.value_counts().to_dict()  # type: ignore[reportAttributeAccessIssue] - Series value counts.
+            ),
         },
     )
 
@@ -74,19 +74,26 @@ def train_model(
             "random_seed": settings.random_seed,
         },
     )
-    X_train, X_test, y_train, y_test = train_test_split(
+    raw_split = train_test_split(
         X,
         y,
         test_size=settings.test_size,
         random_state=settings.random_seed,
         stratify=y,
     )
+    X_train, X_test, y_train, y_test = raw_split  # type: ignore[reportAssignmentType] - Sklearn split types.
+
+    # Explicit type narrowing for Pyright strict mode compliance
+    X_train_df: pd.DataFrame = X_train  # type: ignore[reportAssignmentType] - Cast split result.
+    X_test_df: pd.DataFrame = X_test  # type: ignore[reportAssignmentType] - Cast split result.
+    y_train_ser: pd.Series = y_train  # type: ignore[reportAssignmentType] - Cast split result.
+    y_test_ser: pd.Series = y_test  # type: ignore[reportAssignmentType] - Cast split result.
 
     logger.info(
         "Train/test split kész",
         extra={
-            "train_rows": len(X_train),
-            "test_rows": len(X_test),
+            "train_rows": len(X_train_df),
+            "test_rows": len(X_test_df),
         },
     )
 
@@ -94,8 +101,8 @@ def train_model(
     x_test_path = settings.processed_dir / "X_test.csv"
     y_test_path = settings.processed_dir / "y_test.csv"
 
-    X_test.to_csv(x_test_path, index=False)  # type: ignore
-    y_test.to_csv(y_test_path, index=False)  # type: ignore
+    X_test_df.to_csv(x_test_path, index=False)
+    y_test_ser.to_csv(y_test_path, index=False)
 
     logger.info(
         "Teszthalmazok sikeresen elmentve "
@@ -126,11 +133,15 @@ def train_model(
             random_state=settings.random_seed,
             n_estimators=n_estimators,
         )
-        model.fit(X_train, y_train)  # type: ignore
+        model.fit(
+            X_train_df, y_train_ser
+        )  # type: ignore[reportArgumentType] - Sklearn fit compatibility.
 
         logger.info("Modell betanítva")
 
-        metrics = compute_metrics(model, X_test, y_test)  # type: ignore
+        metrics = compute_metrics(
+            model, X_test_df, y_test_ser
+        )  # type: ignore[reportArgumentType] - Dynamic model/test.
 
         logger.info(
             "Kiértékelés elkészült",
@@ -139,12 +150,16 @@ def train_model(
 
         mlflow.log_metrics(metrics)
 
-        input_example = X_train.iloc[[0]]  # type: ignore
-        mlflow.sklearn.log_model(  # type: ignore
+        input_example = (
+            X_train_df.iloc[[0]]  # type: ignore[reportAttributeAccessIssue] - DataFrame iloc.
+        )
+        mlflow.sklearn.log_model(  # type: ignore[reportPrivateImportUsage, reportArgumentType] - MLflow log.
             model,
             name="model",
             input_example=input_example,
-            registered_model_name=settings.registered_model_name,
+            registered_model_name=(
+                settings.registered_model_name
+            ),
         )
 
         logger.info(

@@ -37,18 +37,25 @@ def make_prediction(
 
     # Align columns with model expectations if available
     if hasattr(model, "feature_names_in_"):
-        expected_features = model.feature_names_in_
+        expected_features = (
+            model.feature_names_in_  # type: ignore[reportAttributeAccessIssue] - Dynamic attr.
+        )
         df_encoded = df_encoded.reindex(
             columns=expected_features, fill_value=0
         )
 
     # Run prediction
-    prediction = int(model.predict(df_encoded)[0])
+    raw_preds = model.predict(
+        df_encoded
+    )  # type: ignore[reportAttributeAccessIssue, reportUnknownMemberType] - Dynamic predict.
+    prediction = int(raw_preds[0])
 
     # Calculate probability if supported
     probability = None
     if hasattr(model, "predict_proba"):
-        probs = model.predict_proba(df_encoded)
+        probs = model.predict_proba(
+            df_encoded
+        )  # type: ignore[reportAttributeAccessIssue, reportUnknownMemberType] - Dynamic proba.
         probs_arr = np.array(probs)
         if probs_arr.ndim == 2 and probs_arr.shape[1] >= 2:
             probability = float(probs_arr[0, 1])

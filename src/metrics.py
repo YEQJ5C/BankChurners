@@ -1,5 +1,5 @@
-"""
-Core metrics computation module -- Single Source of Truth.
+"""Core metrics computation module -- Single Source of Truth.
+
 Used by both train.py and evaluate.py to ensure identical
 metric calculations.
 """
@@ -24,18 +24,22 @@ def compute_metrics(
     y: pd.Series,
     threshold: float = 0.5,
 ) -> dict[str, float]:
-    """
-    Computes comprehensive classification metrics using predict_proba
+    """Computes comprehensive classification metrics using predict_proba
+
     and a threshold. Acts as the single source of truth across
     training and evaluation.
     """
     # Ellenőrizzük, hogy a modell támogatja-e a valószínűségi becslést
     if hasattr(model, "predict_proba"):
-        proba = model.predict_proba(X)[:, 1]  # type: ignore
+        proba = model.predict_proba(X)[  # type: ignore[reportAttributeAccessIssue] - Dynamic method.
+            :, 1
+        ]
         y_pred = (proba >= threshold).astype(int)
         roc_auc = float(roc_auc_score(y, proba))
     else:
-        y_pred = model.predict(X)  # type: ignore
+        y_pred = model.predict(  # type: ignore[reportAttributeAccessIssue] - Dynamic predict.
+            X
+        )
         roc_auc = 0.0
 
     return {
@@ -45,7 +49,7 @@ def compute_metrics(
         "precision": round(
             float(
                 precision_score(
-                    y, y_pred, zero_division=0  # type: ignore
+                    y, y_pred, zero_division=0  # type: ignore[reportArgumentType] - Sklearn type compat.
                 )
             ),
             4,
@@ -53,7 +57,7 @@ def compute_metrics(
         "recall": round(
             float(
                 recall_score(
-                    y, y_pred, zero_division=0  # type: ignore
+                    y, y_pred, zero_division=0  # type: ignore[reportArgumentType] - Sklearn type compat.
                 )
             ),
             4,
@@ -61,7 +65,7 @@ def compute_metrics(
         "f1": round(
             float(
                 f1_score(
-                    y, y_pred, zero_division=0  # type: ignore
+                    y, y_pred, zero_division=0  # type: ignore[reportArgumentType] - Sklearn type compat.
                 )
             ),
             4,
@@ -78,8 +82,8 @@ def slice_metrics(
     threshold: float = 0.5,
     min_rows: int = 30,
 ) -> dict[str, float]:
-    """
-    Computes per-segment F1 scores to detect performance disparities
+    """Computes per-segment F1 scores to detect performance disparities
+
     across groups. Essential for model cards and promotion gates.
     """
     out: dict[str, float] = {}
