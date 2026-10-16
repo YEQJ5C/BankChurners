@@ -50,6 +50,7 @@ def parse_requirements(req_path: str = "requirements.txt") -> List[str]:
 
 def collect() -> Dict[str, Any]:
     """Collect environment, python, requirements,
+
     and directory details.
     """
     checks: Dict[str, Any] = {}
@@ -135,6 +136,7 @@ def render(checks: Dict[str, Any]) -> str:
 
 def save_report(report_content: str, docs_dir: str = "docs") -> Path:
     """Save the rendered markdown report with a
+
     timestamp into the docs directory.
     """
     Path(docs_dir).mkdir(parents=True, exist_ok=True)

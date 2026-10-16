@@ -1,5 +1,5 @@
-"""
-Configuration Management Module using Pydantic Settings.
+"""Configuration Management Module using Pydantic Settings.
+
 Centralizes all paths, hyperparameters, and environment variables.
 """
 
@@ -10,10 +10,12 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
-    """
-    Global application settings. Automatically loads from environment variables
+    """Global application settings.
+
+    Automatically loads from environment variables
     or a .env file if present, prefixed with CHURN_.
     """
+
     # Alap útvonalak
     base_dir: Path = Path(__file__).resolve().parent.parent
     data_dir: Path = base_dir / "data"
