@@ -22,14 +22,14 @@ def train_model() -> str:
     default_uri = "sqlite:///mlflow.db"
     mlflow_tracking_uri = os.getenv("MLFLOW_TRACKING_URI", default_uri)
     mlflow.set_tracking_uri(mlflow_tracking_uri)
-    
+
     experiment_name = "BankChurners_Experiment"
     mlflow.set_experiment(experiment_name)
 
     # A features stádium által generált X.csv és y.csv betöltése
     x_path = "data/processed/X.csv"
     y_path = "data/processed/y.csv"
-    
+
     try:
         if os.path.exists(x_path) and os.path.exists(y_path):
             X = pd.read_csv(x_path)
@@ -62,9 +62,9 @@ def train_model() -> str:
 
             # Modell tanítása párhuzamosan
             model = RandomForestClassifier(
-                n_estimators=n_estimators, 
-                max_depth=max_depth, 
-                n_jobs=-1, 
+                n_estimators=n_estimators,
+                max_depth=max_depth,
+                n_jobs=-1,
                 random_state=42
             )
             model.fit(X_train, y_train)
@@ -83,8 +83,8 @@ def train_model() -> str:
 
             # Natív MLflow mentés és regisztráció a Model Registry-be
             mlflow.sklearn.log_model(
-                model, 
-                "model", 
+                model,
+                "model",
                 conda_env=None,
                 registered_model_name="bank_churn_model"
             )

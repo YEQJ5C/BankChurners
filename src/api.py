@@ -156,7 +156,7 @@ def make_prediction(ml_model: Any, data: CustomerData) -> Tuple[int, Optional[fl
                     aligned_df.loc[0, col] = df.loc[0, api_col]
                     assigned = True
                     break
-            
+
             if not assigned:
                 if col in df.columns:
                     aligned_df.loc[0, col] = df.loc[0, col]
