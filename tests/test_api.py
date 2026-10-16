@@ -179,7 +179,10 @@ def test_train_endpoint_success(monkeypatch, tmp_path) -> None:
     joblib.dump(GlobalDummyModel(), model_file)
     monkeypatch.chdir(tmp_path)
 
-    monkeypatch.setattr("subprocess.run", lambda *args, **kwargs: type("DummyResult", (object,), {"stdout": "success"})())
+    monkeypatch.setattr(
+        "subprocess.run",
+        lambda *args, **kwargs: type("DummyResult", (object,), {"stdout": "success"})()
+    )
 
     response = client.post("/train")
     assert response.status_code == 200
@@ -189,7 +192,10 @@ def test_train_endpoint_success(monkeypatch, tmp_path) -> None:
 
 def test_train_endpoint_load_model_failure_after_subprocess(monkeypatch) -> None:
     """Test /train endpoint raises RuntimeError when subprocess succeeds but load_model returns False."""
-    monkeypatch.setattr("subprocess.run", lambda *args, **kwargs: type("DummyResult", (object,), {"stdout": "success"})())
+    monkeypatch.setattr(
+        "subprocess.run",
+        lambda *args, **kwargs: type("DummyResult", (object,), {"stdout": "success"})()
+    )
     monkeypatch.setattr("glob.glob", lambda *args, **kwargs: [])
 
     response = client.post("/train")

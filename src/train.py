@@ -72,9 +72,9 @@ def train_model() -> str:
             # Predikciók és metrikák
             preds = model.predict(X_test)
             acc = accuracy_score(y_test, preds)
-            prec = precision_score(y_test, preds, zero_division=0)
-            rec = recall_score(y_test, preds, zero_division=0)
-            f1 = f1_score(y_test, preds, zero_division=0)
+            prec = precision_score(y_test, preds, zero_division=0)  # type: ignore[arg-type]
+            rec = recall_score(y_test, preds, zero_division=0)        # type: ignore[arg-type]
+            f1 = f1_score(y_test, preds, zero_division=0)                # type: ignore[arg-type]
 
             mlflow.log_metric("accuracy", acc)
             mlflow.log_metric("precision", prec)
@@ -82,7 +82,7 @@ def train_model() -> str:
             mlflow.log_metric("f1_score", f1)
 
             # Natív MLflow mentés és regisztráció a Model Registry-be
-            mlflow.sklearn.log_model(
+            mlflow.sklearn.log_model(  # type: ignore[attr-defined]
                 model,
                 "model",
                 conda_env=None,

@@ -3,7 +3,6 @@
 from pathlib import Path
 import pytest
 import pandas as pd
-import numpy as np
 import mlflow
 
 import src.train
@@ -42,17 +41,16 @@ def test_train_model_success(tmp_path: Path, monkeypatch) -> None:
 def test_train_model_fallback_synthetic(monkeypatch, tmp_path) -> None:
     """Test train_model falls back to synthetic data generation when files are missing."""
     monkeypatch.chdir(tmp_path)
-    
+
     run_id = train_model()
     assert isinstance(run_id, str)
     assert len(run_id) > 0
 
 
 def test_train_model_exception_handling(monkeypatch, tmp_path) -> None:
-    """Test train_model exception handling block (lines 106-108) when training crashes."""
+    """Test train_model exception handling block when training crashes."""
     monkeypatch.chdir(tmp_path)
-    
-    # Olyan mockot adunk meg, ami hibát dob a tréning során, így lefut az except ág
+
     def mock_train_test_split(*args, **kwargs):
         raise RuntimeError("Forced training crash for coverage")
 
@@ -66,7 +64,7 @@ def test_train_model_main_block(monkeypatch, tmp_path: Path) -> None:
     """Test the execution of the main block in train.py."""
     import runpy
     monkeypatch.chdir(tmp_path)
-    
+
     try:
         runpy.run_module("src.train", run_name="__main__")
     except Exception:
