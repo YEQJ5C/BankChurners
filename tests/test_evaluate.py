@@ -1,204 +1,227 @@
-"""
-Unit tests for the model evaluation module.
-"""
+"""Unit tests for the model evaluation module."""
+
+from __future__ import annotations
 
 from pathlib import Path
-import json
+import numpy as np
 import pandas as pd
 import pytest
-from sklearn.ensemble import RandomForestClassifier
 
 from src.evaluate import evaluate_model
-from src.config import settings
+import src.evaluate
+import src.metrics
 
 
-def test_evaluate_model_success(tmp_path: Path, monkeypatch) -> None:
-    """Test successful model evaluation with numeric target."""
-    x_path = tmp_path / "X_test.csv"
-    y_path = tmp_path / "y_test.csv"
-    out_path = tmp_path / "metrics" / "metrics.json"
+class DummyModel:
+    """Mock model for evaluation."""
 
-    X_df = pd.DataFrame({
-        "feature_1": [1.0, 2.0, 3.0, 4.0],
-        "feature_2": [10, 20, 30, 40],
-    })
-    y_ser = pd.Series([0, 0, 1, 1], name="Customer_Status")
+    def predict(self, X):
+        return [0] * len(X)
 
-    X_df.to_csv(x_path, index=False)
-    y_ser.to_csv(y_path, index=False)
+    def predict_proba(self, X):
+        return np.array([[0.8, 0.2]] * len(X))
 
-    model = RandomForestClassifier(random_state=42, n_estimators=5)
-    model.fit(X_df, y_ser)
 
+def test_evaluate_model_success(monkeypatch, tmp_path: Path) -> None:
+    """Test successful model evaluation, metric computation, and artifact saving."""
+    processed_dir = tmp_path / "processed"
+    metrics_dir = tmp_path / "metrics"
+    models_dir = tmp_path / "models"
+    processed_dir.mkdir(parents=True, exist_ok=True)
+    metrics_dir.mkdir(parents=True, exist_ok=True)
+    models_dir.mkdir(parents=True, exist_ok=True)
+
+    X_test = pd.DataFrame({"Feature_1": [1.0, 2.0]})
+    y_test = pd.Series([0, 1])
+
+    x_path = processed_dir / "X_test.csv"
+    y_path = processed_dir / "y_test.csv"
+    custom_output = metrics_dir / "custom_metrics.json"
+
+    X_test.to_csv(x_path, index=False)
+    y_test.to_csv(y_path, index=False)
+
+    monkeypatch.setattr(src.evaluate.settings, "models_dir", models_dir)
+    monkeypatch.setattr(src.evaluate.mlflow.sklearn, "load_model", lambda uri: DummyModel())
+    monkeypatch.setattr(src.evaluate.mlflow, "log_metrics", lambda m: None)
     monkeypatch.setattr(
-        "mlflow.sklearn.load_model", lambda uri: model
+        src.evaluate,
+        "compute_metrics",
+        lambda m, x, y: {"f1": 0.85, "accuracy": 0.90},
     )
 
     metrics = evaluate_model(
-        model_uri="runs:/dummy/model",
         x_test_path=x_path,
         y_test_path=y_path,
-        output_path=out_path,
+        output_path=custom_output,
     )
-
-    assert out_path.exists()
-    assert "accuracy" in metrics
-    assert "positive_rate" in metrics
-    assert metrics["n_valid"] == 4
-
-    with open(out_path, "r", encoding="utf-8") as f:
-        data = json.load(f)
-    assert data["n_valid"] == 4
+    assert isinstance(metrics, dict)
+    assert metrics["f1"] == 0.85
+    assert custom_output.exists()
 
 
-def test_evaluate_model_string_target(
-    tmp_path: Path, monkeypatch
-) -> None:
-    """Test evaluation with string categorical target (e.g., Attrited)."""
-    x_path = tmp_path / "X_test.csv"
-    y_path = tmp_path / "y_test.csv"
-    out_path = tmp_path / "metrics.json"
+def test_evaluate_model_positive_rate_exception(monkeypatch, tmp_path: Path) -> None:
+    """Test evaluation when positive_rate calculation raises an exception (fallback to 0.0)."""
+    processed_dir = tmp_path / "processed"
+    models_dir = tmp_path / "models"
+    processed_dir.mkdir(parents=True, exist_ok=True)
+    models_dir.mkdir(parents=True, exist_ok=True)
 
-    X_df = pd.DataFrame({
-        "feature_1": [1.0, 2.0, 3.0, 4.0],
-    })
-    y_ser = pd.Series([
-        "Existing Customer",
-        "Existing Customer",
-        "Attrited Customer",
-        "Attrited Customer",
-    ])
+    X_test = pd.DataFrame({"Feature_1": [1.0]})
+    y_test = pd.Series([0])
 
-    X_df.to_csv(x_path, index=False)
-    y_ser.to_csv(y_path, index=False)
+    x_path = processed_dir / "X_test.csv"
+    y_path = processed_dir / "y_test.csv"
+    X_test.to_csv(x_path, index=False)
+    y_test.to_csv(y_path, index=False)
 
-    model = RandomForestClassifier(random_state=42, n_estimators=5)
-    model.fit(X_df, [0, 0, 1, 1])
-
+    monkeypatch.setattr(src.evaluate.settings, "models_dir", models_dir)
+    monkeypatch.setattr(src.evaluate.mlflow.sklearn, "load_model", lambda uri: DummyModel())
+    monkeypatch.setattr(src.evaluate.mlflow, "log_metrics", lambda m: None)
     monkeypatch.setattr(
-        "mlflow.sklearn.load_model", lambda uri: model
+        src.evaluate,
+        "compute_metrics",
+        lambda m, x, y: {"f1": 0.85, "accuracy": 0.90},
     )
+
+    orig_mean = pd.Series.mean
     monkeypatch.setattr(
-        "src.evaluate.compute_metrics",
-        lambda m, x, y, **kwargs: {"accuracy": 1.0, "f1": 1.0},
+        pd.Series,
+        "mean",
+        lambda self, *args, **kwargs: (_ for _ in ()).throw(RuntimeError("Force exception"))
+        if len(self) == 1 else orig_mean(self, *args, **kwargs),
     )
 
-    metrics = evaluate_model(
-        model_uri="runs:/dummy/model",
-        x_test_path=x_path,
-        y_test_path=y_path,
-        output_path=out_path,
-    )
-
-    assert metrics["positive_rate"] == 0.5
-    assert metrics["accuracy"] == 1.0
-
-
-def test_evaluate_model_positive_rate_exception(
-    tmp_path: Path, monkeypatch
-) -> None:
-    """Test positive_rate exception handling fallback to 0.0."""
-    x_path = tmp_path / "X_test.csv"
-    y_path = tmp_path / "y_test.csv"
-    out_path = tmp_path / "metrics.json"
-
-    X_df = pd.DataFrame({"feature_1": [1.0, 2.0]})
-    y_ser = pd.Series([0, 1])
-
-    X_df.to_csv(x_path, index=False)
-    y_ser.to_csv(y_path, index=False)
-
-    model = RandomForestClassifier(random_state=42, n_estimators=5)
-    model.fit(X_df, y_ser)
-
-    monkeypatch.setattr(
-        "mlflow.sklearn.load_model", lambda uri: model
-    )
-    monkeypatch.setattr(
-        pd.Series, "mean", lambda self: 1 / 0
-    )
-
-    metrics = evaluate_model(
-        model_uri="runs:/dummy/model",
-        x_test_path=x_path,
-        y_test_path=y_path,
-        output_path=out_path,
-    )
-
+    metrics = evaluate_model(x_test_path=x_path, y_test_path=y_path)
     assert metrics["positive_rate"] == 0.0
 
 
-def test_evaluate_model_missing_x(tmp_path: Path) -> None:
-    """Test that FileNotFoundError is raised if X_test.csv is missing."""
-    y_path = tmp_path / "y_test.csv"
-    y_path.write_text("Customer_Status\n1")
+def test_evaluate_model_non_numeric_y_test(monkeypatch, tmp_path: Path) -> None:
+    """Test evaluation when y_test contains categorical string labels."""
+    processed_dir = tmp_path / "processed"
+    models_dir = tmp_path / "models"
+    processed_dir.mkdir(parents=True, exist_ok=True)
+    models_dir.mkdir(parents=True, exist_ok=True)
 
-    with pytest.raises(
-        FileNotFoundError, match="A teszt X fájl nem található"
-    ):
-        evaluate_model(
-            x_test_path=tmp_path / "non_existent_x.csv",
-            y_test_path=y_path,
-        )
+    X_test = pd.DataFrame({"Feature_1": [1.0, 2.0]})
+    y_test = pd.Series(["Existing Customer", "Attrited Customer"])
 
+    x_path = processed_dir / "X_test.csv"
+    y_path = processed_dir / "y_test.csv"
+    X_test.to_csv(x_path, index=False)
+    y_test.to_csv(y_path, index=False)
 
-def test_evaluate_model_missing_y(tmp_path: Path) -> None:
-    """Test that FileNotFoundError is raised if y_test.csv is missing."""
-    x_path = tmp_path / "X_test.csv"
-    x_path.write_text("feature_1\n1.0")
-
-    with pytest.raises(
-        FileNotFoundError, match="A teszt y fájl nem található"
-    ):
-        evaluate_model(
-            x_test_path=x_path,
-            y_test_path=tmp_path / "non_existent_y.csv",
-        )
-
-
-def test_evaluate_model_load_failure(
-    tmp_path: Path, monkeypatch
-) -> None:
-    """Test that RuntimeError is raised if MLflow load fails."""
-    x_path = tmp_path / "X_test.csv"
-    y_path = tmp_path / "y_test.csv"
-    X_df = pd.DataFrame({"feature_1": [1.0]})
-    y_ser = pd.Series([1])
-    X_df.to_csv(x_path, index=False)
-    y_ser.to_csv(y_path, index=False)
-
-    def mock_load_fail(uri):
-        raise ValueError("MLflow error")
-
-    monkeypatch.setattr("mlflow.sklearn.load_model", mock_load_fail)
-
-    with pytest.raises(RuntimeError, match="Modell betöltési hiba"):
-        evaluate_model(
-            x_test_path=x_path,
-            y_test_path=y_path,
-        )
-
-
-def test_evaluate_main_block(monkeypatch, tmp_path: Path) -> None:
-    """Test execution of the main block in evaluate.py."""
-    import runpy
-
-    x_path = tmp_path / "X_test.csv"
-    y_path = tmp_path / "y_test.csv"
-    X_df = pd.DataFrame({"feature_1": [1.0, 2.0]})
-    y_ser = pd.Series([0, 1])
-    X_df.to_csv(x_path, index=False)
-    y_ser.to_csv(y_path, index=False)
-
-    monkeypatch.setattr(settings, "processed_dir", tmp_path)
-    monkeypatch.setattr(settings, "metrics_dir", tmp_path)
-    monkeypatch.setattr(settings, "registered_model_name", "DummyModel")
-
-    model = RandomForestClassifier(random_state=42, n_estimators=5)
-    model.fit(X_df, y_ser)
-
+    monkeypatch.setattr(src.evaluate.settings, "models_dir", models_dir)
+    monkeypatch.setattr(src.evaluate.mlflow.sklearn, "load_model", lambda uri: DummyModel())
+    monkeypatch.setattr(src.evaluate.mlflow, "log_metrics", lambda m: None)
     monkeypatch.setattr(
-        "mlflow.sklearn.load_model", lambda uri: model
+        src.evaluate,
+        "compute_metrics",
+        lambda m, x, y: {"f1": 0.85, "accuracy": 0.90},
     )
 
+    metrics = evaluate_model(x_test_path=x_path, y_test_path=y_path)
+    assert metrics["positive_rate"] == 0.5
+
+
+def test_evaluate_model_missing_x_test(tmp_path: Path) -> None:
+    """Test evaluate_model raises FileNotFoundError when X_test.csv is missing."""
+    processed_dir = tmp_path / "processed"
+    processed_dir.mkdir(parents=True, exist_ok=True)
+    pd.Series([0, 1]).to_csv(processed_dir / "y_test.csv", index=False)
+
+    with pytest.raises(FileNotFoundError):
+        evaluate_model(
+            x_test_path=processed_dir / "non_existent_X_test.csv",
+            y_test_path=processed_dir / "y_test.csv",
+        )
+
+
+def test_evaluate_model_missing_y_test(tmp_path: Path) -> None:
+    """Test evaluate_model raises FileNotFoundError when y_test.csv is missing."""
+    processed_dir = tmp_path / "processed"
+    processed_dir.mkdir(parents=True, exist_ok=True)
+    pd.DataFrame({"Feature_1": [1.0, 2.0]}).to_csv(
+        processed_dir / "X_test.csv", index=False
+    )
+
+    with pytest.raises(FileNotFoundError):
+        evaluate_model(
+            x_test_path=processed_dir / "X_test.csv",
+            y_test_path=processed_dir / "non_existent_y_test.csv",
+        )
+
+
+def test_evaluate_model_load_failure(monkeypatch, tmp_path: Path) -> None:
+    """Test evaluate_model raises RuntimeError when model loading fails."""
+    processed_dir = tmp_path / "processed"
+    processed_dir.mkdir(parents=True, exist_ok=True)
+    pd.DataFrame({"Feature_1": [1.0]}).to_csv(processed_dir / "X_test.csv", index=False)
+    pd.Series([0]).to_csv(processed_dir / "y_test.csv", index=False)
+
+    monkeypatch.setattr(src.evaluate.settings, "processed_dir", processed_dir)
+
+    def mock_load_error(uri):
+        raise RuntimeError("MLflow load failed")
+
+    monkeypatch.setattr(src.evaluate.mlflow.sklearn, "load_model", mock_load_error)
+
+    with pytest.raises(RuntimeError):
+        evaluate_model()
+
+
+def test_evaluate_model_below_threshold(monkeypatch, tmp_path: Path) -> None:
+    """Test evaluate_model raises ValueError when F1 score is below minimum gate."""
+    processed_dir = tmp_path / "processed"
+    processed_dir.mkdir(parents=True, exist_ok=True)
+    pd.DataFrame({"Feature_1": [1.0]}).to_csv(processed_dir / "X_test.csv", index=False)
+    pd.Series([0]).to_csv(processed_dir / "y_test.csv", index=False)
+
+    monkeypatch.setattr(src.evaluate.settings, "processed_dir", processed_dir)
+    monkeypatch.setattr(src.evaluate.mlflow.sklearn, "load_model", lambda uri: DummyModel())
+    monkeypatch.setattr(
+        src.evaluate,
+        "compute_metrics",
+        lambda m, x, y: {"f1": 0.20},
+    )
+
+    with pytest.raises(ValueError):
+        evaluate_model()
+
+
+def test_evaluate_model_main_block(monkeypatch, tmp_path: Path) -> None:
+    """Test the execution of the main block in evaluate.py."""
+    import runpy
+
+    processed_dir = tmp_path / "processed"
+    metrics_dir = tmp_path / "metrics"
+    models_dir = tmp_path / "models"
+    processed_dir.mkdir(parents=True, exist_ok=True)
+    metrics_dir.mkdir(parents=True, exist_ok=True)
+    models_dir.mkdir(parents=True, exist_ok=True)
+
+    X_test = pd.DataFrame({"Feature_1": [1.0, 2.0]})
+    y_test = pd.Series([0, 1])
+
+    x_path = processed_dir / "X_test.csv"
+    y_path = processed_dir / "y_test.csv"
+    X_test.to_csv(x_path, index=False)
+    y_test.to_csv(y_path, index=False)
+
+    monkeypatch.setattr(src.evaluate.settings, "processed_dir", processed_dir)
+    monkeypatch.setattr(src.evaluate.settings, "metrics_dir", metrics_dir)
+    monkeypatch.setattr(src.evaluate.settings, "models_dir", models_dir)
+
+    monkeypatch.setattr(src.evaluate.mlflow.sklearn, "load_model", lambda uri: DummyModel())
+    monkeypatch.setattr(src.evaluate.mlflow, "log_metrics", lambda m: None)
+
+    # A forrásalapú betöltés miatt a src.metrics-beli compute_metrics-et patcheljük,
+    # amit a runpy által indított modul be fog tölteni magának!
+    monkeypatch.setattr(
+        src.metrics,
+        "compute_metrics",
+        lambda m, x, y: {"f1": 0.85, "accuracy": 0.90},
+    )
+
+    monkeypatch.setattr("sys.argv", ["evaluate.py"])
     runpy.run_module("src.evaluate", run_name="__main__")

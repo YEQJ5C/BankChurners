@@ -2,6 +2,7 @@
 
 Loads a trained model and the specific test matrices (X_test, y_test),
 computes comprehensive metrics using the shared metrics module,
+enforces quality gates based on params.yaml,
 and persists them into metrics/metrics.json safely.
 """
 
@@ -17,6 +18,7 @@ import pandas as pd
 from src.config import settings
 from src.logger import get_logger
 from src.metrics import compute_metrics
+from src.utils import load_params
 
 logger = get_logger("churn.evaluate")
 
@@ -27,7 +29,12 @@ def evaluate_model(
     y_test_path: str | Path | None = None,
     output_path: str | Path | None = None,
 ) -> dict[str, float]:
-    """Evaluates a trained model on held-out test data."""
+    """Evaluates a trained model on held-out test data and checks quality gates."""
+    params = load_params()
+    eval_params = params.get("evaluate", {})
+    threshold = eval_params.get("threshold", 0.5)
+    min_f1 = eval_params.get("min_f1", 0.60)
+
     if x_test_path is None:
         x_test_path = settings.processed_dir / "X_test.csv"
     else:
@@ -89,7 +96,7 @@ def evaluate_model(
         extra={"model_uri": str(model_uri)},
     )
     try:
-        model = mlflow.sklearn.load_model(str(model_uri))  # type: ignore[reportPrivateImportUsage] - Dynamic import.
+        model = mlflow.sklearn.load_model(str(model_uri))  # type: ignore[reportPrivateImportUsage]
     except Exception as e:
         logger.error(
             "Modell betöltési hiba.",
@@ -104,15 +111,34 @@ def evaluate_model(
 
     logger.info("Metrikák számítása...")
     base_metrics = compute_metrics(
-        model,  # type: ignore[reportArgumentType] - Optional model compatibility.
+        model,  # type: ignore[reportArgumentType]
         X_test,
-        y_test,  # type: ignore[reportArgumentType] - Pandas Series NDFrame type compat.
+        y_test,  # type: ignore[reportArgumentType]
     )
+
+    f1_score = base_metrics.get("f1", base_metrics.get("f1_score", 0.0))
+
+    logger.info(
+        "Minőségi kapu ellenőrzése",
+        extra={
+            "f1_score": f1_score,
+            "min_f1_threshold": min_f1,
+            "decision_threshold": threshold,
+        },
+    )
+
+    if f1_score < min_f1:
+        error_msg = (
+            f"Model F1 score ({f1_score:.4f}) is below "
+            f"the required minimum threshold ({min_f1:.4f})!"
+        )
+        logger.error(error_msg)
+        raise ValueError(error_msg)
 
     try:
         if pd.api.types.is_numeric_dtype(y_test):
             positive_rate = float(
-                (y_test == 1).mean()  # type: ignore[reportAttributeAccessIssue] - Series mean.
+                (y_test == 1).mean()  # type: ignore[reportAttributeAccessIssue]
             )
         else:
             positive_rate = float(
@@ -127,7 +153,7 @@ def evaluate_model(
                             "yes",
                         ]
                     )
-                ).mean()  # type: ignore[reportAttributeAccessIssue] - Series mean.
+                ).mean()  # type: ignore[reportAttributeAccessIssue]
             )
     except Exception:
         positive_rate = 0.0
@@ -136,6 +162,8 @@ def evaluate_model(
         **base_metrics,
         "n_valid": len(X_test),
         "positive_rate": round(positive_rate, 4),
+        "evaluation_threshold": threshold,
+        "min_f1_gate": min_f1,
     }
 
     output_path.parent.mkdir(parents=True, exist_ok=True)

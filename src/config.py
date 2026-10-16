@@ -1,6 +1,7 @@
 """Configuration Management Module using Pydantic Settings.
 
-Centralizes all paths, hyperparameters, and environment variables.
+Centralizes paths, infrastructure settings, and environment variables.
+Note: Experiment hyperparameters are managed via params.yaml.
 """
 
 from __future__ import annotations
@@ -10,7 +11,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
-    """Global application settings.
+    """Global application infrastructure settings.
 
     Automatically loads from environment variables
     or a .env file if present, prefixed with CHURN_.
@@ -23,23 +24,14 @@ class Settings(BaseSettings):
     processed_dir: Path = data_dir / "processed"
     models_dir: Path = base_dir / "models"
     metrics_dir: Path = base_dir / "metrics"
-
-    # + ÚJ: Itt adjuk hozzá a logs_dir-t, amit a logger keres
     logs_dir: Path = base_dir / "logs"
 
-    # + ÚJ: Itt adjuk hozzá a log_level-t, amit a logger keres
+    # Logging
     log_level: str = "INFO"
 
-    # MLflow beállítások
+    # MLflow infrastruktúra metaadatok (nem hiperparaméterek)
     mlflow_experiment_name: str = "bank_churn_experiment"
     registered_model_name: str = "bank_churn_model"
-
-    # Reproducibility & Pipeline paraméterek
-    random_seed: int = 42
-    test_size: float = 0.2
-
-    # Modell hiperparaméterek
-    rf_n_estimators: int = 100
 
     model_config = SettingsConfigDict(
         env_file=".env",

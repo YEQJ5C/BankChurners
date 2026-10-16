@@ -1,4 +1,4 @@
-.PHONY: init check lint typecheck add-data prepare features train evaluate test run pipeline
+.PHONY: init check lint typecheck add-data prepare features train evaluate test run pipeline dvc-repro
 
 init:
 	pip install -r requirements.txt
@@ -15,6 +15,7 @@ typecheck:
 add-data:
 	dvc add data/raw/BankChurners.csv
 
+# Közvetlen egyedi lépések (fejlesztéshez, hibakereséshez)
 prepare: check
 	python -m src.prepare
 
@@ -27,8 +28,10 @@ train: features
 evaluate: train
 	python -m src.evaluate
 
-pipeline: evaluate
-	@echo "A teljes MLOps pipeline sikeresen lefutott!"
+# A teljes MLOps pipeline futtatása DVC-n keresztül (ajánlott)
+pipeline: check
+	dvc repro
+	@echo "A teljes MLOps pipeline sikeresen lefutott a DVC felügyeletével!"
 
 test:
 	pytest --cov=src

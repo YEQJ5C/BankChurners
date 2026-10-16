@@ -1,7 +1,7 @@
 """Runner script for executing the environment validation."""
 
 from src.logger import get_logger
-import check_env
+from src import check_env
 
 # A központi strukturált logger használata
 logger = get_logger("churn.env_runner")

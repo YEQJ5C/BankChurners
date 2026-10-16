@@ -1,5 +1,8 @@
 """Unit tests for the FastAPI REST API module."""
 
+from __future__ import annotations
+
+from pathlib import Path
 from fastapi.testclient import TestClient
 from src.api import app
 import src.api
@@ -118,6 +121,21 @@ def test_predict_endpoint_exception(monkeypatch) -> None:
 
 def test_load_model_success(monkeypatch) -> None:
     """Test load_model when MLflow registry loading succeeds."""
+    monkeypatch.setattr(
+        src.api.mlflow.sklearn, "load_model", lambda uri: DummyModel()
+    )
+    src.api.load_model()
+    assert isinstance(src.api.model, DummyModel)
+
+
+def test_load_model_reads_run_id_file(monkeypatch, tmp_path: Path) -> None:
+    """Test load_model when reading the run_id from disk succeeds."""
+    models_dir = tmp_path / "models"
+    models_dir.mkdir()
+    run_id_file = models_dir / "mlflow_run_id"
+    run_id_file.write_text("test_run_123", encoding="utf-8")
+
+    monkeypatch.chdir(tmp_path)
     monkeypatch.setattr(
         src.api.mlflow.sklearn, "load_model", lambda uri: DummyModel()
     )

@@ -1,0 +1,49 @@
+stages:
+  prepare:
+    cmd: python -m src.prepare
+    deps:
+      - src/prepare.py
+      - data/raw/BankChurners.csv
+    outs:
+      - data/processed/bank_churners_processed.csv
+
+  features:
+    cmd: python -m src.features
+    deps:
+      - src/features.py
+      - data/processed/bank_churners_processed.csv
+    outs:
+      - data/processed/X.csv
+      - data/processed/y.csv
+
+  train:
+    cmd: python -m src.train
+    deps:
+      - src/train.py
+      - data/processed/X.csv
+      - data/processed/y.csv
+    params:
+      - seed
+      - prepare.test_size
+      - train.n_estimators
+      - train.max_depth
+      - train.min_samples_split
+    outs:
+      - data/processed/X_test.csv
+      - data/processed/y_test.csv
+      - models/mlflow_run_id:
+          cache: false
+
+  evaluate:
+    cmd: python -m src.evaluate
+    deps:
+      - src/evaluate.py
+      - data/processed/X_test.csv
+      - data/processed/y_test.csv
+      - models/mlflow_run_id
+    params:
+      - evaluate.threshold
+      - evaluate.min_f1
+    metrics:
+      - metrics/metrics.json:
+          cache: false

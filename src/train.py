@@ -13,6 +13,7 @@ from sklearn.model_selection import train_test_split
 from src.config import settings
 from src.logger import get_logger
 from src.metrics import compute_metrics
+from src.utils import load_params
 
 logger = get_logger("churn.train")
 
@@ -26,6 +27,22 @@ def train_model(
     persists test sets, logs everything to MLflow with input examples,
     and saves the run_id to models/mlflow_run_id.
     """
+    # 1. Paraméterek betöltése a params.yaml-ből (Single Source of Truth)
+    params = load_params()
+
+    seed = params.get("seed", 42)
+
+    # A prepare.test_size a 'prepare' blokkból érkezik
+    prepare_params = params.get("prepare", {})
+    test_size = prepare_params.get("test_size", 0.2)
+
+    # A train hiperparaméterek a 'train' blokkból érkeznek
+    train_params = params.get("train", {})
+    n_estimators = train_params.get("n_estimators", 100)
+    max_depth = train_params.get("max_depth", None)
+    min_samples_split = train_params.get("min_samples_split", 2)
+    random_seed = train_params.get("random_seed", seed)
+
     if x_path is None:
         x_path = settings.processed_dir / "X.csv"
     else:
@@ -62,7 +79,7 @@ def train_model(
             "rows": len(X),
             "features": len(X.columns),
             "target_distribution": (
-                y.value_counts().to_dict()  # type: ignore[reportAttributeAccessIssue] - Series value counts.
+                y.value_counts().to_dict()  # type: ignore[reportAttributeAccessIssue]
             ),
         },
     )
@@ -70,24 +87,23 @@ def train_model(
     logger.info(
         "Train/test split végrehajtása",
         extra={
-            "test_size": settings.test_size,
-            "random_seed": settings.random_seed,
+            "test_size": test_size,
+            "random_seed": random_seed,
         },
     )
     raw_split = train_test_split(
         X,
         y,
-        test_size=settings.test_size,
-        random_state=settings.random_seed,
+        test_size=test_size,
+        random_state=random_seed,
         stratify=y,
     )
-    X_train, X_test, y_train, y_test = raw_split  # type: ignore[reportAssignmentType] - Sklearn split types.
+    X_train, X_test, y_train, y_test = raw_split  # type: ignore[reportAssignmentType]
 
-    # Explicit type narrowing for Pyright strict mode compliance
-    X_train_df: pd.DataFrame = X_train  # type: ignore[reportAssignmentType] - Cast split result.
-    X_test_df: pd.DataFrame = X_test  # type: ignore[reportAssignmentType] - Cast split result.
-    y_train_ser: pd.Series = y_train  # type: ignore[reportAssignmentType] - Cast split result.
-    y_test_ser: pd.Series = y_test  # type: ignore[reportAssignmentType] - Cast split result.
+    X_train_df: pd.DataFrame = X_train  # type: ignore[reportAssignmentType]
+    X_test_df: pd.DataFrame = X_test  # type: ignore[reportAssignmentType]
+    y_train_ser: pd.Series = y_train  # type: ignore[reportAssignmentType]
+    y_test_ser: pd.Series = y_test  # type: ignore[reportAssignmentType]
 
     logger.info(
         "Train/test split kész",
@@ -105,43 +121,49 @@ def train_model(
     y_test_ser.to_csv(y_test_path, index=False)
 
     logger.info(
-        "Teszthalmazok sikeresen elmentve "
-        "a lemezre az evaluate számára",
+        "Teszthalmazok sikeresen elmentve a lemezre az evaluate számára",
         extra={
             "x_test_path": str(x_test_path),
             "y_test_path": str(y_test_path),
         },
     )
 
-    n_estimators = settings.rf_n_estimators
-
     mlflow.set_experiment(settings.mlflow_experiment_name)
 
     with mlflow.start_run() as run:
+        # 2. Minden paraméter naplózása az MLflow-ba
         mlflow.log_param("n_estimators", n_estimators)
-        mlflow.log_param("random_seed", settings.random_seed)
-        mlflow.log_param("test_size", settings.test_size)
+        mlflow.log_param("max_depth", str(max_depth))
+        mlflow.log_param("min_samples_split", min_samples_split)
+        mlflow.log_param("random_seed", random_seed)
+        mlflow.log_param("test_size", test_size)
 
         logger.info(
             "Random Forest modell inicializálása",
             extra={
                 "algorithm": "RandomForestClassifier",
                 "n_estimators": n_estimators,
+                "max_depth": str(max_depth),
+                "min_samples_split": min_samples_split,
             },
         )
+
+        # 3. Hiperparaméterek átadása a modellnek
         model = RandomForestClassifier(
-            random_state=settings.random_seed,
+            random_state=random_seed,
             n_estimators=n_estimators,
+            max_depth=max_depth,
+            min_samples_split=min_samples_split,
         )
         model.fit(
             X_train_df, y_train_ser
-        )  # type: ignore[reportArgumentType] - Sklearn fit compatibility.
+        )  # type: ignore[reportArgumentType]
 
         logger.info("Modell betanítva")
 
         metrics = compute_metrics(
             model, X_test_df, y_test_ser
-        )  # type: ignore[reportArgumentType] - Dynamic model/test.
+        )  # type: ignore[reportArgumentType]
 
         logger.info(
             "Kiértékelés elkészült",
@@ -151,9 +173,9 @@ def train_model(
         mlflow.log_metrics(metrics)
 
         input_example = (
-            X_train_df.iloc[[0]]  # type: ignore[reportAttributeAccessIssue] - DataFrame iloc.
+            X_train_df.iloc[[0]]  # type: ignore[reportAttributeAccessIssue]
         )
-        mlflow.sklearn.log_model(  # type: ignore[reportPrivateImportUsage, reportArgumentType] - MLflow log.
+        mlflow.sklearn.log_model(  # type: ignore[reportPrivateImportUsage, reportArgumentType]
             model,
             name="model",
             input_example=input_example,
@@ -179,8 +201,7 @@ def train_model(
     run_id_file.write_text(run_id, encoding="utf-8")
 
     logger.info(
-        "Run ID sikeresen elmentve a "
-        "models/mlflow_run_id fájlba",
+        "Run ID sikeresen elmentve a models/mlflow_run_id fájlba",
         extra={
             "run_id": run_id,
             "path": str(run_id_file),
