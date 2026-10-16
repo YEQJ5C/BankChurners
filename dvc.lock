@@ -1,0 +1,101 @@
+schema: '2.0'
+stages:
+  prepare:
+    cmd: python -m src.prepare
+    deps:
+    - path: data/raw/BankChurners.csv
+      hash: md5
+      md5: 7daa95f87a23bb75fb2b3dee6e04fa47
+      size: 384903
+    - path: src/prepare.py
+      hash: md5
+      md5: 713c249946165db1eea69e7c2a298f09
+      size: 5923
+    outs:
+    - path: data/processed/bank_churners_processed.csv
+      hash: md5
+      md5: 909a7c64a847e89fd5c4e82e4cbcbc94
+      size: 380902
+  features:
+    cmd: python -m src.features
+    deps:
+    - path: data/processed/bank_churners_processed.csv
+      hash: md5
+      md5: 909a7c64a847e89fd5c4e82e4cbcbc94
+      size: 380902
+    - path: src/features.py
+      hash: md5
+      md5: 7fa02219376fe8667534fbd6cb3b0f1b
+      size: 3284
+    outs:
+    - path: data/processed/X.csv
+      hash: md5
+      md5: 4220d67ae270257a31d85c66d0889292
+      size: 652448
+    - path: data/processed/y.csv
+      hash: md5
+      md5: 033358666b2877e15265de8ee984e199
+      size: 8016
+  train:
+    cmd: python -m src.train
+    deps:
+    - path: data/processed/X.csv
+      hash: md5
+      md5: 4220d67ae270257a31d85c66d0889292
+      size: 652448
+    - path: data/processed/y.csv
+      hash: md5
+      md5: 033358666b2877e15265de8ee984e199
+      size: 8016
+    - path: src/train.py
+      hash: md5
+      md5: 58ba6c235bdeb56922aa74d2c6828f10
+      size: 6550
+    params:
+      params.yaml:
+        prepare.test_size: 0.2
+        seed: 42
+        train.max_depth:
+        train.min_samples_split: 2
+        train.n_estimators: 100
+    outs:
+    - path: data/processed/X_test.csv
+      hash: md5
+      md5: 4ae066b8c9e80810652d650068d830b3
+      size: 131035
+    - path: data/processed/y_test.csv
+      hash: md5
+      md5: f2077b7cc7256f4c2a45566cc37c64b9
+      size: 1616
+    - path: models/mlflow_run_id
+      hash: md5
+      md5: d186eb36819c9eeabe711c7ac0c50b93
+      size: 32
+  evaluate:
+    cmd: python -m src.evaluate
+    deps:
+    - path: data/processed/X_test.csv
+      hash: md5
+      md5: 4ae066b8c9e80810652d650068d830b3
+      size: 131035
+    - path: data/processed/y_test.csv
+      hash: md5
+      md5: f2077b7cc7256f4c2a45566cc37c64b9
+      size: 1616
+    - path: models/mlflow_run_id
+      hash: md5
+      md5: d186eb36819c9eeabe711c7ac0c50b93
+      size: 32
+    - path: src/evaluate.py
+      hash: md5
+      md5: 61f7bdaa42062a999dfa48d00b85610f
+      size: 5304
+    params:
+      params.yaml:
+        evaluate.min_f1: 0.6
+        evaluate.threshold: 0.5
+    outs:
+    - path: metrics/metrics.json
+      hash: md5
+      md5: f3c97e66a671bce07e3c60b95f17efb9
+      size: 201
