@@ -1,147 +1,202 @@
-"""FastAPI REST API module for the BankChurners MLOps pipeline."""
+"""FastAPI application module for serving the BankChurners churn prediction model."""
 
-from typing import Any, Dict, Optional
-import mlflow.sklearn  # type: ignore[reportMissingImports] - Side-effect import model regisztrációhoz.
-from fastapi import FastAPI, HTTPException
+import os
+import glob
+import joblib
+import subprocess
+import threading
+from typing import Any, Dict, Tuple, Optional
+import mlflow
+import pandas as pd
+from fastapi import FastAPI, HTTPException, status
 from pydantic import BaseModel, Field
 
-from src.config import settings
 from src.logger import get_logger
-from src.predict import make_prediction
 
 logger = get_logger("churn.api")
 
+mlflow_tracking_uri = os.getenv("MLFLOW_TRACKING_URI", "http://mlflow:5000")
+mlflow.set_tracking_uri(mlflow_tracking_uri)
+
 app = FastAPI(
-    title="BankChurners MLOps API",
-    description=(
-        "Production-grade API for customer churn "
-        "prediction and model training."
-    ),
+    title="Bank Churners Prediction API",
+    description="Production-grade MLOps API with robust subprocess training and zero-training startup.",
     version="1.0.0",
 )
 
-# Globális modell változó
-model: Optional[Any] = None
+model: Any = None
 
 
-def load_model() -> None:
-    """Load the trained MLflow model from the Model Registry."""
+class CustomerData(BaseModel):
+    """Pydantic model representing input features for customer churn prediction."""
+
+    customer_age: int = Field(..., ge=18, le=100, description="Customer age")
+    credit_limit: float = Field(..., gt=0, description="Credit limit on account")
+    total_trans_amt: float = Field(..., ge=0, description="Total transaction amount")
+    total_trans_ct: int = Field(..., ge=0, description="Total transaction count")
+
+
+def load_model() -> bool:
+    """Load the machine learning model directly from local filesystem artifacts."""
     global model
-    model_uri = f"models:/{settings.registered_model_name}/latest"
+    logger.info("-> [LOAD_MODEL] Modell közvetlen betöltése a lemezről...")
+
     try:
-        model = mlflow.sklearn.load_model(  # type: ignore[reportPrivateImportUsage] - Dinamikus import.
-            model_uri
-        )
+        search_patterns = ["mlruns/**/model.pkl", "/app/mlruns/**/model.pkl", "models/**/*.pkl"]
+        model_paths = []
+        for pattern in search_patterns:
+            model_paths.extend(glob.glob(pattern, recursive=True))
+
+        if not model_paths:
+            logger.warning("Nem található .pkl modell fájl a lemezen.")
+            return False
+
+        latest_model_path = max(model_paths, key=os.path.getmtime)
+        logger.info(f"-> [LOAD_MODEL] Modell fájl megtalálva: {latest_model_path}")
+
+        model = joblib.load(latest_model_path)
         logger.info(
-            "Modell sikeresen betöltve a regisztrációból",
-            extra={"model_uri": model_uri},
+            "Modell sikeresen betöltve",
+            extra={"model_path": latest_model_path},
         )
+        return True
     except Exception as e:
-        logger.warning(
-            "Nem sikerült betölteni a modellt a regisztrációból",
-            extra={"model_uri": model_uri, "error": str(e)},
-        )
         model = None
+        logger.warning(
+            "Nem sikerült betölteni a modellt",
+            extra={"error": str(e)},
+        )
+        return False
+
+
+def background_initialization() -> None:
+    """Initialize model in a background daemon thread strictly without training on startup."""
+    logger.info("-> [BACKGROUND_INIT] Induláskori modell-ellenőrzés (Zéró tréning induláskor)...")
+    if load_model():
+        logger.info("-> [BACKGROUND_INIT] Modell sikeresen betöltve induláskor.")
+    else:
+        logger.info("-> [BACKGROUND_INIT] Nincs betöltött modell induláskor. Használd a /train végpontot.")
 
 
 @app.on_event("startup")
 def startup_event() -> None:
-    """Initialize application services on startup."""
-    load_model()
+    """FastAPI startup event handler starting background initialization."""
+    thread = threading.Thread(target=background_initialization, daemon=True)
+    thread.start()
 
 
-class ChurnPredictionRequest(BaseModel):
-    """Pydantic model for BankChurners prediction input validation."""
-
-    customer_age: int = Field(
-        ..., ge=18, le=100, description="Customer age"
-    )
-    credit_limit: float = Field(
-        ..., gt=0, description="Credit limit"
-    )
-    total_trans_amt: float = Field(
-        ..., gt=0, description="Total transaction amount"
-    )
-    total_trans_ct: int = Field(
-        ..., gt=0, description="Total transaction count"
-    )
-
-
-@app.get("/health", summary="Health Check")
-def health_check() -> Dict[str, str]:
-    """Verify the health status of the API and model availability."""
+@app.get("/health")
+def health_check() -> Dict[str, Any]:
+    """Health check endpoint returning service status and model loaded state."""
     return {
         "status": "healthy",
         "model_loaded": "true" if model is not None else "false",
     }
 
 
-@app.post("/train", summary="Trigger Model Training")
-def trigger_training() -> Dict[str, Any]:
-    """Trigger the training pipeline programmatically via the REST API."""
-    logger.info("Tréning pipeline indítása API-n keresztül...")
-    try:
-        # Lokális import körkörös hivatkozás elkerülésére
-        from src.train import train_model
+@app.post("/train")
+def train_model_endpoint() -> Dict[str, Any]:
+    """Trigger model training via REST API by executing the training script as a subprocess."""
+    global model
+    logger.info("-> [TRAIN_ENDPOINT] Tréning indítása subprocess-en keresztül...")
 
-        run_id = train_model()
-        # Újratöltjük a modellt a friss regisztrációból
-        load_model()
-        logger.info(
-            "A tréning sikeresen lefutott",
-            extra={"run_id": run_id},
+    try:
+        # Futtatjuk a src.train modulként a tréninget
+        result = subprocess.run(
+            ["python", "-m", "src.train"],
+            capture_output=True,
+            text=True,
+            check=True
         )
-        return {
-            "status": "success",
-            "message": "Model trained and registered successfully via API.",
-            "run_id": run_id,
+        logger.info("Tréning script sikeresen lefutott", extra={"stdout": result.stdout[:200]})
+
+        # Újratöltjük a frissen mentett modellt
+        if load_model():
+            return {
+                "status": "success",
+                "message": "Model trained and reloaded successfully via subprocess.",
+            }
+        else:
+            raise RuntimeError("Training script finished, but the model file could not be loaded.")
+
+    except subprocess.CalledProcessError as e:
+        logger.error(f"Training script failed with stderr: {e.stderr}")
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"Training failed: {e.stderr.strip()}",
+        )
+    except Exception as e:
+        logger.error(f"Training failed: {e}")
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"Training failed: {str(e)}",
+        )
+
+
+def make_prediction(ml_model: Any, data: CustomerData) -> Tuple[int, Optional[float]]:
+    """Perform prediction using the loaded model with robust feature name alignment."""
+    input_dict = data.dict()
+    df = pd.DataFrame([input_dict])
+
+    if hasattr(ml_model, "feature_names_in_"):
+        expected_features = ml_model.feature_names_in_
+        aligned_df = pd.DataFrame(columns=expected_features)
+
+        mapping = {
+            "Age": "customer_age",
+            "Credit_Limit": "credit_limit",
+            "Total_Trans_Amt": "total_trans_amt",
+            "Total_Trans_Ct": "total_trans_ct",
         }
-    except Exception as e:
-        logger.error(
-            "A tréning sikertelen volt az API-n keresztül",
-            extra={"error": str(e)},
-        )
-        raise HTTPException(
-            status_code=500, detail=f"Training failed: {str(e)}"
-        )
+
+        for col in expected_features:
+            assigned = False
+            for model_col, api_col in mapping.items():
+                if col.lower() == model_col.lower() and api_col in df.columns:
+                    aligned_df.loc[0, col] = df.loc[0, api_col]
+                    assigned = True
+                    break
+            
+            if not assigned:
+                if col in df.columns:
+                    aligned_df.loc[0, col] = df.loc[0, col]
+                else:
+                    aligned_df.loc[0, col] = 0.0
+
+        features = aligned_df
+    else:
+        features = df
+
+    prediction = int(ml_model.predict(features)[0])
+    probability = None
+    if hasattr(ml_model, "predict_proba"):
+        probs = ml_model.predict_proba(features)
+        probability = float(probs[0][1])
+    return prediction, probability
 
 
-@app.post("/predict", summary="Predict Customer Churn")
-def predict(payload: ChurnPredictionRequest) -> Dict[str, Any]:
-    """Endpoint for customer churn prediction using the registered model."""
+@app.post("/predict")
+def predict(data: CustomerData) -> Dict[str, Any]:
+    """Predict customer churn based on input features, logging request and prediction."""
+    logger.info("Incoming prediction request", extra={"request_data": data.dict()})
+
     if model is None:
-        logger.warning(
-            "Predikciós kérés érkezett, de a modell nincs betöltve."
-        )
         raise HTTPException(
-            status_code=503,
-            detail=(
-                "Model is not loaded. "
-                "Please train or register a model first."
-            ),
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+            detail="Model is not loaded yet. Please trigger /train first.",
         )
-
     try:
-        # Pydantic v2 kompatibilis model_dump() használata
-        input_dict = payload.model_dump()
-        prediction, probability = make_prediction(model, input_dict)
-        logger.info(
-            "Predikció sikeresen generálva",
-            extra={"prediction": int(prediction)},
-        )
+        prediction, probability = make_prediction(model, data)
+        response_data = {
+            "prediction": prediction,
+            "churn_probability": probability,
+            "received_data": data.dict(),
+        }
+        logger.info("Prediction successful", extra={"response_data": response_data})
+        return response_data
     except Exception as e:
-        logger.error(
-            "A predikció sikertelen volt",
-            extra={"error": str(e)},
-        )
+        logger.error(f"Prediction failed: {e}")
         raise HTTPException(
-            status_code=500, detail=f"Prediction failed: {str(e)}"
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"Prediction failed: {str(e)}",
         )
-
-    return {
-        "prediction": int(prediction),
-        "churn_probability": (
-            float(probability) if probability is not None else None
-        ),
-        "received_data": input_dict,
-    }

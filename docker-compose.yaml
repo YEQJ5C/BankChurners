@@ -1,0 +1,42 @@
+services:
+  # 1. MLflow Tracking szerver
+  mlflow:
+    image: python:3.10.12-slim
+    container_name: bank_churn_mlflow
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./mlruns:/app/mlruns
+      - ./models:/app/models
+    working_dir: /app
+    command: >
+      bash -c "pip install mlflow &&
+      mlflow server --host 0.0.0.0 --port 5000 --backend-store-uri sqlite:///mlflow.db --default-artifact-root ./mlruns --allowed-hosts '*'"
+    networks:
+      - churn_net
+    restart: unless-stopped
+
+  # 2. FastAPI Predikciós API
+  api:
+    build: .
+    container_name: bank_churn_api
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./mlruns:/app/mlruns
+      - ./models:/app/models
+      - ./metrics:/app/metrics
+      - ./data:/app/data
+    environment:
+      - PYTHONUNBUFFERED=1
+      - MLFLOW_TRACKING_URI=http://mlflow:5000
+    depends_on:
+      - mlflow
+    command: uvicorn src.api:app --host 0.0.0.0 --port 8000
+    networks:
+      - churn_net
+    restart: unless-stopped
+
+networks:
+  churn_net:
+    driver: bridge

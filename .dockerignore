@@ -1,0 +1,49 @@
+# Python és virtuális környezetek
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+build/
+dist/
+*.egg-info/
+
+# Tesztelés és kódminőség cache-ek
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+.pyright/
+
+# IDE és szerkesztő beállítások
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Adatok, modellek, metrikák, logok (struktúra megőrzésével, de a tartalom nélkül)
+data/raw/*
+data/processed/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+
+models/*
+!models/.gitkeep
+
+metrics/*
+!metrics/.gitkeep
+
+logs/*
+!logs/.gitkeep
+
+# MLflow állományok
+mlruns/
+mlflow.db
+
+# DVC cache
+.dvc/cache
+.dvc/state

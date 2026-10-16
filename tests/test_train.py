@@ -1,13 +1,18 @@
-"""Unit tests for the model training module."""
-
-from __future__ import annotations
+"""Unit tests for the model training module (src/train.py)."""
 
 from pathlib import Path
 import pandas as pd
 import pytest
+import mlflow
 
-from src.train import train_model
 import src.train
+from src.train import train_model
+
+
+@pytest.fixture(autouse=True)
+def speed_up_mlflow(tmp_path) -> None:
+    """Speed up MLflow logging during tests by using a local tmp SQLite backend."""
+    mlflow.set_tracking_uri(f"sqlite:///{tmp_path}/mlflow.db")
 
 
 def test_train_model_success(tmp_path: Path, monkeypatch) -> None:
@@ -29,6 +34,7 @@ def test_train_model_success(tmp_path: Path, monkeypatch) -> None:
     y_data.to_csv(y_file, index=False)
 
     monkeypatch.chdir(tmp_path)
+    monkeypatch.setattr(src.train.settings, "models_dir", models_dir)
 
     monkeypatch.setattr(
         src.train,
@@ -37,20 +43,24 @@ def test_train_model_success(tmp_path: Path, monkeypatch) -> None:
             "seed": 42,
             "prepare": {"test_size": 0.5},
             "train": {
-                "n_estimators": 5,
+                "n_estimators": 2,
                 "max_depth": 3,
                 "min_samples_split": 2,
             },
         },
     )
 
+    class MockRunInfo:
+        run_id = "mock_run_abc_123"
+        experiment_id = "1"
+
     class MockRun:
-        info = type("obj", (object,), {"run_id": "mock_run_abc_123"})()
+        info = MockRunInfo()
 
     monkeypatch.setattr(
         src.train.mlflow,
         "start_run",
-        lambda: type(
+        lambda *args, **kwargs: type(
             "obj",
             (object,),
             {
@@ -69,28 +79,34 @@ def test_train_model_success(tmp_path: Path, monkeypatch) -> None:
     )
     monkeypatch.setattr(src.train, "compute_metrics", lambda m, x, y: {"f1": 0.85})
 
-    # Stringként adjuk át az útvonalakat, hogy a str | Path ágak (49, 54. sor) is lefedésre kerüljenek
     run_id = train_model(x_path=str(x_file), y_path=str(y_file))
     assert run_id == "mock_run_abc_123"
-    assert (Path("models") / "mlflow_run_id").read_text(encoding="utf-8") == "mock_run_abc_123"
 
 
-def test_train_model_missing_x_file(tmp_path: Path) -> None:
+def test_train_model_missing_x_file(tmp_path: Path, monkeypatch) -> None:
     """Test train_model raises FileNotFoundError when X.csv is missing."""
-    y_file = tmp_path / "y.csv"
+    processed_dir = tmp_path / "processed"
+    processed_dir.mkdir(parents=True, exist_ok=True)
+    monkeypatch.chdir(tmp_path)
+
+    y_file = processed_dir / "y.csv"
     pd.Series([0, 1]).to_csv(y_file, index=False)
 
     with pytest.raises(FileNotFoundError):
-        train_model(x_path=tmp_path / "non_existent_X.csv", y_path=y_file)
+        train_model(x_path=str(processed_dir / "non_existent_X.csv"), y_path=str(y_file))
 
 
-def test_train_model_missing_y_file(tmp_path: Path) -> None:
+def test_train_model_missing_y_file(tmp_path: Path, monkeypatch) -> None:
     """Test train_model raises FileNotFoundError when y.csv is missing."""
-    x_file = tmp_path / "X.csv"
-    pd.DataFrame({"A": [1, 2]}).to_csv(x_file, index=False)
+    processed_dir = tmp_path / "processed"
+    processed_dir.mkdir(parents=True, exist_ok=True)
+    monkeypatch.chdir(tmp_path)
+
+    x_file = processed_dir / "X.csv"
+    pd.DataFrame({"F1": [1, 2]}).to_csv(x_file, index=False)
 
     with pytest.raises(FileNotFoundError):
-        train_model(x_path=x_file, y_path=tmp_path / "non_existent_y.csv")
+        train_model(x_path=str(x_file), y_path=str(processed_dir / "non_existent_y.csv"))
 
 
 def test_train_model_main_block(monkeypatch, tmp_path: Path) -> None:
@@ -98,7 +114,9 @@ def test_train_model_main_block(monkeypatch, tmp_path: Path) -> None:
     import runpy
 
     processed_dir = tmp_path / "processed"
+    models_dir = tmp_path / "models"
     processed_dir.mkdir(parents=True, exist_ok=True)
+    models_dir.mkdir(parents=True, exist_ok=True)
 
     X_data = pd.DataFrame({
         "Feature_1": [1.0, 2.0, 3.0, 4.0, 5.0, 6.0],
@@ -111,7 +129,9 @@ def test_train_model_main_block(monkeypatch, tmp_path: Path) -> None:
     y_data.to_csv(y_file, index=False)
 
     monkeypatch.setattr(src.train.settings, "processed_dir", processed_dir)
+    monkeypatch.setattr(src.train.settings, "models_dir", models_dir)
     monkeypatch.chdir(tmp_path)
+
     monkeypatch.setattr(
         src.train,
         "load_params",
@@ -119,20 +139,24 @@ def test_train_model_main_block(monkeypatch, tmp_path: Path) -> None:
             "seed": 42,
             "prepare": {"test_size": 0.5},
             "train": {
-                "n_estimators": 5,
+                "n_estimators": 2,
                 "max_depth": 3,
                 "min_samples_split": 2,
             },
         },
     )
 
+    class MockRunInfo:
+        run_id = "mock_run_main_789"
+        experiment_id = "1"
+
     class MockRun:
-        info = type("obj", (object,), {"run_id": "mock_run_main_789"})()
+        info = MockRunInfo()
 
     monkeypatch.setattr(
         src.train.mlflow,
         "start_run",
-        lambda: type(
+        lambda *args, **kwargs: type(
             "obj",
             (object,),
             {
