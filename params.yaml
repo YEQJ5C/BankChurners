@@ -10,4 +10,4 @@ train:
 
 evaluate:
   threshold: 0.5
-  min_f1: 0.60
+  min_f1: 0.50

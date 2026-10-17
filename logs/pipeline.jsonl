@@ -23143,3 +23143,35 @@
 {"ts": "2026-10-16T22:24:01+0200", "level": "INFO", "logger": "churn.train", "message": "-> [MLFLOW] Tréning futás indítva, run_id: e5df55307eb149d8901f73c721275978"}
 {"ts": "2026-10-16T22:24:05+0200", "level": "INFO", "logger": "churn.train", "message": "-> [MLFLOW] Modell sikeresen logolva és regisztrálva. Run ID: e5df55307eb149d8901f73c721275978"}
 {"ts": "2026-10-16T22:24:05+0200", "level": "INFO", "logger": "churn.train", "message": "-> [DVC] Kimenetek (X_test.csv, y_test.csv, mlflow_run_id) sikeresen elmentve!"}
+{"ts": "2026-10-17T08:54:28+0200", "level": "INFO", "logger": "churn.env_runner", "message": "Környezeti validáció indítása..."}
+{"ts": "2026-10-17T08:54:28+0200", "level": "INFO", "logger": "churn.env_runner", "message": "Környezeti adatok és csomagok összegyűjtve", "package_count": 19}
+{"ts": "2026-10-17T08:54:28+0200", "level": "INFO", "logger": "churn.env_runner", "message": "Környezeti jelentés (markdown) generálva."}
+{"ts": "2026-10-17T08:54:28+0200", "level": "INFO", "logger": "churn.env_runner", "message": "Környezeti jelentés sikeresen elmentve", "saved_path": "docs/env_report_20261017_085428.md"}
+{"ts": "2026-10-17T08:54:32+0200", "level": "INFO", "logger": "churn.train", "message": "-> [TRAIN] Adatok betöltése a DVC features stádiumból..."}
+{"ts": "2026-10-17T08:54:33+0200", "level": "INFO", "logger": "churn.train", "message": "-> [MLFLOW] Tréning futás indítva, run_id: 62173fa02ad64501be5ac75c4a4460c7"}
+{"ts": "2026-10-17T08:54:37+0200", "level": "INFO", "logger": "churn.train", "message": "-> [MLFLOW] Modell sikeresen logolva és regisztrálva. Run ID: 62173fa02ad64501be5ac75c4a4460c7"}
+{"ts": "2026-10-17T08:54:37+0200", "level": "INFO", "logger": "churn.train", "message": "-> [DVC] Kimenetek (X_test.csv, y_test.csv, mlflow_run_id) sikeresen elmentve!"}
+{"ts": "2026-10-17T08:54:39+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Teszthalmaz betöltése", "x_test_path": "/home/firstuser/BankChurners/data/processed/X_test.csv", "y_test_path": "/home/firstuser/BankChurners/data/processed/y_test.csv"}
+{"ts": "2026-10-17T08:54:39+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Teszthalmaz betöltve", "rows": 800, "features": 30}
+{"ts": "2026-10-17T08:54:39+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Modell betöltése", "model_uri": "models:/bank_churn_model/latest"}
+{"ts": "2026-10-17T08:54:39+0200", "level": "ERROR", "logger": "churn.evaluate", "message": "Modell betöltési hiba.", "model_uri": "models:/bank_churn_model/latest", "error": "Registered Model with name=bank_churn_model not found"}
+{"ts": "2026-10-17T08:56:47+0200", "level": "INFO", "logger": "churn.env_runner", "message": "Környezeti validáció indítása..."}
+{"ts": "2026-10-17T08:56:47+0200", "level": "INFO", "logger": "churn.env_runner", "message": "Környezeti adatok és csomagok összegyűjtve", "package_count": 19}
+{"ts": "2026-10-17T08:56:47+0200", "level": "INFO", "logger": "churn.env_runner", "message": "Környezeti jelentés (markdown) generálva."}
+{"ts": "2026-10-17T08:56:47+0200", "level": "INFO", "logger": "churn.env_runner", "message": "Környezeti jelentés sikeresen elmentve", "saved_path": "docs/env_report_20261017_085647.md"}
+{"ts": "2026-10-17T08:56:49+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Teszthalmaz betöltése", "x_test_path": "/home/firstuser/BankChurners/data/processed/X_test.csv", "y_test_path": "/home/firstuser/BankChurners/data/processed/y_test.csv"}
+{"ts": "2026-10-17T08:56:49+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Teszthalmaz betöltve", "rows": 800, "features": 30}
+{"ts": "2026-10-17T08:56:49+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Modell betöltése", "model_uri": "models:/bank_churn_model/latest"}
+{"ts": "2026-10-17T08:56:50+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Metrikák számítása..."}
+{"ts": "2026-10-17T08:56:50+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Minőségi kapu ellenőrzése", "f1_score": 0.5158, "min_f1_threshold": 0.6, "decision_threshold": 0.5}
+{"ts": "2026-10-17T08:56:50+0200", "level": "ERROR", "logger": "churn.evaluate", "message": "Model F1 score (0.5158) is below the required minimum threshold (0.6000)!"}
+{"ts": "2026-10-17T09:00:24+0200", "level": "INFO", "logger": "churn.env_runner", "message": "Környezeti validáció indítása..."}
+{"ts": "2026-10-17T09:00:24+0200", "level": "INFO", "logger": "churn.env_runner", "message": "Környezeti adatok és csomagok összegyűjtve", "package_count": 19}
+{"ts": "2026-10-17T09:00:24+0200", "level": "INFO", "logger": "churn.env_runner", "message": "Környezeti jelentés (markdown) generálva."}
+{"ts": "2026-10-17T09:00:24+0200", "level": "INFO", "logger": "churn.env_runner", "message": "Környezeti jelentés sikeresen elmentve", "saved_path": "docs/env_report_20261017_090024.md"}
+{"ts": "2026-10-17T09:00:26+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Teszthalmaz betöltése", "x_test_path": "/home/firstuser/BankChurners/data/processed/X_test.csv", "y_test_path": "/home/firstuser/BankChurners/data/processed/y_test.csv"}
+{"ts": "2026-10-17T09:00:26+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Teszthalmaz betöltve", "rows": 800, "features": 30}
+{"ts": "2026-10-17T09:00:26+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Modell betöltése", "model_uri": "models:/bank_churn_model/latest"}
+{"ts": "2026-10-17T09:00:27+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Metrikák számítása..."}
+{"ts": "2026-10-17T09:00:27+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Minőségi kapu ellenőrzése", "f1_score": 0.5158, "min_f1_threshold": 0.5, "decision_threshold": 0.5}
+{"ts": "2026-10-17T09:00:27+0200", "level": "INFO", "logger": "churn.evaluate", "message": "Kiértékelés kész, metrics.json generálva", "output_path": "/home/firstuser/BankChurners/metrics/metrics.json", "accuracy": 0.885, "precision": 0.7778, "recall": 0.3858, "f1": 0.5158, "roc_auc": 0.9381, "n_valid": 800, "positive_rate": 0.1588, "evaluation_threshold": 0.5, "min_f1_gate": 0.5}

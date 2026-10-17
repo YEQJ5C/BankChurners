@@ -9,6 +9,7 @@ and persists them into metrics/metrics.json safely.
 from __future__ import annotations
 
 import json
+import os
 from pathlib import Path
 
 import mlflow
@@ -30,6 +31,12 @@ def evaluate_model(
     output_path: str | Path | None = None,
 ) -> dict[str, float]:
     """Evaluates a trained model on held-out test data and checks quality gates."""
+    
+    # MLflow beállítások a helyes Tracking URI-hoz (sqlite adatbázis)
+    default_uri = "sqlite:///mlflow.db"
+    mlflow_tracking_uri = os.getenv("MLFLOW_TRACKING_URI", default_uri)
+    mlflow.set_tracking_uri(mlflow_tracking_uri)
+
     params = load_params()
     eval_params = params.get("evaluate", {})
     threshold = eval_params.get("threshold", 0.5)

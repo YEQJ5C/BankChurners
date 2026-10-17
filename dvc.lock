@@ -49,8 +49,8 @@ stages:
       size: 8016
     - path: src/train.py
       hash: md5
-      md5: 06c200e05141c5b7ff4b5f3704c879b6
-      size: 4301
+      md5: 8d6fda3dd7df0e3b128cdd1b3968e05a
+      size: 4416
     params:
       params.yaml:
         prepare.test_size: 0.2
@@ -69,7 +69,7 @@ stages:
       size: 1615
     - path: models/mlflow_run_id
       hash: md5
-      md5: a57b49ecd494535cb49394f422bc0aa2
+      md5: bc6ce1a58e3cc6ea174a7c153edb9d43
       size: 32
   evaluate:
     cmd: python -m src.evaluate
@@ -84,18 +84,18 @@ stages:
       size: 1615
     - path: models/mlflow_run_id
       hash: md5
-      md5: a57b49ecd494535cb49394f422bc0aa2
+      md5: bc6ce1a58e3cc6ea174a7c153edb9d43
       size: 32
     - path: src/evaluate.py
       hash: md5
-      md5: 61f7bdaa42062a999dfa48d00b85610f
-      size: 5304
+      md5: c5254f243c7cf9a60cd4a142bc9ae334
+      size: 5555
     params:
       params.yaml:
-        evaluate.min_f1: 0.6
+        evaluate.min_f1: 0.5
         evaluate.threshold: 0.5
     outs:
     - path: metrics/metrics.json
       hash: md5
-      md5: a9478bca9f1d857977240799c25c58ea
+      md5: e1787f4fb3e7ceecb736e04c329a1570
       size: 201

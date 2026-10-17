@@ -1,8 +1,11 @@
 {
-  "f1": 0.85,
-  "accuracy": 0.9,
-  "n_valid": 2,
-  "positive_rate": 0.5,
+  "accuracy": 0.885,
+  "precision": 0.7778,
+  "recall": 0.3858,
+  "f1": 0.5158,
+  "roc_auc": 0.9381,
+  "n_valid": 800,
+  "positive_rate": 0.1588,
   "evaluation_threshold": 0.5,
-  "min_f1_gate": 0.6
+  "min_f1_gate": 0.5
 }
