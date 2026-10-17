@@ -69,7 +69,7 @@ stages:
       size: 1615
     - path: models/mlflow_run_id
       hash: md5
-      md5: bc6ce1a58e3cc6ea174a7c153edb9d43
+      md5: 028f1412c99bb6edd542f8cabff379e4
       size: 32
   evaluate:
     cmd: python -m src.evaluate
@@ -84,12 +84,12 @@ stages:
       size: 1615
     - path: models/mlflow_run_id
       hash: md5
-      md5: bc6ce1a58e3cc6ea174a7c153edb9d43
+      md5: 028f1412c99bb6edd542f8cabff379e4
       size: 32
     - path: src/evaluate.py
       hash: md5
-      md5: c5254f243c7cf9a60cd4a142bc9ae334
-      size: 5555
+      md5: e8ea1658f1e87936f9cf621973337c5a
+      size: 5551
     params:
       params.yaml:
         evaluate.min_f1: 0.5

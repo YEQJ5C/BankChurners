@@ -100,6 +100,7 @@ BankChurners/
 │
 ├── data/                     # DVC által kezelt adatok
 ├── docs/                     # Dokumentáció és monitoring riportok
+│   └── screenshots/          # Rendszerfutási és bizonyíték képernyőképek
 ├── metrics/                  # Modellkiértékelési metrikák
 ├── models/                   # Betanított modellek és artefaktok
 ├── src/                      # Az alkalmazás forráskódja
@@ -166,6 +167,125 @@ pytest --cov=src
 ```
 
 A projekt a CI/CD quality gate által előírt 95%-os minimumot meghaladó, 100%-os tesztlefedettséget ér el.
+
+---
+# Makefile
+
+A projekt a gyakori fejlesztői és MLOps feladatok automatizálására Makefile-t használ.
+
+## Elérhető parancsok
+
+### Környezet inicializálása
+
+```bash
+make init
+```
+
+Telepíti a projekt függőségeit a `requirements.txt` alapján.
+
+### Környezet ellenőrzése
+
+```bash
+make check
+```
+
+Lefuttatja a környezet- és telepítésellenőrzést.
+
+### Kódminőség ellenőrzése
+
+```bash
+make lint
+```
+
+Flake8 alapú kódstílus-ellenőrzés.
+
+```bash
+make typecheck
+```
+
+Pyright alapú statikus típuselemzés.
+
+### Adatkezelés
+
+```bash
+make add-data
+```
+
+A nyers adatok DVC követésbe vétele.
+
+### Adatelőkészítés
+
+```bash
+make prepare
+```
+
+Adatelőkészítési pipeline futtatása.
+
+### Feature Engineering
+
+```bash
+make features
+```
+
+Feature engineering lépések futtatása.
+
+### Modelltanítás
+
+```bash
+make train
+```
+
+A modell tanítása és MLflow kísérletkövetés.
+
+### Modellkiértékelés
+
+```bash
+make evaluate
+```
+
+A modell kiértékelése és a metrikák mentése.
+
+### Teljes MLOps Pipeline
+
+```bash
+make pipeline
+```
+
+A teljes DVC-alapú MLOps pipeline futtatása:
+
+```bash
+dvc repro
+```
+
+A parancs automatikusan végrehajtja az összes szükséges pipeline lépést.
+
+### Tesztelés
+
+```bash
+make test
+```
+
+Pytest futtatása coverage méréssel.
+
+### API indítása
+
+```bash
+make run
+```
+
+FastAPI szolgáltatás indítása fejlesztői módban.
+
+## Példa workflow
+
+```bash
+make init
+make check
+make pipeline
+make test
+make run
+```
+
+A fenti parancsok végrehajtják a projekt teljes MLOps folyamatát a környezet ellenőrzésétől a pipeline futtatásán és tesztelésén át az API indításáig.
 
 ---
 
@@ -353,4 +473,3 @@ Coverage = 100%
 MSc Adattudomány
 
 BankChurners MLOps Pipeline Projekt
-
