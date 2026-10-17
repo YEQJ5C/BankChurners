@@ -20,4 +20,8 @@ testpaths = ["tests"]
 
 [tool.pyright]
 include = ["src"]
-typeCheckingMode = "standard"
+typeCheckingMode = "strict"
+reportMissingTypeStubs = false
+reportUnknownMemberType = false
+reportUnknownArgumentType = false
+reportUnknownVariableType = false
