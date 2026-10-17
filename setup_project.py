@@ -18,6 +18,8 @@ class ProjectInitializer:
             "data/raw",
             "data/processed",
             "configs",
+            ".github",          # GitHub mappa
+            ".github/workflows",  # GitHub Actions workflows mappa
             "src",
             "api",
             "streamlit_app",

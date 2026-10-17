@@ -31,7 +31,7 @@ def evaluate_model(
     output_path: str | Path | None = None,
 ) -> dict[str, float]:
     """Evaluates a trained model on held-out test data and checks quality gates."""
-    
+
     # MLflow beállítások a helyes Tracking URI-hoz (sqlite adatbázis)
     default_uri = "sqlite:///mlflow.db"
     mlflow_tracking_uri = os.getenv("MLFLOW_TRACKING_URI", default_uri)
