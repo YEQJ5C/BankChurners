@@ -21,6 +21,7 @@ repos:
         entry: pytest --cov=src --cov-report=term-missing --cov-fail-under=95
         language: system
         pass_filenames: false
+        verbose: true
 
   - repo: https://github.com/RobertCraigie/pyright-python
     rev: v1.1.350
