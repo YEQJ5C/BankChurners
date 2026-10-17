@@ -353,3 +353,4 @@ Coverage = 100%
 MSc Adattudomány
 
 BankChurners MLOps Pipeline Projekt
+
