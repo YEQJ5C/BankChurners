@@ -17,6 +17,11 @@ packages = ["src"]
 [tool.pytest.ini_options]
 pythonpath = ["."]
 testpaths = ["tests"]
+filterwarnings = [
+    "ignore::DeprecationWarning",
+    "ignore::RuntimeWarning",
+    "ignore::UserWarning"
+]
 
 [tool.pyright]
 include = ["src"]
