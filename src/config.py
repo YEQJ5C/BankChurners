@@ -29,9 +29,10 @@ class Settings(BaseSettings):
     # Logging
     log_level: str = "INFO"
 
-    # MLflow infrastruktúra metaadatok (nem hiperparaméterek)
-    mlflow_experiment_name: str = "bank_churn_experiment"
+    # MLflow infrastruktúra metaadatok (összhangban a train.py-val)
+    mlflow_experiment_name: str = "BankChurners_Experiment"
     registered_model_name: str = "bank_churn_model"
+    mlflow_tracking_uri: str = "sqlite:///mlflow.db"
 
     model_config = SettingsConfigDict(
         env_file=".env",
