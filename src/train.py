@@ -5,6 +5,7 @@ import yaml
 import mlflow
 import mlflow.sklearn
 import pandas as pd
+from mlflow.models import infer_signature
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import (
@@ -94,21 +95,24 @@ def train_model() -> str:
         acc = accuracy_score(y_test, preds)
         prec = precision_score(y_test, preds, zero_division=0)  # type: ignore[arg-type]
         rec = recall_score(y_test, preds, zero_division=0)      # type: ignore[arg-type]
-        f1 = f1_score(y_test, preds, zero_division=0)          # type: ignore[arg-type]
+        f1 = f1_score(y_test, preds, zero_division=0)           # type: ignore[arg-type]
 
         mlflow.log_metric("accuracy", acc)
         mlflow.log_metric("precision", prec)
         mlflow.log_metric("recall", rec)
         mlflow.log_metric("f1_score", f1)
 
-        # Natív MLflow mentés (pickle alapú, stabil. Minden mással probléma volt!)
+        # Modell logolása szignatúrával és input példával (szakmailag a legprofibb)
+        signature = infer_signature(X_train, model.predict(X_train))
+
         mlflow.sklearn.log_model(  # type: ignore[attr-defined]
             model,
             "model",
-            conda_env=None,
+            signature=signature,
+            input_example=pd.DataFrame(X_train).head(5),
             registered_model_name="bank_churn_model",
         )
-        logger.info("-> [MLFLOW] Modell logolva és regisztrálva.")
+        logger.info("-> [MLFLOW] Modell logolva szignatúrával és regisztrálva.")
 
         # --- DVC KIMENETEK ---
         os.makedirs("data/processed", exist_ok=True)
